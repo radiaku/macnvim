@@ -26,10 +26,10 @@ tnoremap <Esc> <C-\><C-N>
 
 ]])
 
-local keymap = vim.keymap -- for conciseness
+local keymap = vim.keymap -- for conciseness 
 
 -- use jk to exit insert mode
--- keymap.set("i", "jk", "<ESC>", { desc = "Exit insert mode with jk" })
+keymap.set("i", "jk", "<ESC>", { desc = "Exit insert mode with jk" })
 
 -- set shift insert to paste on insert mode
 keymap.set("i", "<S-Insert>", "<C-R>+", { desc = "Paste with shift+insert", noremap = true, silent = true })
