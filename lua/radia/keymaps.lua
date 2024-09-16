@@ -14,10 +14,10 @@ cmap <S-Insert>  <C-R>+
 tnoremap <C-\> <C-\><C-N>
 tnoremap <C-t> <C-\><C-N>:ToggleTerm<CR>
 tnoremap <Esc> <C-\><C-N> 
-" tnoremap <A-h> <C-\><C-N><C-w>h
-" tnoremap <A-j> <C-\><C-N><C-w>j
-" tnoremap <A-k> <C-\><C-N><C-w>k
-" tnoremap <A-l> <C-\><C-N><C-w>l
+tnoremap <A-h> <C-\><C-N><C-w>h
+tnoremap <A-j> <C-\><C-N><C-w>j
+tnoremap <A-k> <C-\><C-N><C-w>k
+tnoremap <A-l> <C-\><C-N><C-w>l
 
 " tnoremap <C-S-h> <C-\><C-N><C-w>h
 " tnoremap <C-S-j> <C-\><C-N><C-w>j
@@ -55,10 +55,10 @@ keymap.set("n", "<leader>cc", ":cclose<CR>", { desc = "Close QuickFix" }) --  Cl
 keymap.set("n", "<leader>bk", ":q!<CR>", { desc = "Quit " }) --  Close Buffer (bd)
 
 -- move between windows, uppside done
-keymap.set("n", "<C-S-h>", "<C-w>h", { desc = "Move to left windows", noremap = true })
-keymap.set("n", "<C-S-l>", "<C-w>l", { desc = "Move to right windows", noremap = true })
-keymap.set("n", "<C-S-j>", "<C-w>j", { desc = "Move to down windows", noremap = true })
-keymap.set("n", "<C-S-k>", "<C-w>k", { desc = "Move to upper windows", noremap = true })
+keymap.set("n", "<M-h>", "<C-w>h", { desc = "Move to left windows", noremap = true })
+keymap.set("n", "<M-l>", "<C-w>l", { desc = "Move to right windows", noremap = true })
+keymap.set("n", "<M-j>", "<C-w>j", { desc = "Move to down windows", noremap = true })
+keymap.set("n", "<M-k>", "<C-w>k", { desc = "Move to upper windows", noremap = true })
 
 -- keymap.set("n", "<M-h>", "<C-w>h", { desc = "Move to left windows", noremap = true })
 -- keymap.set("n", "<M-l>", "<C-w>l", { desc = "Move to right windows", noremap = true })
