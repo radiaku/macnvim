@@ -55,10 +55,10 @@ keymap.set("n", "<leader>cc", ":cclose<CR>", { desc = "Close QuickFix" }) --  Cl
 keymap.set("n", "<leader>bk", ":q!<CR>", { desc = "Quit " }) --  Close Buffer (bd)
 
 -- move between windows, uppside done
-keymap.set("n", "<M-h>", "<C-w>h", { desc = "Move to left windows", noremap = true })
-keymap.set("n", "<M-l>", "<C-w>l", { desc = "Move to right windows", noremap = true })
-keymap.set("n", "<M-j>", "<C-w>j", { desc = "Move to down windows", noremap = true })
-keymap.set("n", "<M-k>", "<C-w>k", { desc = "Move to upper windows", noremap = true })
+keymap.set("n", "<C-h>", "<C-w>h", { desc = "Move to left windows", noremap = true })
+keymap.set("n", "<C-l>", "<C-w>l", { desc = "Move to right windows", noremap = true })
+keymap.set("n", "<C-j>", "<C-w>j", { desc = "Move to down windows", noremap = true })
+keymap.set("n", "<C-k>", "<C-w>k", { desc = "Move to upper windows", noremap = true })
 
 -- keymap.set("n", "<M-h>", "<C-w>h", { desc = "Move to left windows", noremap = true })
 -- keymap.set("n", "<M-l>", "<C-w>l", { desc = "Move to right windows", noremap = true })
@@ -70,11 +70,17 @@ keymap.set("n", "<leader>cd", ":cd %:p:h<CR>:pwd<CR>", { desc = "Changing Workin
 -- keymap.set("n", "<leader>cd", ":cd %:p:h<CR>:pwd<CR>", { desc = "Changing Working Directory", noremap = true })
 
 -- resize split
-keymap.set("n", "<M-,>", "<C-w>5<", { desc = "Resize to right" })
-keymap.set("n", "<M-.>", "<C-w>5>", { desc = "Resize to Left" })
-keymap.set("n", "<M-u>", "<C-w>+", { desc = "Resize Up" })
-keymap.set("n", "<M-d>", "<C-w>-", { desc = "Resize Down" })
-keymap.set("n", "<M-f>", "<C-w>=", { desc = "Resize F" })
+keymap.set("n", "<C-,>", "<C-w>5<", { desc = "Resize to right" })
+keymap.set("n", "<C-.>", "<C-w>5>", { desc = "Resize to Left" })
+keymap.set("n", "<C-u>", "<C-w>+", { desc = "Resize Up" })
+keymap.set("n", "<C-d>", "<C-w>-", { desc = "Resize Down" })
+keymap.set("n", "<C-f>", "<C-w>=", { desc = "Resize F" })
+
+-- keymap.set("n", "<M-,>", "<C-w>5<", { desc = "Resize to right" })
+-- keymap.set("n", "<M-.>", "<C-w>5>", { desc = "Resize to Left" })
+-- keymap.set("n", "<M-u>", "<C-w>+", { desc = "Resize Up" })
+-- keymap.set("n", "<M-d>", "<C-w>-", { desc = "Resize Down" })
+-- keymap.set("n", "<M-f>", "<C-w>=", { desc = "Resize F" })
 
 -- reset font
 keymap.set("n", "<M-0>", "<cmd>:GuiFont! JetBrainsMono Nerd Font:h14<CR>", { desc = "Reset Font" })

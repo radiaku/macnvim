@@ -36,17 +36,17 @@ return {
 			{ desc = "Move to right tab buffer", noremap = true, silent = true }
 		)
 
-		keymap.set(
-			"n",
-			"<C-l>",
-			"<CMD>BufferLineMoveNext<CR>",
-			{ desc = "Move buffer to next left ", noremap = true, silent = true }
-		)
-		keymap.set(
-			"n",
-			"<C-h>",
-			"<CMD>BufferLineMovePrev<CR>",
-			{ desc = "Move buffer to right", noremap = true, silent = true }
-		)
+		-- keymap.set(
+		-- 	"n",
+		-- 	"<C-l>",
+		-- 	"<CMD>BufferLineMoveNext<CR>",
+		-- 	{ desc = "Move buffer to next left", noremap = true, silent = true }
+		-- )
+		-- keymap.set(
+		-- 	"n",
+		-- 	"<C-h>",
+		-- 	"<CMD>BufferLineMovePrev<CR>",
+		-- 	{ desc = "Move buffer to right", noremap = true, silent = true }
+		-- )
 	end,
 }
