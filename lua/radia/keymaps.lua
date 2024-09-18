@@ -26,7 +26,7 @@ tnoremap <A-l> <C-\><C-N><C-w>l
 
 ]])
 
-local keymap = vim.keymap -- for conciseness 
+local keymap = vim.keymap -- for conciseness
 
 -- use jk to exit insert mode
 keymap.set("i", "jk", "<ESC>", { desc = "Exit insert mode with jk" })
