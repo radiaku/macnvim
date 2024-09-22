@@ -29,7 +29,7 @@ tnoremap <A-l> <C-\><C-N><C-w>l
 local keymap = vim.keymap -- for conciseness
 
 -- ctrl+shift+v
--- keymap.set("c", "<C-S>v", "<C-R>+", { desc="ctrl+shift+v paste neovim", noremap = true, silent = true })
+-- keymap.set("c", "<M-v>", "<C-R>+", { desc="ctrl+shift+v paste neovim", noremap = true, silent = true })
 
 -- use jk to exit insert mode
 keymap.set("i", "jk", "<ESC>", { desc = "Exit insert mode with jk" })
