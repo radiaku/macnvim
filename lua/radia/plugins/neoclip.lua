@@ -4,6 +4,12 @@ return {
 		{ "nvim-telescope/telescope.nvim" },
 	},
 	config = function()
+		local function visual_paste(opts)
+			local handlers = require("neoclip.handlers")
+			handlers.set_registers({ "z" }, opts.entry)
+			vim.api.nvim_feedkeys('gv"zp', "n", false)
+		end
+
 		require("neoclip").setup({
 			history = 1000,
 			enable_persistent_history = false,
@@ -44,8 +50,11 @@ return {
 						-- replay = "<c-q>", -- replay a macro
 						delete = "<c-d>", -- delete an entry
 						paste_visual = "<c-v>",
+						-- paste_visual = visual_paste,
 						edit = "<c-e>", -- edit an entry
-						custom = {},
+						custom = {
+							["c-v"] = visual_paste,
+						},
 					},
 					n = {
 						select = "<cr>",
@@ -54,10 +63,13 @@ return {
 						-- paste = { 'p', '<c-p>' },
 						paste_behind = "P",
 						paste_visual = "<c-v>",
+						-- paste_visual = visual_paste,
 						replay = "q",
 						delete = "dd",
 						edit = "e",
-						custom = {},
+						custom = {
+							["c-v"] = visual_paste,
+						},
 					},
 				},
 			},

@@ -222,6 +222,7 @@ keymap.set("n", "<C-t>", ":ToggleTerm<CR>", { desc = "ToggleTerm", noremap = tru
 -- Telescope map
 keymap.set("i", "<C-o>", "<cmd>Telescope neoclip<CR>", { desc = "Find Clipboard on Edit" })
 keymap.set("n", "<leader>fo", "<cmd>Telescope neoclip<CR>", { desc = "Find Clipboard" })
+keymap.set("v", "<leader>fo", "<esc>:Telescope neoclip<CR>", { desc = "Find Clipboard Visual" })
 keymap.set("n", "<leader>fg", "<cmd>:lua require('telescope.builtin').registers()<cr>", { desc = "Find Registers" })
 keymap.set("n", "<leader>fm", "<cmd>:lua require('telescope.builtin').keymaps()<cr>", { desc = "Find Keymaps" })
 keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { desc = "Fuzzy find files in cwd" })
