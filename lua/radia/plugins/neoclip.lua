@@ -52,9 +52,9 @@ return {
 						paste_visual = "<c-v>",
 						-- paste_visual = visual_paste,
 						edit = "<c-e>", -- edit an entry
-						custom = {
-							["c-v"] = visual_paste,
-						},
+						-- custom = {
+						-- 	["c-v"] = visual_paste,
+						-- },
 					},
 					n = {
 						select = "<cr>",
@@ -67,9 +67,9 @@ return {
 						replay = "q",
 						delete = "dd",
 						edit = "e",
-						custom = {
-							["c-v"] = visual_paste,
-						},
+						-- custom = {
+						-- 	["c-v"] = visual_paste,
+						-- },
 					},
 				},
 			},
