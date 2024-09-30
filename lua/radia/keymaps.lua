@@ -57,11 +57,12 @@ keymap.set("n", "<leader>ba", ":%bd|e#|bd#<CR>", { desc = "Close Buffer All exce
 keymap.set("n", "<leader>cc", ":cclose<CR>", { desc = "Close QuickFix" }) --  Close Buffer (bd)
 keymap.set("n", "<leader>bk", ":q!<CR>", { desc = "Quit " }) --  Close Buffer (bd)
 
--- move between windows, uppside done
-keymap.set("n", "<M-h>", "<C-w>h", { desc = "Move to left windows", noremap = true })
-keymap.set("n", "<M-l>", "<C-w>l", { desc = "Move to right windows", noremap = true })
-keymap.set("n", "<M-j>", "<C-w>j", { desc = "Move to down windows", noremap = true })
-keymap.set("n", "<M-k>", "<C-w>k", { desc = "Move to upper windows", noremap = true })
+-- move between windows, uppside done on mac set to iterm2
+-- \<C-w>h on profile 
+-- keymap.set("n", "<M-h>", "<C-w>h", { desc = "Move to left windows", noremap = true })
+-- keymap.set("n", "<M-l>", "<C-w>l", { desc = "Move to right windows", noremap = true })
+-- keymap.set("n", "<M-j>", "<C-w>j", { desc = "Move to down windows", noremap = true })
+-- keymap.set("n", "<M-k>", "<C-w>k", { desc = "Move to upper windows", noremap = true })
 
 -- keymap.set("n", "<C-h>", "<C-w>h", { desc = "Move to left windows", noremap = true })
 -- keymap.set("n", "<C-l>", "<C-w>l", { desc = "Move to right windows", noremap = true })
@@ -82,18 +83,18 @@ keymap.set(
 	{ desc = "Move to right tab buffer", noremap = true, silent = true }
 )
 
--- keymap.set(
--- 	"n",
--- 	"<C-l>",
--- 	"<CMD>BufferLineMoveNext<CR>",
--- 	{ desc = "Move buffer to next left", noremap = true, silent = true }
--- )
--- keymap.set(
--- 	"n",
--- 	"<C-h>",
--- 	"<CMD>BufferLineMovePrev<CR>",
--- 	{ desc = "Move buffer to right", noremap = true, silent = true }
--- )
+keymap.set(
+	"n",
+	"<C-l>",
+	"<CMD>BufferLineMoveNext<CR>",
+	{ desc = "Move buffer to next left", noremap = true, silent = true }
+)
+keymap.set(
+	"n",
+	"<C-h>",
+	"<CMD>BufferLineMovePrev<CR>",
+	{ desc = "Move buffer to right", noremap = true, silent = true }
+)
 
 -- change working directory to the location of the current file
 keymap.set("n", "<leader>cd", ":cd %:p:h<CR>:pwd<CR>", { desc = "Changing Working Directory", noremap = true })
