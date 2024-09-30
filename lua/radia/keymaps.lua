@@ -220,7 +220,7 @@ keymap.set("n", "<leader>tq", ":TodoQuickFix<CR>", { noremap = true, desc = "Tod
 keymap.set("n", "<C-t>", ":ToggleTerm<CR>", { desc = "ToggleTerm", noremap = true })
 
 -- Telescope map
-keymap.set("i", "<C-o>", "<cmd>Telescope neoclip<CR>", { desc = "Find Clipboard on Edit" })
+keymap.set("i", "<C-o>", "<cmd>:Telescope neoclip<CR>", { desc = "Find Clipboard on Edit" })
 keymap.set("n", "<leader>fo", "<cmd>Telescope neoclip<CR>", { desc = "Find Clipboard" })
 keymap.set("v", "<leader>fo", "<esc>:Telescope neoclip<CR>", { desc = "Find Clipboard Visual" })
 keymap.set("n", "<leader>fg", "<cmd>:lua require('telescope.builtin').registers()<cr>", { desc = "Find Registers" })
