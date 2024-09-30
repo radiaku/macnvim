@@ -142,7 +142,7 @@ keymap.set("n", "<leader>mm", recall.toggle, { desc = "Toggle Recall", noremap =
 keymap.set("n", "<leader>mn", recall.goto_next, { desc = "Next Recall Mark", noremap = true, silent = true })
 keymap.set("n", "<leader>mp", recall.goto_prev, { desc = "Previous Recall Mark", noremap = true, silent = true })
 keymap.set("n", "<leader>mc", recall.clear, { desc = "Clear Recall Mark", noremap = true, silent = true })
-keymap.set("n", "<leader>mt", ":Telescope recall<CR>", { desc = "Recall Telescope", noremap = true, silent = true })
+keymap.set("n", "<leader>mt", ":Telescope recall theme=dropdown<CR>", { desc = "Recall Telescope", noremap = true, silent = true })
 
 -- Lsp
 vim.api.nvim_create_autocmd("LspAttach", {
@@ -154,7 +154,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 		-- set keybinds
 		opts_lsp.desc = "Show LSP references"
-		keymap.set("n", "gR", "<cmd>Telescope lsp_references<CR>", opts_lsp) -- show definition, references
+		keymap.set("n", "gR", "<cmd>Telescope lsp_references theme=dropdown<CR>", opts_lsp) -- show definition, references
 
 		opts_lsp.desc = "Show LSP type all References"
 		keymap.set("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts_lsp) -- Show LSP type all References
@@ -221,25 +221,25 @@ keymap.set("n", "<leader>tq", ":TodoQuickFix<CR>", { noremap = true, desc = "Tod
 keymap.set("n", "<C-t>", ":ToggleTerm<CR>", { desc = "ToggleTerm", noremap = true })
 
 -- Telescope map
-keymap.set("i", "<C-o>", "<cmd>:Telescope neoclip<CR>", { desc = "Find Clipboard on Edit" })
-keymap.set("n", "<leader>fo", "<cmd>Telescope neoclip<CR>", { desc = "Find Clipboard" })
-keymap.set("v", "<leader>fo", "<esc>:Telescope neoclip<CR>", { desc = "Find Clipboard Visual" })
-keymap.set("n", "<leader>fg", "<cmd>:lua require('telescope.builtin').registers()<cr>", { desc = "Find Registers" })
-keymap.set("n", "<leader>fm", "<cmd>:lua require('telescope.builtin').keymaps()<cr>", { desc = "Find Keymaps" })
-keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { desc = "Fuzzy find files in cwd" })
-keymap.set("n", "<leader>fr", "<cmd>Telescope oldfiles<cr>", { desc = "Fuzzy find recent files" })
-keymap.set("n", "<leader>fs", "<cmd>Telescope live_grep<cr>", { desc = "Find string in cwd" })
+keymap.set("i", "<C-o>", "<cmd>:Telescope neoclip theme=dropdown<CR>", { desc = "Find Clipboard on Edit" })
+keymap.set("n", "<leader>fo", "<cmd>Telescope neoclip theme=dropdown<CR>", { desc = "Find Clipboard" })
+keymap.set("v", "<leader>fo", "<esc>:Telescope neoclip theme=dropdown<CR>", { desc = "Find Clipboard Visual" })
+keymap.set("n", "<leader>fg", "<cmd>:lua require('telescope.builtin').registers().get_dropdown({})<cr>", { desc = "Find Registers" })
+keymap.set("n", "<leader>fm", "<cmd>:lua require('telescope.builtin').keymaps().get_dropdown({})<cr>", { desc = "Find Keymaps" })
+keymap.set("n", "<leader>ff", "<cmd>Telescope find_files theme=dropdown<cr>", { desc = "Fuzzy find files in cwd" })
+keymap.set("n", "<leader>fr", "<cmd>Telescope oldfiles theme=dropdown<cr>", { desc = "Fuzzy find recent files" })
+keymap.set("n", "<leader>fs", "<cmd>Telescope live_grep theme=dropdown<cr>", { desc = "Find string in cwd" })
 keymap.set(
 	"n",
 	"<leader>fa",
-	"<cmd>Telescope buffers show_all_buffers=true sort_lastused=true<cr>",
+	"<cmd>Telescope buffers show_all_buffers=true sort_lastused=true theme=dropdown<cr>",
 	{ desc = "Find buffer on buffers" }
 )
 -- keymap.set("n", "<leader>fc", "<cmd>Telescope grep_string<cr>", { desc = "Find string under cursor in cwd" })
 local live_grep_cmdc_buffer =
-	'<cmd>Telescope live_grep search_dirs={"%:p"} vimgrep_arguments=rg,--color=never,--no-heading,--with-filename,--line-number,--column,--smart-case,--fixed-strings<cr>'
+	'<cmd>Telescope live_grep search_dirs={"%:p"} vimgrep_arguments=rg,--color=never,--no-heading,--with-filename,--line-number,--column,--smart-case,--fixed-strings theme=dropdown<cr>'
 keymap.set("n", "<leader>fb", live_grep_cmdc_buffer, { desc = "Find string in current buffer" })
-local live_grep_cmd = '<cmd>lua require("telescope.builtin").live_grep({grep_open_files=true})<CR>'
+local live_grep_cmd = '<cmd>lua require("telescope.builtin").live_grep({grep_open_files=true}).get_dropdown({})<CR>'
 keymap.set("n", "<leader>fl", live_grep_cmd, { desc = "Find string in all open buffers" })
 
 -- File Neotree
