@@ -155,21 +155,21 @@ return {
 			-- 	})
 			-- end,
 
-			["ts_ls"] = function()
-				lspconfig["ts_ls"].setup({
-					capabilities = capabilities,
-					root_dir = util.root_pattern("package.json") or vim.fn.getcwd(),
-					-- cmd = { bin_path .. "typescript-language-server.cmd" },
-				})
-			end,
-
-			-- ["vtsls"] = function()
-			-- 	lspconfig["vtsls"].setup({
+			-- ["ts_ls"] = function()
+			-- 	lspconfig["ts_ls"].setup({
 			-- 		capabilities = capabilities,
 			-- 		root_dir = util.root_pattern("package.json") or vim.fn.getcwd(),
 			-- 		-- cmd = { bin_path .. "typescript-language-server.cmd" },
 			-- 	})
 			-- end,
+
+			["vtsls"] = function()
+				lspconfig["vtsls"].setup({
+					capabilities = capabilities,
+					root_dir = util.root_pattern("package.json") or vim.fn.getcwd(),
+					-- cmd = { bin_path .. "typescript-language-server.cmd" },
+				})
+			end,
 
 			["tailwindcss"] = function()
 				lspconfig["tailwindcss"].setup({
