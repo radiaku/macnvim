@@ -58,7 +58,7 @@ keymap.set("n", "<leader>cc", ":cclose<CR>", { desc = "Close QuickFix" }) --  Cl
 keymap.set("n", "<leader>bk", ":q!<CR>", { desc = "Quit " }) --  Close Buffer (bd)
 
 -- move between windows, uppside done on mac set to iterm2
--- \<C-w>h on profile 
+-- \<C-w>h on profile
 -- keymap.set("n", "<M-h>", "<C-w>h", { desc = "Move to left windows", noremap = true })
 -- keymap.set("n", "<M-l>", "<C-w>l", { desc = "Move to right windows", noremap = true })
 -- keymap.set("n", "<M-j>", "<C-w>j", { desc = "Move to down windows", noremap = true })
@@ -142,7 +142,12 @@ keymap.set("n", "<leader>mm", recall.toggle, { desc = "Toggle Recall", noremap =
 keymap.set("n", "<leader>mn", recall.goto_next, { desc = "Next Recall Mark", noremap = true, silent = true })
 keymap.set("n", "<leader>mp", recall.goto_prev, { desc = "Previous Recall Mark", noremap = true, silent = true })
 keymap.set("n", "<leader>mc", recall.clear, { desc = "Clear Recall Mark", noremap = true, silent = true })
-keymap.set("n", "<leader>mt", ":Telescope recall theme=dropdown<CR>", { desc = "Recall Telescope", noremap = true, silent = true })
+keymap.set(
+	"n",
+	"<leader>mt",
+	":Telescope recall theme=dropdown<CR>",
+	{ desc = "Recall Telescope", noremap = true, silent = true }
+)
 
 -- Lsp
 vim.api.nvim_create_autocmd("LspAttach", {
@@ -224,11 +229,21 @@ keymap.set("n", "<C-t>", ":ToggleTerm<CR>", { desc = "ToggleTerm", noremap = tru
 keymap.set("i", "<C-o>", "<cmd>:Telescope neoclip theme=dropdown<CR>", { desc = "Find Clipboard on Edit" })
 keymap.set("n", "<leader>fo", "<cmd>Telescope neoclip theme=dropdown<CR>", { desc = "Find Clipboard" })
 keymap.set("v", "<leader>fo", "<esc>:Telescope neoclip theme=dropdown<CR>", { desc = "Find Clipboard Visual" })
-keymap.set("n", "<leader>fg", "<cmd>:lua require('telescope.builtin').registers().get_dropdown({})<cr>", { desc = "Find Registers" })
-keymap.set("n", "<leader>fm", "<cmd>:lua require('telescope.builtin').keymaps().get_dropdown({})<cr>", { desc = "Find Keymaps" })
+keymap.set("n", "<leader>fg", "<cmd>:lua require('telescope.builtin').registers()<cr>", { desc = "Find Registers" })
+keymap.set(
+	"n",
+	"<leader>fm",
+	"<cmd>:lua require('telescope.builtin').keymaps({layout_strategy='vertical',layout_config={height=100}})<cr>",
+	{ desc = "Find Keymaps" }
+)
 keymap.set("n", "<leader>ff", "<cmd>Telescope find_files theme=dropdown<cr>", { desc = "Fuzzy find files in cwd" })
 keymap.set("n", "<leader>fr", "<cmd>Telescope oldfiles theme=dropdown<cr>", { desc = "Fuzzy find recent files" })
-keymap.set("n", "<leader>fs", "<cmd>Telescope live_grep theme=dropdown<cr>", { desc = "Find string in cwd" })
+keymap.set(
+	"n",
+	"<leader>fs",
+	"<cmd>Telescope live_grep <cr>",
+	{ desc = "Find string in cwd" }
+)
 keymap.set(
 	"n",
 	"<leader>fa",
@@ -237,9 +252,10 @@ keymap.set(
 )
 -- keymap.set("n", "<leader>fc", "<cmd>Telescope grep_string<cr>", { desc = "Find string under cursor in cwd" })
 local live_grep_cmdc_buffer =
-	'<cmd>Telescope live_grep search_dirs={"%:p"} vimgrep_arguments=rg,--color=never,--no-heading,--with-filename,--line-number,--column,--smart-case,--fixed-strings theme=dropdown<cr>'
+	'<cmd>Telescope live_grep search_dirs={"%:p"} vimgrep_arguments=rg,--color=never,--no-heading,--with-filename,--line-number,--column,--smart-case,--fixed-strings --theme=dropdown<cr>'
 keymap.set("n", "<leader>fb", live_grep_cmdc_buffer, { desc = "Find string in current buffer" })
-local live_grep_cmd = '<cmd>lua require("telescope.builtin").live_grep({grep_open_files=true}).get_dropdown({})<CR>'
+local live_grep_cmd =
+	'<cmd>lua require("telescope.builtin").live_grep({grep_open_files=true,layout_strategy=vertical,layout_config={height=100}})<CR>'
 keymap.set("n", "<leader>fl", live_grep_cmd, { desc = "Find string in all open buffers" })
 
 -- File Neotree
