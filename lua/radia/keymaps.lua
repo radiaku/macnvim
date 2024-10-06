@@ -226,10 +226,20 @@ keymap.set("n", "<leader>tq", ":TodoQuickFix<CR>", { noremap = true, desc = "Tod
 keymap.set("n", "<C-t>", ":ToggleTerm<CR>", { desc = "ToggleTerm", noremap = true })
 
 -- Telescope map
-keymap.set("i", "<C-o>", "<cmd>:Telescope neoclip theme=dropdown<CR>", { desc = "Find Clipboard on Edit" })
-keymap.set("n", "<leader>fo", "<cmd>Telescope neoclip theme=dropdown<CR>", { desc = "Find Clipboard" })
-keymap.set("v", "<leader>fo", "<esc>:Telescope neoclip theme=dropdown<CR>", { desc = "Find Clipboard Visual" })
-keymap.set("n", "<leader>fg", "<cmd>:lua require('telescope.builtin').registers()<cr>", { desc = "Find Registers" })
+keymap.set("i", "<C-o>", "<cmd>:Telescope neoclip <CR>", { desc = "Find Clipboard on Edit" })
+keymap.set("n", "<leader>fo", "<cmd>:Telescope neoclip <CR>", { desc = "Find Clipboard" })
+keymap.set(
+	"v",
+	"<leader>fo",
+	"<cmd>:lua require('telescope.builtin').registers({ layout_strategy='vertical', layout_config={ height=100 } })<CR>",
+	{ desc = "Find Clipboard Visual" }
+)
+keymap.set(
+	"n",
+	"<leader>fg",
+	"<cmd>:lua require('telescope.builtin').registers({layout_strategy='vertical',layout_config={height=100}})<cr>",
+	{ desc = "Find Registers" }
+)
 keymap.set(
 	"n",
 	"<leader>fm",
@@ -238,12 +248,7 @@ keymap.set(
 )
 keymap.set("n", "<leader>ff", "<cmd>Telescope find_files theme=dropdown<cr>", { desc = "Fuzzy find files in cwd" })
 keymap.set("n", "<leader>fr", "<cmd>Telescope oldfiles theme=dropdown<cr>", { desc = "Fuzzy find recent files" })
-keymap.set(
-	"n",
-	"<leader>fs",
-	"<cmd>Telescope live_grep <cr>",
-	{ desc = "Find string in cwd" }
-)
+keymap.set("n", "<leader>fs", "<cmd>Telescope live_grep <cr>", { desc = "Find string in cwd" })
 keymap.set(
 	"n",
 	"<leader>fa",
