@@ -29,9 +29,9 @@ return {
 
 		telescope.setup({
 			defaults = {
-				layout_config = {
-					layout_strategy = "vertical",
-				},
+				-- layout_config = {
+				-- 	layout_strategy = "vertical",
+				-- },
 				path_display = { "truncate" },
 				mappings = {
 					i = {
