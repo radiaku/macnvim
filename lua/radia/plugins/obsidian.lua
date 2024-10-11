@@ -1,22 +1,23 @@
 return {
 	{
 		"epwalsh/obsidian.nvim",
-		version = "*", -- recommended, use latest release instead of latest commit
-		lazy = true,
+		event = "VeryLazy",
+		-- lazy = true,
 		ft = "markdown",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 		},
-		opts = {
-			workspaces = {
-				{
-					name = "personal",
-					path = "~/Documents/ObsidianVault",
+		config = function()
+			require("obsidian").setup({
+				workspaces = {
+					{
+						name = "personal",
+						path = "~/Documents/ObsidianVault",
+					},
 				},
-			},
-      ui =  {enable = false}
-
-		},
+				ui = { enable = false },
+			})
+		end,
 	},
 	{
 		"MeanderingProgrammer/render-markdown.nvim",
