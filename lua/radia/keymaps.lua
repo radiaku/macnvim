@@ -346,3 +346,5 @@ end, { desc = "Previous Harpoon" })
 
 -- Trouble
 keymap.set("n", "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>", { desc = "Diagnostics (Trouble)", noremap = true })
+-- Obsidian Search
+keymap.set("n", "<leader>so", "<cmd>ObsidianSearch<cr>", { desc = "Search Obsidian Note", noremap = true })
