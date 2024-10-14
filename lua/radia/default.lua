@@ -4,7 +4,7 @@
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 vim.g.loaded_perl_provider = 0
-vim.g.ruby_host_prog = '~/.gem/ruby/2.6.0/bin/neovim-ruby-host'
+vim.g.ruby_host_prog = "~/.gem/ruby/2.6.0/bin/neovim-ruby-host"
 
 -- optionally enable 24-bit colour
 -- vim.opt.termguicolors = true
@@ -16,7 +16,8 @@ else
 	python_install_path = vim.fn.exepath("python3")
 end
 
-vim.g.python3_host_prog = python_install_path
+-- vim.g.python3_host_prog = python_install_path
+vim.g.python3_host_prog = "/usr/local/bin/python3.12"
 
 -- vim.opt.clipboard = "unnamed"
 vim.opt.clipboard = "unnamed,unnamedplus" -- allows neovim to access the system clipboard
