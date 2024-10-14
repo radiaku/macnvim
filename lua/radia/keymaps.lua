@@ -55,6 +55,7 @@ keymap.set("n", "<leader>bd", "<cmd>bd!<CR>", { desc = "Close Buffer (bd)" }) --
 keymap.set("n", "<leader>ba", ":%bd|e#|bd#<CR>", { desc = "Close Buffer All except unsaved (bd)" }) --  Close Buffer (bd)
 -- keymap.set("n", "<leader>baf", ":qa!", { desc = "Kill all and exit" })
 keymap.set("n", "<leader>cc", ":cclose<CR>", { desc = "Close QuickFix" }) --  Close Buffer (bd)
+keymap.set("n", "<leader>co", "::only<CR>", { desc = "Close Other Split windows" })
 keymap.set("n", "<leader>bk", ":q!<CR>", { desc = "Quit " }) --  Close Buffer (bd)
 
 -- move between windows, uppside done on mac set to iterm2
@@ -268,18 +269,18 @@ keymap.set("n", "<leader>ee", ":Neotree toggle float<CR>", { desc = "Float File 
 keymap.set("n", "<leader>ef", ":Neotree toggle left<CR>", { desc = "Left File Explorer", silent = true })
 
 -- Spectre
-keymap.set("n", "<leader>sr", '<cmd>lua require("spectre").toggle()<CR>', {
-	desc = "Toggle Spectre",
-})
-keymap.set("n", "<leader>sw", '<cmd>lua require("spectre").open_visual({select_word=true})<CR>', {
-	desc = "Search current word",
-})
-keymap.set("v", "<leader>sw", '<esc><cmd>lua require("spectre").open_visual()<CR>', {
-	desc = "Search current word",
-})
-keymap.set("n", "<leader>sp", '<cmd>lua require("spectre").open_file_search({select_word=true})<CR>', {
-	desc = "Search on current file",
-})
+-- keymap.set("n", "<leader>sr", '<cmd>lua require("spectre").toggle()<CR>', {
+-- 	desc = "Toggle Spectre",
+-- })
+-- keymap.set("n", "<leader>sw", '<cmd>lua require("spectre").open_visual({select_word=true})<CR>', {
+-- 	desc = "Search current word",
+-- })
+-- keymap.set("v", "<leader>sw", '<esc><cmd>lua require("spectre").open_visual()<CR>', {
+-- 	desc = "Search current word",
+-- })
+-- keymap.set("n", "<leader>sp", '<cmd>lua require("spectre").open_file_search({select_word=true})<CR>', {
+-- 	desc = "Search on current file",
+-- })
 
 -- Line Operation, Moving block or line
 opts.desc = "Move BlockLine Down"
