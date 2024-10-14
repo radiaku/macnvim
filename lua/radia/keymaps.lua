@@ -135,19 +135,19 @@ keymap.set({ "n", "v" }, "<leader>rf", function()
 end, { desc = "Format file" })
 
 -- Recall
-local recall = require("recall")
-keymap.set("n", "<leader>ma", "<cmd>RecallMark<CR>", { desc = "RecallMark", noremap = true, silent = true })
-keymap.set("n", "<leader>md", "<cmd>RecallUnmark<CR>", { desc = "RecallUnMark", noremap = true, silent = true })
-keymap.set("n", "<leader>mm", recall.toggle, { desc = "Toggle Recall", noremap = true, silent = true })
-keymap.set("n", "<leader>mn", recall.goto_next, { desc = "Next Recall Mark", noremap = true, silent = true })
-keymap.set("n", "<leader>mp", recall.goto_prev, { desc = "Previous Recall Mark", noremap = true, silent = true })
-keymap.set("n", "<leader>mc", recall.clear, { desc = "Clear Recall Mark", noremap = true, silent = true })
-keymap.set(
-	"n",
-	"<leader>mt",
-	":Telescope recall theme=dropdown<CR>",
-	{ desc = "Recall Telescope", noremap = true, silent = true }
-)
+-- local recall = require("recall")
+-- keymap.set("n", "<leader>ma", "<cmd>RecallMark<CR>", { desc = "RecallMark", noremap = true, silent = true })
+-- keymap.set("n", "<leader>md", "<cmd>RecallUnmark<CR>", { desc = "RecallUnMark", noremap = true, silent = true })
+-- keymap.set("n", "<leader>mm", recall.toggle, { desc = "Toggle Recall", noremap = true, silent = true })
+-- keymap.set("n", "<leader>mn", recall.goto_next, { desc = "Next Recall Mark", noremap = true, silent = true })
+-- keymap.set("n", "<leader>mp", recall.goto_prev, { desc = "Previous Recall Mark", noremap = true, silent = true })
+-- keymap.set("n", "<leader>mc", recall.clear, { desc = "Clear Recall Mark", noremap = true, silent = true })
+-- keymap.set(
+-- 	"n",
+-- 	"<leader>mt",
+-- 	":Telescope recall theme=dropdown<CR>",
+-- 	{ desc = "Recall Telescope", noremap = true, silent = true }
+-- )
 
 -- Lsp
 vim.api.nvim_create_autocmd("LspAttach", {
@@ -348,3 +348,5 @@ end, { desc = "Previous Harpoon" })
 keymap.set("n", "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>", { desc = "Diagnostics (Trouble)", noremap = true })
 -- Obsidian Search
 keymap.set("n", "<leader>so", "<cmd>ObsidianSearch<cr>", { desc = "Search Obsidian Note", noremap = true })
+-- Mark 
+keymap.set("n", "<leader>ml","<cmd>:MarksQFListBuf<cr>",  { desc = "List Mark On Buffer", noremap = true })
