@@ -349,5 +349,6 @@ end, { desc = "Previous Harpoon" })
 keymap.set("n", "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>", { desc = "Diagnostics (Trouble)", noremap = true })
 -- Obsidian Search
 keymap.set("n", "<leader>so", "<cmd>ObsidianSearch<cr>", { desc = "Search Obsidian Note", noremap = true })
+keymap.set("n", "<leader>sn", "<cmd>ObsidianNew<cr>", { desc = "Search Obsidian Note", noremap = true })
 -- Mark
 keymap.set("n", "<leader>ml", "<cmd>:MarksQFListBuf<cr>", { desc = "List Mark On Buffer", noremap = true })
