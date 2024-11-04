@@ -52,6 +52,7 @@ return {
 				-- null_ls.builtins.formatting.clang_format,
 				-- null_ls.builtins.formatting.markdownlint,
 				null_ls.builtins.formatting.prettierd,
+				null_ls.builtins.formatting.csharpier,
 
 				-- null_ls.builtins.hover.printenv,
 				formatting.stylua, -- lua formatter
