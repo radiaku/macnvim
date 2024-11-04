@@ -173,10 +173,14 @@ return {
 
 			["csharp_ls"] = function()
 				lspconfig["csharp_ls"].setup({
+					filetypes = {
+            "cs",
+            "csharp",
+            "c_sharp"
+          },
 					capabilities = capabilities,
-					root_dir = util.root_pattern("package.json") or vim.fn.getcwd(),
+					root_dir = util.root_pattern("package.json") or ".git" or util.root_pattern("csproj") or vim.fn.getcwd(),
 					autoformat = false,
-					-- cmd = { bin_path .. "tailwindcss-language-server.cmd" },
 				})
 			end,
 
