@@ -171,8 +171,8 @@ return {
 				})
 			end,
 
-			["csharp_ls"] = function()
-				lspconfig["csharp_ls"].setup({
+			["omnisharp"] = function()
+				lspconfig["omnisharp"].setup({
 					filetypes = {
             "cs",
             "csharp",
@@ -182,6 +182,7 @@ return {
 					root_dir = util.root_pattern("package.json") or ".git" or util.root_pattern("csproj") or vim.fn.getcwd(),
 					autoformat = false,
 				})
+
 			end,
 
 
