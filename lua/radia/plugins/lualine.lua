@@ -10,7 +10,7 @@ return {
 		return {
 			options = {
 				component_separators = { left = " ", right = " " },
-				theme = "sonokai",
+				theme = _G.themesname,
 				-- theme = "github_dark_dimmed",
 				-- theme = "tokyonight",
 				globalstatus = true,
@@ -45,11 +45,6 @@ return {
 					-- 	color = { fg = colors.cyan, bg = colors.none },
 					-- },
 				},
-				-- lualine_z = {
-				-- 	function()
-				-- 		return "  " .. os.date("%X") .. " 🚀 "
-				-- 	end,
-				-- },
 			},
 
 			extensions = { "toggleterm", "mason", "nvim-tree", "neo-tree", "trouble" },

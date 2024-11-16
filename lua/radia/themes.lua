@@ -2,7 +2,8 @@
 -- local themesname = "monet"
 -- local themesname = "gruvbox-baby"
 -- local themesname = "tokyonight"
-local themesname = "sonokai"
+-- local themesname = "sonokai"
+local themesname = _G.themesname
 -- local themesname = "github_dark_dimmed"
 
 if vim.g.neovide then

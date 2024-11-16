@@ -6,6 +6,11 @@ vim.g.loaded_netrwPlugin = 1
 vim.g.loaded_perl_provider = 0
 vim.g.ruby_host_prog = "~/.gem/ruby/2.6.0/bin/neovim-ruby-host"
 
+
+-- Variable Global 
+-- theme
+_G.themesname = "arctic"
+
 -- optionally enable 24-bit colour
 -- vim.opt.termguicolors = true
 
