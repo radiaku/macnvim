@@ -10,8 +10,8 @@ return {
 		return {
 			options = {
 				component_separators = { left = " ", right = " " },
-				theme = _G.themesname,
-				-- theme = "github_dark_dimmed",
+				-- theme = _G.themesname,
+				theme = "powerline",
 				-- theme = "tokyonight",
 				globalstatus = true,
 				disabled_filetypes = { statusline = { "dashboard", "alpha" } },

@@ -9,7 +9,7 @@ vim.g.ruby_host_prog = "~/.gem/ruby/2.6.0/bin/neovim-ruby-host"
 
 -- Variable Global 
 -- theme
-_G.themesname = "arctic"
+_G.themesname = "sonokai"
 
 -- optionally enable 24-bit colour
 -- vim.opt.termguicolors = true
