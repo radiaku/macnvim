@@ -11,6 +11,7 @@ return {
 			options = {
 				component_separators = { left = " ", right = " " },
 				theme = "sonokai",
+				-- theme = "github_dark_dimmed",
 				-- theme = "tokyonight",
 				globalstatus = true,
 				disabled_filetypes = { statusline = { "dashboard", "alpha" } },

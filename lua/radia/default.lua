@@ -9,14 +9,15 @@ vim.g.ruby_host_prog = "~/.gem/ruby/2.6.0/bin/neovim-ruby-host"
 -- optionally enable 24-bit colour
 -- vim.opt.termguicolors = true
 
-local python_install_path = ""
-if vim.fn.has("win32") == 1 then
-	python_install_path = vim.fn.exepath("python")
-else
-	python_install_path = vim.fn.exepath("python3")
-end
-
+-- local python_install_path = ""
+-- if vim.fn.has("win32") == 1 then
+-- 	python_install_path = vim.fn.exepath("python")
+-- else
+-- 	python_install_path = vim.fn.exepath("python3")
+-- end
+--
 -- vim.g.python3_host_prog = python_install_path
+
 vim.g.python3_host_prog = "/usr/local/bin/python3.12"
 
 -- vim.opt.clipboard = "unnamed"

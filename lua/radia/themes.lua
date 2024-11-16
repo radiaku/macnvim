@@ -3,6 +3,7 @@
 -- local themesname = "gruvbox-baby"
 -- local themesname = "tokyonight"
 local themesname = "sonokai"
+-- local themesname = "github_dark_dimmed"
 
 if vim.g.neovide then
 	require(themesname).setup({
