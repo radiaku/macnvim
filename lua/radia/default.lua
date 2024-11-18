@@ -19,7 +19,7 @@ if _G.themesname == "sonokai" then
     let g:sonokai_style = 'atlantis'
     let g:sonokai_diagnostic_line_highlight = 1
     let g:sonokai_better_performance = 1
-    colorscheme sonokai
+    "colorscheme sonokai
   ]])
 end
 
