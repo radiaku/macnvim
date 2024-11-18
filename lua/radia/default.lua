@@ -10,6 +10,18 @@ vim.g.ruby_host_prog = "~/.gem/ruby/2.6.0/bin/neovim-ruby-host"
 -- Variable Global 
 -- theme
 _G.themesname = "sonokai"
+if _G.themesname == "sonokai" then
+  vim.cmd([[
+    " let g:sonokai_style = 'espresso'
+    " let g:sonokai_style = 'maia'
+    " let g:sonokai_style = 'shusia'
+    " let g:sonokai_style = 'andromeda'
+    let g:sonokai_style = 'atlantis'
+    let g:sonokai_diagnostic_line_highlight = 1
+    let g:sonokai_better_performance = 1
+    colorscheme sonokai
+  ]])
+end
 
 -- optionally enable 24-bit colour
 -- vim.opt.termguicolors = true
