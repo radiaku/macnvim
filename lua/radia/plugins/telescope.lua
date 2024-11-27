@@ -29,21 +29,27 @@ return {
 
 		telescope.setup({
 			defaults = {
-				-- layout_config = {
-				-- 	layout_strategy = "vertical",
-				-- },
 				path_display = { "truncate" },
+				layout_strategy = "horizontal",
+				layout_config = {
+					horizontal = {
+						prompt_position = "top",
+						preview_width = 0.55,
+						results_width = 0.8,
+					},
+					vertical = {
+						mirror = false,
+					},
+					width = 0.87,
+					height = 0.80,
+					preview_cutoff = 120,
+				},
 				mappings = {
 					i = {
 						["<C-k>"] = actions.move_selection_previous, -- move to prev result
 						["<C-j>"] = actions.move_selection_next, -- move to next result
 						["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
 					},
-				},
-			},
-			pickers = {
-				find_files = {
-					theme = "dropdown",
 				},
 			},
 		})
