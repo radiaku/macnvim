@@ -228,7 +228,7 @@ keymap.set("n", "<C-t>", ":ToggleTerm<CR>", { desc = "ToggleTerm", noremap = tru
 
 -- Telescope map
 keymap.set("i", "<C-o>", "<cmd>:Telescope neoclip <CR>", { desc = "Find Clipboard on Insert" })
-keymap.set("n", "<leader>fo", "<cmd>:Telescope neoclip <CR>", { desc = "Find Clipboard Normal" })
+keymap.set("n", "<leader>fc", "<cmd>:Telescope neoclip <CR>", { desc = "Find Clipboard Normal" })
 keymap.set(
 	"v",
 	"<leader>fc",
