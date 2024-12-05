@@ -227,17 +227,17 @@ keymap.set("n", "<leader>tq", ":TodoQuickFix<CR>", { noremap = true, desc = "Tod
 keymap.set("n", "<C-t>", ":ToggleTerm<CR>", { desc = "ToggleTerm", noremap = true })
 
 -- Telescope map
-keymap.set("i", "<C-o>", "<cmd>:Telescope neoclip <CR>", { desc = "Find Clipboard on Edit" })
-keymap.set("n", "<leader>fo", "<cmd>:Telescope neoclip <CR>", { desc = "Find Clipboard" })
+keymap.set("i", "<C-o>", "<cmd>:Telescope neoclip <CR>", { desc = "Find Clipboard on Insert" })
+keymap.set("n", "<leader>fo", "<cmd>:Telescope neoclip <CR>", { desc = "Find Clipboard Normal" })
 keymap.set(
 	"v",
-	"<leader>fo",
+	"<leader>fc",
 	"<cmd>:lua require('telescope.builtin').registers({ layout_strategy='vertical', layout_config={ height=100 } })<CR>",
 	{ desc = "Find Clipboard Visual" }
 )
 keymap.set(
 	"n",
-	"<leader>fg",
+	"<leader>fr",
 	"<cmd>:lua require('telescope.builtin').registers({layout_strategy='vertical',layout_config={height=100}})<cr>",
 	{ desc = "Find Registers" }
 )
@@ -255,7 +255,7 @@ keymap.set(
 )
 keymap.set(
 	"n",
-	"<leader>fr",
+	"<leader>fn",
 	"<cmd>Telescope oldfiles theme=dropdown previewer=false<cr>",
 	{ desc = "Fuzzy find recent files" }
 )
