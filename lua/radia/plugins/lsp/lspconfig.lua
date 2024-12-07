@@ -191,14 +191,15 @@ return {
 				lspconfig["tailwindcss"].setup({
 					filetypes = {
 						"css",
-						"javascriptreact",
 						"typescriptreact",
-						"css",
+						"typescript",
+						"javascriptreact",
+						"javascript",
 						"sass",
 						"scss",
 						"less",
-						"svelte",
 						"liquid",
+						"svelte",
 					},
 					capabilities = capabilities,
 					root_dir = util.root_pattern("package.json") or vim.fn.getcwd(),
@@ -283,16 +284,17 @@ return {
 					-- cmd = { bin_path .. "vscode-html-language-server.cmd" },
 				})
 			end,
+
 			["emmet_ls"] = function()
 				-- configure emmet language server
 				lspconfig["emmet_ls"].setup({
 					capabilities = capabilities,
 					filetypes = {
 						"html",
-						"javascript",
 						"typescriptreact",
 						"typescript",
 						"javascriptreact",
+						"javascript",
 						"css",
 						"sass",
 						"scss",
@@ -302,6 +304,7 @@ return {
 					},
 				})
 			end,
+
 			["lua_ls"] = function()
 				-- configure lua server (with special settings)
 				lspconfig["lua_ls"].setup({

@@ -54,7 +54,6 @@ keymap.set("n", "<leader>sx", "<cmd>close<CR>", { desc = "Close current split" }
 keymap.set("n", "<leader>bd", "<cmd>bd!<CR>", { desc = "Close Buffer (bd)" }) --  Close Buffer (bd)
 keymap.set("n", "<leader>ba", ":%bd|e#|bd#<CR>", { desc = "Close Buffer All except unsaved (bd)" }) --  Close Buffer (bd)
 -- keymap.set("n", "<leader>baf", ":qa!", { desc = "Kill all and exit" })
-keymap.set("n", "<leader>cc", ":cclose<CR>", { desc = "Close QuickFix" }) --  Close Buffer (bd)
 keymap.set("n", "<leader>co", ":only<CR>", { desc = "Close Other Split windows" })
 keymap.set("n", "<leader>bk", ":q!<CR>", { desc = "Quit " }) --  Close Buffer (bd)
 
@@ -119,8 +118,15 @@ keymap.set("n", "<M-0>", "<cmd>:GuiFont! JetBrainsMono Nerd Font:h14<CR>", { des
 
 -- save all
 keymap.set("n", "<leader>sa", ":wa<CR>", { desc = "Save all", noremap = true })
--- quit force
-keymap.set("n", "<leader>qf", ":q!<CR>", { desc = "quit force all", noremap = true })
+--  :copen
+keymap.set("n", "<leader>qf", ":copen<CR>", { desc = "quick fix", noremap = true })
+keymap.set("n", "<leader>cc", ":cclose<CR>", { desc = "Close QuickFix" }) --  Close Buffer (bd)
+
+function ClearQuickfixList()
+  vim.fn.setqflist({})
+end
+vim.api.nvim_create_user_command('ClearQuickfixList', ClearQuickfixList, {})
+keymap.set('n', '<leader>cf', ':ClearQuickfixList<CR>', { desc= "clear QuickFix", noremap = true, silent = true })
 
 -- Plugin map
 local opts = { noremap = true, silent = true }
