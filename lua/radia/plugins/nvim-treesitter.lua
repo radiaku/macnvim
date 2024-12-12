@@ -10,6 +10,9 @@ return {
 			-- import nvim-treesitter plugin
 			local treesitter = require("nvim-treesitter.configs")
 
+      -- NOTE: toggle below to ignore Lua_LS's noisy `missing-fields` warnings
+      -- diagnostics = { disable = { 'missing-fields' } },
+
 			-- configure treesitter
 			treesitter.setup({
         -- enable syntax highlighting

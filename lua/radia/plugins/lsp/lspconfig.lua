@@ -314,6 +314,7 @@ return {
 							-- make the language server recognize "vim" global
 							diagnostics = {
 								globals = { "vim" },
+								disable = { "missing-fields" },
 							},
 							workspace = {
 								-- Make the server aware of Neovim runtime files
