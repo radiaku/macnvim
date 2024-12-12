@@ -11,7 +11,7 @@ return {
 
 			close_if_last_window = true,
 			popup_border_style = "single",
-			enable_git_status = true,
+			enable_git_status = false,
 			enable_modified_markers = true,
 			enable_diagnostics = true,
 			sort_case_insensitive = true,
@@ -32,21 +32,21 @@ return {
 					default = "*",
 					highlight = "NeoTreeFileIcon",
 				},
-				git_status = {
-					symbols = {
-						-- Change type
-						added = "",
-						deleted = "",
-						modified = "",
-						renamed = "",
-						-- Status type
-						untracked = "",
-						ignored = "",
-						unstaged = "",
-						staged = "",
-						conflict = "",
-					},
-				},
+			-- 	git_status = {
+			-- 		symbols = {
+			-- 			-- Change type
+			-- 			added = "",
+			-- 			deleted = "",
+			-- 			modified = "",
+			-- 			renamed = "",
+			-- 			-- Status type
+			-- 			untracked = "",
+			-- 			ignored = "",
+			-- 			unstaged = "",
+			-- 			staged = "",
+			-- 			conflict = "",
+			-- 		},
+			-- 	},
 			},
 			window = {
 				position = "float",
