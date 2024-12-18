@@ -72,7 +72,6 @@ return {
 				["<CR>"] = cmp.mapping.confirm({ select = false }),
 			}),
 
-
 			-- sources for autocompletion
 			sources = default_cmp_sources,
 
