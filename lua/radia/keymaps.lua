@@ -101,11 +101,11 @@ keymap.set("n", "<leader>cd", ":cd %:p:h<CR>:pwd<CR>", { desc = "Changing Workin
 -- keymap.set("n", "<leader>cd", ":cd %:p:h<CR>:pwd<CR>", { desc = "Changing Working Directory", noremap = true })
 
 -- resize split
-keymap.set("n", "<C-,>", "<C-w>5<", { desc = "Resize to right" })
-keymap.set("n", "<C-.>", "<C-w>5>", { desc = "Resize to Left" })
-keymap.set("n", "<C-u>", "<C-w>+", { desc = "Resize Up" })
-keymap.set("n", "<C-d>", "<C-w>-", { desc = "Resize Down" })
-keymap.set("n", "<C-f>", "<C-w>=", { desc = "Resize F" })
+keymap.set("n", "<M-,>", "<C-w>5<", { desc = "Resize to Left" })
+keymap.set("n", "<M-.>", "<C-w>5>", { desc = "Resize to Right" })
+keymap.set("n", "<M-u>", "<C-w>+", { desc = "Resize Up" })
+keymap.set("n", "<M-d>", "<C-w>-", { desc = "Resize Down" })
+keymap.set("n", "<M-f>", "<C-w>=", { desc = "Resize to Equal" })
 
 -- keymap.set("n", "<M-,>", "<C-w>5<", { desc = "Resize to right" })
 -- keymap.set("n", "<M-.>", "<C-w>5>", { desc = "Resize to Left" })
@@ -123,10 +123,10 @@ keymap.set("n", "<leader>qf", ":copen<CR>", { desc = "quick fix", noremap = true
 keymap.set("n", "<leader>cc", ":cclose<CR>", { desc = "Close QuickFix" }) --  Close Buffer (bd)
 
 function ClearQuickfixList()
-  vim.fn.setqflist({})
+	vim.fn.setqflist({})
 end
-vim.api.nvim_create_user_command('ClearQuickfixList', ClearQuickfixList, {})
-keymap.set('n', '<leader>cf', ':ClearQuickfixList<CR>', { desc= "clear QuickFix", noremap = true, silent = true })
+vim.api.nvim_create_user_command("ClearQuickfixList", ClearQuickfixList, {})
+keymap.set("n", "<leader>cf", ":ClearQuickfixList<CR>", { desc = "clear QuickFix", noremap = true, silent = true })
 
 -- Plugin map
 local opts = { noremap = true, silent = true }
