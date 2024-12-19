@@ -1,30 +1,50 @@
 return {
-	-- "saghen/blink.cmp",
-	-- lazy = false, -- lazy loading handled internally
-	-- dependencies = {
-	-- 	"hrsh7th/cmp-buffer", -- source for text in buffer
-	-- 	"hrsh7th/cmp-path", -- source for file system paths
-	-- 	"L3MON4D3/LuaSnip", -- snippet engine
-	-- 	"saadparwaiz1/cmp_luasnip", -- for autocompletion
-	-- 	"rafamadriz/friendly-snippets", -- useful snippets
-	-- 	"onsails/lspkind.nvim", -- vs-code like pictograms
-	-- 	-- "mlaursen/vim-react-snippets",
-	-- },
-	--
-	-- version = "v0.*",
-	-- opts = {
-	-- 	keymap = {
-	-- 		preset = "default",
-	-- 		["<CR>"] = { "select_and_accept" },
-	-- 	},
-	--
-	-- 	appearance = {
-	-- 		use_nvim_cmp_as_default = true,
-	-- 		nerd_font_variant = "mono",
-	-- 	},
-	--
-	-- 	sources = {
-	-- 		default = { "lsp", "path", "snippets", "buffer" },
-	-- 	},
-	-- },
+	"saghen/blink.cmp",
+
+	version = "v0.*",
+	dependencies = {
+		"L3MON4D3/LuaSnip",
+		version = "v2.*",
+		"rafamadriz/friendly-snippets", -- useful snippets
+	},
+	opts = {
+		keymap = {
+			preset = "default",
+			["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
+			["<C-e>"] = { "hide", "fallback" },
+			["<CR>"] = { "accept", "fallback" },
+
+			["<Tab>"] = { "snippet_forward", "fallback" },
+			["<S-Tab>"] = { "snippet_backward", "fallback" },
+
+			["<Up>"] = { "select_prev", "fallback" },
+			["<Down>"] = { "select_next", "fallback" },
+			["<C-p>"] = { "select_prev", "fallback" },
+			["<C-n>"] = { "select_next", "fallback" },
+
+			["<C-b>"] = { "scroll_documentation_up", "fallback" },
+			["<C-f>"] = { "scroll_documentation_down", "fallback" },
+		},
+		appearance = {
+			use_nvim_cmp_as_default = true,
+			nerd_font_variant = "mono",
+		},
+		snippets = {
+			expand = function(snippet)
+				require("luasnip").lsp_expand(snippet)
+			end,
+			active = function(filter)
+				if filter and filter.direction then
+					return require("luasnip").jumpable(filter.direction)
+				end
+				return require("luasnip").in_snippet()
+			end,
+			jump = function(direction)
+				require("luasnip").jump(direction)
+			end,
+		},
+		sources = {
+			default = { "lsp", "path", "luasnip", "buffer" },
+		},
+	},
 }

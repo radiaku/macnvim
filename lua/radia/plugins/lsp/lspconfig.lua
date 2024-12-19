@@ -21,7 +21,9 @@ return {
 		local cmp_nvim_lsp = require("cmp_nvim_lsp")
 
 		-- used to enable autocompletion (assign to every lsp server config)
-		local capabilities = cmp_nvim_lsp.default_capabilities()
+		-- local capabilities = cmp_nvim_lsp.default_capabilities()
+
+		local capabilities = require("blink.cmp").get_lsp_capabilities()
 
 		-- Change the Diagnostic symbols in the sign column (gutter)
 		-- (not in youtube nvim video)
@@ -62,7 +64,7 @@ return {
 
 				lspconfig["pyright"].setup({
 					filetypes = { "python", ".py" },
-					capabilities = capabilities,
+					-- capabilities = capabilities,
 
 					cmd = { "pyright-langserver", "--stdio" },
 
@@ -165,7 +167,7 @@ return {
 
 			["vtsls"] = function()
 				lspconfig["vtsls"].setup({
-					capabilities = capabilities,
+					-- capabilities = capabilities,
 					root_dir = util.root_pattern("package.json") or vim.fn.getcwd(),
 					-- cmd = { bin_path .. "typescript-language-server.cmd" },
 				})
@@ -178,7 +180,7 @@ return {
 						"csharp",
 						"c_sharp",
 					},
-					capabilities = capabilities,
+					-- capabilities = capabilities,
 					root_dir = util.root_pattern("package.json")
 						or ".git"
 						or util.root_pattern("csproj")
@@ -201,7 +203,7 @@ return {
 						"liquid",
 						"svelte",
 					},
-					capabilities = capabilities,
+					-- capabilities = capabilities,
 					root_dir = util.root_pattern("package.json") or vim.fn.getcwd(),
 					autoformat = false,
 					-- cmd = { bin_path .. "tailwindcss-language-server.cmd" },
@@ -211,7 +213,7 @@ return {
 			["gopls"] = function()
 				lspconfig["gopls"].setup({
 					filetypes = { "go" },
-					capabilities = capabilities,
+					-- capabilities = capabilities,
 				})
 			end,
 
@@ -231,7 +233,7 @@ return {
 
 			["intelephense"] = function()
 				lspconfig["intelephense"].setup({
-					capabilities = capabilities,
+					-- capabilities = capabilities,
 					cmd = { "intelephense", "--stdio" },
 					filetypes = { "php" },
 					root_dir = function(pattern)
@@ -270,7 +272,7 @@ return {
 						"*.tmpl",
 						"gotexttmpl",
 					},
-					capabilities = capabilities,
+					-- capabilities = capabilities,
 					init_options = {
 						embeddedLanguages = {
 							css = true,
@@ -288,7 +290,7 @@ return {
 			["emmet_ls"] = function()
 				-- configure emmet language server
 				lspconfig["emmet_ls"].setup({
-					capabilities = capabilities,
+					-- capabilities = capabilities,
 					filetypes = {
 						"html",
 						"typescriptreact",
@@ -308,7 +310,7 @@ return {
 			["lua_ls"] = function()
 				-- configure lua server (with special settings)
 				lspconfig["lua_ls"].setup({
-					capabilities = capabilities,
+					-- capabilities = capabilities,
 					settings = {
 						Lua = {
 							-- make the language server recognize "vim" global
