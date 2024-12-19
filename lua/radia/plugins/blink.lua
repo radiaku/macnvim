@@ -6,6 +6,7 @@ return {
 		"L3MON4D3/LuaSnip",
 		version = "v2.*",
 		"rafamadriz/friendly-snippets", -- useful snippets
+		"L3MON4D3/LuaSnip",
 	},
 	opts = {
 		keymap = {
