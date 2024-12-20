@@ -34,7 +34,7 @@ end
 --
 -- vim.g.python3_host_prog = python_install_path
 
-vim.g.python3_host_prog = "/usr/local/bin/python3.12"
+-- vim.g.python3_host_prog = "/usr/local/bin/python3.12"
 
 -- vim.opt.clipboard = "unnamed"
 vim.opt.clipboard = "unnamed,unnamedplus" -- allows neovim to access the system clipboard
