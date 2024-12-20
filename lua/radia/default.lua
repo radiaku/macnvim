@@ -4,14 +4,13 @@
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 vim.g.loaded_perl_provider = 0
-vim.g.ruby_host_prog = "~/.gem/ruby/2.6.0/bin/neovim-ruby-host"
+-- vim.g.ruby_host_prog = "~/.gem/ruby/2.6.0/bin/neovim-ruby-host"
 
-
--- Variable Global 
+-- Variable Global
 -- theme
 _G.themesname = "sonokai"
 if _G.themesname == "sonokai" then
-  vim.cmd([[
+	vim.cmd([[
     " let g:sonokai_style = 'espresso'
     " let g:sonokai_style = 'maia'
     " let g:sonokai_style = 'shusia'
