@@ -38,6 +38,12 @@ return {
 				-- ensure these language parsers are installed
 				ensure_installed = {
 					"json",
+					"go",
+					"gowork",
+					"gotmpl",
+					"gomod",
+					"gosum",
+					"comment",
 					"javascript",
 					"html",
 					"css",
