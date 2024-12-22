@@ -1,5 +1,10 @@
 # mv ~/.zshrc ~/.config/nvim/zshrc
 # ln -s ~/.config/nvim/zshrc_mac ~/.zshrc
+#
+# curl -sSL https://github.com/zthxxx/jovial/raw/master/installer.sh | sudo -E bash -s ${USER:=whoami}
+# brew install zsh-autocomplete
+# git clone --depth 1 -- https://github.com/marlonrichert/zsh-autocomplete.git $ZSH_CUSTOM/plugins/zsh-autocomplete
+# sudo scutil --set HostName macbookpro
 
 eval "$(/usr/local/bin/brew shellenv)"
 
