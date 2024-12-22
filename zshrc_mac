@@ -5,6 +5,7 @@
 # brew install zsh-autocomplete
 # git clone --depth 1 -- https://github.com/marlonrichert/zsh-autocomplete.git $ZSH_CUSTOM/plugins/zsh-autocomplete
 # sudo scutil --set HostName macbookpro
+# or use source ~/.config/nvim/zshrc_mac
 
 eval "$(/usr/local/bin/brew shellenv)"
 
