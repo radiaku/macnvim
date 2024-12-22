@@ -59,7 +59,7 @@ return {
 			end,
 		},
 		sources = {
-			default = { "lsp", "path", "luasnip", "buffer" },
+			default = { "lsp", "luasnip", "snippets", "path", "buffer" },
 			providers = {
 				lsp = {
 					name = "lsp",

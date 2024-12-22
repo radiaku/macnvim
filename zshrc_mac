@@ -1,0 +1,55 @@
+# mv ~/.zshrc ~/.config/nvim/zshrc
+# ln -s ~/.config/nvim/zshrc_mac ~/.zshrc
+
+eval "$(/usr/local/bin/brew shellenv)"
+
+export ZSH="$HOME/.oh-my-zsh"
+
+ZSH_THEME="jovial"
+
+plugins=(
+  git
+  zsh-autocomplete
+  z
+  jovial
+)
+
+
+source $ZSH/oh-my-zsh.sh
+
+# History
+#
+HISTSIZE=100000
+SAVEHIST=100000
+HISTFILE=~/.cache/zsh/history
+
+export HOMEBREW_NO_AUTO_UPDATE=true
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+export PATH=~/.local/bin/:$PATH
+eval "$(rbenv init -)"
+export PATH="/usr/local/opt/openjdk/bin:$PATH"
+
+
+# Function to enter alternate screen mode and clear the screen
+ias() {
+    echo -e "\033[?1049h"
+    clear
+    printf '\e[3J'
+}
+
+# Function to exit alternate screen mode, clear the screen, and attempt to clear the scrollback buffer
+cas() {
+    echo -e "\033[?1049l"
+    clear
+    printf '\e[3J'
+}
+
+export PATH=$PATH:$HOME/go/bin
+
+eval "$(rbenv init - --no-rehash zsh)"
+eval "$(zoxide init zsh)"
+
+
