@@ -30,6 +30,21 @@ return {
 			use_nvim_cmp_as_default = true,
 			nerd_font_variant = "mono",
 		},
+		completion = {
+			list = {
+				max_items = 20,
+				selection = "manual",
+				-- Controls how the completion items are selected
+				-- 'preselect' will automatically select the first item in the completion list
+				-- 'manual' will not select any item by default
+				-- 'auto_insert' will not select any item by default, and insert the completion items automatically
+				-- when selecting them
+				cycle = {
+					from_bottom = true,
+					from_top = true,
+				},
+			},
+		},
 		snippets = {
 			expand = function(snippet)
 				require("luasnip").lsp_expand(snippet)
@@ -46,6 +61,27 @@ return {
 		},
 		sources = {
 			default = { "lsp", "path", "luasnip", "buffer" },
+			providers = {
+				lsp = {
+					name = "lsp",
+					enabled = true,
+					module = "blink.cmp.sources.lsp",
+					kind = "LSP",
+					score_offset = 1000,
+				},
+				luasnip = {
+					name = "luasnip",
+					enabled = true,
+					module = "blink.cmp.sources.luasnip",
+					score_offset = 950,
+				},
+				snippets = {
+					name = "snippets",
+					enabled = true,
+					module = "blink.cmp.sources.snippets",
+					score_offset = 950,
+				},
+			},
 		},
 	},
 }
