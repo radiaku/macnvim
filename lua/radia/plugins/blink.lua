@@ -33,7 +33,7 @@ return {
 		completion = {
 			list = {
 				max_items = 20,
-				selection = "manual",
+				selection = "auto_insert",
 				cycle = {
 					from_bottom = true,
 					from_top = true,
@@ -43,6 +43,7 @@ return {
 				auto_show = true,
 				auto_show_delay_ms = 100,
 			},
+			-- ghost_text = { enabled = true },
 		},
 		snippets = {
 			expand = function(snippet)
