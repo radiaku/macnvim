@@ -12,7 +12,6 @@ return {
 		comment.setup({
 			padding = true,
 			sticky = true,
-			ignore = nil,
 			toggler = {
 				line = "gcc",
 				block = "gbc",
@@ -30,10 +29,8 @@ return {
 			---NOTE: If given `false` then the plugin won't create any mappings
 			mappings = {
 				basic = true,
-				extra = true,
+				extra = false,
 			},
-			pre_hook = nil,
-			post_hook = nil,
 		})
 	end,
 }
