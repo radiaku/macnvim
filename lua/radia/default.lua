@@ -41,6 +41,8 @@ vim.opt.clipboard = "unnamed,unnamedplus" -- allows neovim to access the system 
 
 if vim.fn.has("win32") == 1 then
 	-- Use win32yank for clipboard support
+	-- Same diff but on windows https://www.reddit.com/r/neovim/comments/18o8ag3/comment/kg2hu6o/?utm_source=share&utm_medium=web2x&context=3
+	vim.g.undotree_DiffCommand = "FC"
 	vim.g.clipboard = {
 		name = "win32yank-wsl",
 		copy = {

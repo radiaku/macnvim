@@ -2,10 +2,10 @@ return {
 	"neovim/nvim-lspconfig",
 	event = { "BufReadPre", "BufNewFile" },
 	dependencies = {
-		"hrsh7th/cmp-nvim-lsp",
+		-- "hrsh7th/cmp-nvim-lsp",
 		-- "williamboman/mason-lspconfig.nvim",
-		{ "antosha417/nvim-lsp-file-operations", config = true },
-		{ "folke/neodev.nvim", opts = {} },
+		-- { "antosha417/nvim-lsp-file-operations", config = true },
+		-- { "folke/neodev.nvim", opts = {} },
 		-- { "folke/lazydev.nvim", opts = {} },
 	},
 	config = function()
@@ -14,7 +14,7 @@ return {
 		local util = require("lspconfig/util")
 
 		-- import mason_lspconfig plugin
-		local mason = require("mason")
+		-- local mason = require("mason")
 		local mason_lspconfig = require("mason-lspconfig")
 
 		-- import cmp-nvim-lsp plugin
