@@ -322,6 +322,7 @@ return {
 							workspace = {
 								-- Make the server aware of Neovim runtime files
 								library = {
+									vim.env.VIMRUNTIME,
 									vim.api.nvim_get_runtime_file("", true),
 									vim.fn.expand("$VIMRUNTIME/lua"),
 									vim.fn.expand("$VIMRUNTIME/lua/vim/lsp"),
