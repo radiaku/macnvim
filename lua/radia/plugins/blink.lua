@@ -3,8 +3,7 @@ return {
 
 	version = "v0.7.6",
 	dependencies = {
-		"L3MON4D3/LuaSnip",
-		"rafamadriz/friendly-snippets", -- useful snippets
+		"rafamadriz/friendly-snippets",
 	},
 	opts = {
 		keymap = {
@@ -43,43 +42,8 @@ return {
 			},
 			-- ghost_text = { enabled = true },
 		},
-		snippets = {
-			expand = function(snippet)
-				require("luasnip").lsp_expand(snippet)
-			end,
-			active = function(filter)
-				if filter and filter.direction then
-					return require("luasnip").jumpable(filter.direction)
-				end
-				return require("luasnip").in_snippet()
-			end,
-			jump = function(direction)
-				require("luasnip").jump(direction)
-			end,
-		},
 		sources = {
 			default = { "lsp", "luasnip", "snippets", "path", "buffer" },
-			providers = {
-				lsp = {
-					name = "lsp",
-					enabled = true,
-					module = "blink.cmp.sources.lsp",
-					kind = "LSP",
-					score_offset = 1000,
-				},
-				luasnip = {
-					name = "luasnip",
-					enabled = true,
-					module = "blink.cmp.sources.luasnip",
-					score_offset = 950,
-				},
-				snippets = {
-					name = "snippets",
-					enabled = true,
-					module = "blink.cmp.sources.snippets",
-					score_offset = 950,
-				},
-			},
 		},
 	},
 }
