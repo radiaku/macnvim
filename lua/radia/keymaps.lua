@@ -274,7 +274,7 @@ keymap.set(
 )
 -- keymap.set("n", "<leader>fc", "<cmd>Telescope grep_string<cr>", { desc = "Find string under cursor in cwd" })
 local live_grep_cmdc_buffer =
-	'<cmd>Telescope live_grep search_dirs={"%:p"} vimgrep_arguments=rg,--color=never,--no-heading,--with-filename,--line-number,--column,--smart-case,--fixed-strings --theme=dropdown<cr>'
+	'<cmd>Telescope live_grep search_dirs={"%:p"} vimgrep_arguments=rg,--color=never,--no-heading,--with-filename,--line-number,--column,--smart-case,--fixed-strings --theme=ivy<cr>'
 keymap.set("n", "<leader>fb", live_grep_cmdc_buffer, { desc = "Find string in current buffer" })
 local live_grep_cmd =
 	'<cmd>lua require("telescope.builtin").live_grep({grep_open_files=true,layout_strategy=vertical,layout_config={height=100}})<CR>'
