@@ -3,6 +3,7 @@ return {
 	lazy = true,
 	-- event = { "BufReadPre", "BufNewFile" }, -- to enable uncomment this
 	dependencies = {
+		"nvimtools/none-ls-extras.nvim",
 		"jay-babu/mason-null-ls.nvim",
 	},
 	config = function()
@@ -59,12 +60,12 @@ return {
 				formatting.isort,
 				formatting.black,
 				diagnostics.pylint.with({
-				  extra_args = { "--disable", "c0114,c0115,c0116,c0301,w1203,w0703, W0511, C0321" },
+					extra_args = { "--disable", "c0114,c0115,c0116,c0301,w1203,w0703, W0511, C0321" },
 				}),
 				diagnostics.eslint_d.with({ -- js/ts linter
-				  condition = function(utils)
-				    return utils.root_has_file({ ".eslintrc.js", ".eslintrc.cjs" }) -- only enable if root has .eslintrc.js or .eslintrc.cjs
-				  end,
+					condition = function(utils)
+						return utils.root_has_file({ ".eslintrc.js", ".eslintrc.cjs" }) -- only enable if root has .eslintrc.js or .eslintrc.cjs
+					end,
 				}),
 			},
 
