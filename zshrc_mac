@@ -8,7 +8,7 @@
 # or use source ~/.config/nvim/zshrc_mac
 
 # export TERM='xterm-256color'
-export TERM='xterm-direct'
+export TERM="xterm-256color"
 export EDITOR='nvim'
 export VISUAL='nvim'
 
