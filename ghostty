@@ -1,0 +1,7 @@
+# 
+# ln -s ~/.config/nvim/ghostty ~/.config/ghostty/ghostty
+# 
+
+macos-option-as-alt = true
+keybind = cmd+l=text:\x17\x6C
+keybind = cmd+h=text:\x17\x68
