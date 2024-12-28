@@ -70,3 +70,6 @@ eval "$(zoxide init zsh)"
 # export PATH="/usr/local/opt/postgresql@15/bin:$PATH"
 export PATH="/Applications/Postgres.app/Contents/Versions/13/bin:$PATH"
 #
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
