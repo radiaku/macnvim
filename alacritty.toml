@@ -1,6 +1,6 @@
 # ln -s ~/.config/nvim/alacritty.toml ~/.config/alacritty/alacritty.toml
-[terminal.shell]
-program = "zsh"
+# [terminal.shell]
+# program = "zsh"
 # args = ["--nologo"]
 
 
