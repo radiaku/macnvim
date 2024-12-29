@@ -1,6 +1,6 @@
 # ln -s ~/.config/nvim/alacritty.toml ~/.config/alacritty/alacritty.toml
 # [terminal.shell]
-# program = "zsh"
+# program = "/usr/local/bin/zsh"
 # args = ["--nologo"]
 
 
@@ -92,7 +92,5 @@ bindings = [
   { key = "End",      mods = "Shift",         action = "ScrollToBottom",    mode = "~Alt" },
 ]
 
-[general]
 
 
-working_directory = "C:/Users/DELL"
