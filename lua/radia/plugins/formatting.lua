@@ -16,15 +16,39 @@ return {
 				python = { "isort", "black" },
 			},
 
-			format_on_save = function(bufnr)
-				-- Disable with a global or buffer-local variable
-				-- if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
-				-- 	return
-				-- elseif BufIsBig then
-				-- 	return
-				-- end
-				return { async = false, timeout_ms = 500, lsp_fallback = true }
-			end,
+			formatters = {
+				isort = {
+					command = "isort",
+					args = {
+						"--line-length",
+						"120",
+						"--lines-after-import",
+						"2",
+						"--quiet",
+						"-",
+					},
+				},
+				black = {
+					command = "black",
+					-- args = {
+					--        "--fast",
+					-- 	"--line-length",
+					-- 	"120",
+					-- 	"--quiet",
+					-- 	"-",
+					-- },
+				},
+			},
+
+			-- format_on_save = function(bufnr)
+			-- 	-- Disable with a global or buffer-local variable
+			-- 	-- if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
+			-- 	-- 	return
+			-- 	-- elseif BufIsBig then
+			-- 	-- 	return
+			-- 	-- end
+			-- 	return { async = false, timeout_ms = 500, lsp_fallback = true }
+			-- end,
 
 			-- lsp_fallback = true,
 			-- async = false,
