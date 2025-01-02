@@ -5,3 +5,7 @@
 macos-option-as-alt = true
 keybind = cmd+l=text:\x17\x6C
 keybind = cmd+h=text:\x17\x68
+font-family = "JetBrainsMono NFM Regular"
+font-style = Regular
+font-size = 14
+font-thicken = true
