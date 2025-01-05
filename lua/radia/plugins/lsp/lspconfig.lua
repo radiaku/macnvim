@@ -43,69 +43,40 @@ return {
 				})
 			end,
 
-			["pyright"] = function()
-				local python_root_files = {
-					"WORKSPACE", -- added for Bazel; items below are from default config
-					"pyproject.toml",
-					"setup.py",
-					"setup.cfg",
-					"requirements.txt",
-					"Pipfile",
-				}
+			-- ["pyslp"] = function()
+			-- 	local python_root_files = {
+			-- 		"WORKSPACE", -- added for Bazel; items below are from default config
+			-- 		"pyproject.toml",
+			-- 		"setup.py",
+			-- 		"setup.cfg",
+			-- 		"requirements.txt",
+			-- 		"Pipfile",
+			-- 		".git",
+			-- 	}
+			--
+			-- 	lspconfig["pylsp"].setup({
+			-- 		root_dir = python_root_files,
+			-- 		settings = {
+			-- 			pylsp = {
+			-- 				plugins = {
+			-- 					pyflakes = { enabled = false },
+			-- 					pycodestyle = {
+			-- 						ignore = { "W391", "E302", "E501", "E225", "E231", "E265", "E303" },
+			-- 						enabled = true,
+			-- 					},
+			-- 					autopep8 = { enabled = false },
+			-- 					yapf = { enabled = false },
+			-- 					mccabe = { enabled = false },
+			-- 					pylsp_mypy = { enabled = false },
+			-- 					pylsp_black = { enabled = false },
+			-- 					pylsp_isort = { enabled = false },
+			-- 				},
+			-- 			},
+			-- 		},
+			-- 	})
+			-- end,
 
-				local site_packages_path = ""
-				local python_install_path = ""
-				if vim.fn.has("win32") == 1 then
-					python_install_path = vim.fn.exepath("python")
-					local python_directory = python_install_path:match("(.*)\\[^\\]*$")
-					site_packages_path = python_directory .. "\\lib\\site-packages"
-				else
-					python_install_path = vim.fn.exepath("python3")
-				end
-
-				lspconfig["pyright"].setup({
-					filetypes = { "python", ".py" },
-					-- capabilities = capabilities,
-
-					cmd = { "pyright-langserver", "--stdio" },
-
-					root_dir = function(fname)
-						table.unpack = table.unpack or unpack -- 5.1 compatibility
-						return util.root_pattern(table.unpack(python_root_files))(fname)
-							or util.find_git_ancestor(fname)
-							or util.path.dirname(fname)
-					end,
-					settings = {
-						-- pyright = {
-						-- 	disableLanguageServices = true,
-						-- 	disableOrganizeImports = true,
-						-- 	reportMissingModuleSource = "off",
-						-- 	reportMissingImports = "off",
-						-- 	reportUndefinedVariable = "off",
-						-- },
-						python = {
-							analysis = {
-								typeCheckingMode = "basic",
-								autoSearchPaths = true,
-								diagnosticMode = "workspace",
-								extraPaths = { site_packages_path },
-								useLibraryCodeForTypes = true,
-								diagnosticSeverityOverrides = {
-									["reportOptionalSubscript"] = "ignore",
-									["reportOptionalIterable"] = "none",
-									["reportArgumentType"] = "none",
-									["reportOptionalOperand"] = "none",
-									["reportAttributeAccessIssue"] = "none",
-									["reportOptionalMemberAccess"] = "none",
-									["reportCallIssue"] = "none",
-								},
-							},
-						},
-					},
-				})
-			end,
-
-			-- ["basedpyright"] = function()
+			-- ["pyright"] = function()
 			-- 	local python_root_files = {
 			-- 		"WORKSPACE", -- added for Bazel; items below are from default config
 			-- 		"pyproject.toml",
@@ -125,9 +96,11 @@ return {
 			-- 		python_install_path = vim.fn.exepath("python3")
 			-- 	end
 			--
-			-- 	lspconfig["basedpyright"].setup({
+			-- 	lspconfig["pyright"].setup({
 			-- 		filetypes = { "python", ".py" },
-			-- 		capabilities = capabilities,
+			-- 		-- capabilities = capabilities,
+			--
+			-- 		cmd = { "pyright-langserver", "--stdio" },
 			--
 			-- 		root_dir = function(fname)
 			-- 			table.unpack = table.unpack or unpack -- 5.1 compatibility
@@ -136,27 +109,88 @@ return {
 			-- 				or util.path.dirname(fname)
 			-- 		end,
 			-- 		settings = {
-			-- python = {
-			-- 	analysis = {
-			-- 		typeCheckingMode = "basic",
-			-- 		autoSearchPaths = true,
-			-- 		diagnosticMode = "workspace",
-			-- 		extraPaths = { site_packages_path },
-			-- 		useLibraryCodeForTypes = true,
-			-- 		diagnosticSeverityOverrides = {
-			-- 			["reportOptionalSubscript"] = "ignore",
-			-- 			["reportOptionalIterable"] = "none",
-			-- 			["reportArgumentType"] = "none",
-			-- 			["reportOptionalOperand"] = "none",
-			-- 			["reportAttributeAccessIssue"] = "none",
-			-- 			["reportOptionalMemberAccess"] = "none",
-			-- 			["reportCallIssue"] = "none",
-			-- 		},
-			-- 	},
-			-- },
+			-- 			-- pyright = {
+			-- 			-- 	disableLanguageServices = true,
+			-- 			-- 	disableOrganizeImports = true,
+			-- 			-- 	reportMissingModuleSource = "off",
+			-- 			-- 	reportMissingImports = "off",
+			-- 			-- 	reportUndefinedVariable = "off",
+			-- 			-- },
+			-- 			python = {
+			-- 				analysis = {
+			-- 					typeCheckingMode = "basic",
+			-- 					autoSearchPaths = true,
+			-- 					diagnosticMode = "workspace",
+			-- 					extraPaths = { site_packages_path },
+			-- 					useLibraryCodeForTypes = true,
+			-- 					diagnosticSeverityOverrides = {
+			-- 						["reportOptionalSubscript"] = "ignore",
+			-- 						["reportOptionalIterable"] = "none",
+			-- 						["reportArgumentType"] = "none",
+			-- 						["reportOptionalOperand"] = "none",
+			-- 						["reportAttributeAccessIssue"] = "none",
+			-- 						["reportOptionalMemberAccess"] = "none",
+			-- 						["reportCallIssue"] = "none",
+			-- 					},
+			-- 				},
+			-- 			},
 			-- 		},
 			-- 	})
 			-- end,
+
+			["basedpyright"] = function()
+				local python_root_files = {
+					"WORKSPACE", -- added for Bazel; items below are from default config
+					"pyproject.toml",
+					"setup.py",
+					"setup.cfg",
+					"requirements.txt",
+					"Pipfile",
+				}
+
+				local site_packages_path = ""
+				local python_install_path = ""
+				if vim.fn.has("win32") == 1 then
+					python_install_path = vim.fn.exepath("python")
+					local python_directory = python_install_path:match("(.*)\\[^\\]*$")
+					site_packages_path = python_directory .. "\\lib\\site-packages"
+				else
+					python_install_path = vim.fn.exepath("python3")
+				end
+
+				lspconfig["basedpyright"].setup({
+					filetypes = { "python", ".py" },
+					capabilities = capabilities,
+
+					root_dir = function(fname)
+						table.unpack = table.unpack or unpack -- 5.1 compatibility
+						return util.root_pattern(table.unpack(python_root_files))(fname)
+							or util.find_git_ancestor(fname)
+							or util.path.dirname(fname)
+					end,
+					settings = {
+
+						basedpyright = {
+							analysis = {
+								diagnosticMode = "openFilesOnly",
+								typeCheckingMode = "basic",
+								autoSearchPaths = true,
+								extraPaths = { site_packages_path },
+								useLibraryCodeForTypes = true,
+								diagnosticSeverityOverrides = {
+									["reportOptionalSubscript"] = "ignore",
+									["reportOptionalIterable"] = "none",
+									["reportArgumentType"] = "none",
+									["reportOptionalOperand"] = "none",
+									["reportAttributeAccessIssue"] = "none",
+									["reportOptionalMemberAccess"] = "none",
+									["reportCallIssue"] = "none",
+								},
+							},
+						},
+					},
+				})
+			end,
 
 			-- ["ts_ls"] = function()
 			-- 	lspconfig["ts_ls"].setup({
