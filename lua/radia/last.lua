@@ -42,13 +42,5 @@ vim.g.VM_show_warnings = 0
 -- vim.g.OmniSharp_server_use_net6 = true
 
 
--- Function to replace selection with unnamed register content and transfer to register a
-function Paste_and_transfer()
-    vim.cmd('let @a = getreg("")')
-    vim.cmd('normal! gvp')
-end
-
--- Map the function to 'p' in visual mode
-vim.api.nvim_set_keymap('v', 'p', ':lua Paste_and_transfer()<CR>', { noremap = true, silent = true })
 
 
