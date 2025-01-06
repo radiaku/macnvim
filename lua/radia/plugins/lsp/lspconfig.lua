@@ -178,7 +178,7 @@ return {
 								extraPaths = { site_packages_path },
 								useLibraryCodeForTypes = true,
 								diagnosticSeverityOverrides = {
-									["reportOptionalSubscript"] = "ignore",
+									["reportOptionalSubscript"] = "none",
 									["reportOptionalIterable"] = "none",
 									["reportArgumentType"] = "none",
 									["reportOptionalOperand"] = "none",
