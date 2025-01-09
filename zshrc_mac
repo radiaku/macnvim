@@ -60,10 +60,12 @@ cas() {
     printf '\e[3J'
 }
 
+
 export PATH=$PATH:$HOME/go/bin
 
 eval "$(rbenv init - --no-rehash zsh)"
 eval "$(zoxide init zsh)"
+
 
 
 # export PATH="/usr/local/opt/go@1.22/bin:$PATH"
