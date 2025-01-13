@@ -52,7 +52,8 @@ fzf-cd() {
   target="$(fd . ~/Dev "${fd_options[@]}" | fzf "${fzf_options[@]}")"
 
   if [[ -z "$target" ]]; then
-    echo "No directory selected, exiting."
+    # echo "No directory selected, exiting." 
+    zle reset-prompt
     return
   fi
 
