@@ -36,6 +36,7 @@ unalias fzf-cd 2>/dev/null
 #
 # Define the fzf-cd function to search only for directories in ~/Dev, skipping node_modules and .git, limited to 2 levels deep
 fzf-cd() {
+  [ -n "$ZLE_STATE" ] && trap 'zle reset-prompt' EXIT
   local fd_options fzf_options target
 
   fd_options=(
