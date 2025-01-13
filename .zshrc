@@ -71,6 +71,10 @@ fzf-cd() {
   fi
 }
 
+# Create a zsh widget
+zle -N fzf-cd
+bindkey '^F' fzf-cd
+
 
 ff() {
   local fd_options fzf_options target
@@ -93,9 +97,6 @@ ff() {
   cd "$target" || return 1
 }
 
-# Create a zsh widget
-zle -N fzf-cd
-bindkey '^F' fzf-cd
 
 # History
 #
