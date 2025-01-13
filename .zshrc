@@ -49,16 +49,15 @@ fzf-cd() {
     --exit-0
   )
 
-  # Search for directories inside ~/Dev, using fd with correct pattern
   target="$(fd . ~/Dev "${fd_options[@]}" | fzf "${fzf_options[@]}")"
 
-  # Ensure the result is a directory (strip filename if it's selected)
+  if [[ -z "$target" ]]; then
+    echo "No directory selected, exiting."
+    return
+  fi
+
   test -f "$target" && target="${target%/*}"
 
-  # Change to the selected directory
-  # cd "$target" && zle && zle reset-prompt || return 1
-  
-  # Generate a unique session name (could be based on timestamp or directory)
   session_name="fzf-$(basename "$target")"
   if tmux has-session -t "$session_name" 2>/dev/null; then
     exec </dev/tty
@@ -69,8 +68,6 @@ fzf-cd() {
     exec <&1
     tmux new-session -s "$session_name" -c "$target"
   fi
-
-  # Attach to the newly created tmux session
 }
 
 
