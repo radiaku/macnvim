@@ -319,6 +319,7 @@ return {
 
 					root_dir = util.root_pattern("package.json") or vim.fn.getcwd(),
 					autoformat = false,
+          priority = 1,
 					-- cmd = { bin_path .. "vscode-html-language-server.cmd" },
 				})
 			end,
