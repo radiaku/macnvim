@@ -270,6 +270,7 @@ return {
 				lspconfig["intelephense"].setup({
 					-- capabilities = capabilities,
 					cmd = { "intelephense", "--stdio" },
+          priority = 10,
 					filetypes = { "php" },
 					root_dir = function(pattern)
 						local cwd = vim.fn.getcwd()
