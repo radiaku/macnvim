@@ -42,8 +42,22 @@ return {
 			},
 			-- ghost_text = { enabled = true },
 		},
+    snippets = { preset = 'luasnip' },
 		sources = {
 			default = { "lsp", "luasnip", "snippets", "path", "buffer" },
+		},
+		providers = {
+			lsp = {
+				fallbacks = { "buffer", "path" },
+			},
+			snippets = {
+				name = "Snippets",
+				module = "blink.cmp.sources.snippets",
+				min_keyword_length = 3,
+				opts = {
+					friendly_snippets = true,
+				},
+			},
 		},
 	},
 }
