@@ -35,6 +35,7 @@ unalias fzf-cd 2>/dev/null
 # alias fzf-cd="cd ~ && cd \$(find ~/Dev --max-depth 2 -type d \( -name node_modules -o -name .git \) -prune -o -name '*'  -type d -print | fzf)"
 #
 # Define the fzf-cd function to search only for directories in ~/Dev, skipping node_modules and .git, limited to 2 levels deep
+#
 fzf-cd() {
   [ -n "$ZLE_STATE" ] && trap 'zle reset-prompt' EXIT
   local fd_options fzf_options target
@@ -77,6 +78,52 @@ fzf-cd() {
 # Create a zsh widget
 zle -N fzf-cd
 bindkey '^F' fzf-cd
+
+
+unalias fzf_personal 2>/dev/null
+fzf_personal() {
+  [ -n "$ZLE_STATE" ] && trap 'zle reset-prompt' EXIT
+  local fd_options fzf_options target
+
+  fd_options=(
+    --type directory
+    --max-depth 2
+    --exclude .git
+    --exclude node_modules
+    --exclude work
+  )
+
+  fzf_options=(
+    --preview='tree -L 1 {}'
+    --bind=ctrl-space:toggle-preview
+    --exit-0
+  )
+
+  target="$(fd . ~/Dev "${fd_options[@]}" | fzf "${fzf_options[@]}")"
+
+  if [[ -z "$target" ]]; then
+    # echo "No directory selected, exiting." 
+    zle reset-prompt
+    return
+  fi
+
+  test -f "$target" && target="${target%/*}"
+
+  session_name="fzf-$(basename "$target")"
+  if tmux has-session -t "$session_name" 2>/dev/null; then
+    exec </dev/tty
+    exec <&1
+    tmux attach -t "$session_name"
+  else 
+    exec </dev/tty
+    exec <&1
+    tmux new-session -s "$session_name" -c "$target"
+  fi
+}
+
+# Create a zsh widget
+zle -N fzf_personal
+bindkey '^p' fzf_personal
 
 
 ff() {
