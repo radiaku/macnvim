@@ -29,13 +29,33 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 
 
+unalias manage_tmux_session 2>/dev/null
+manage_tmux_session() {
+  # Access the session name and target directly using positional parameters
+  exec </dev/tty
+  exec <&1
+
+  if [ -z "$TMUX" ]; then
+    # Not inside tmux: Create or attach to a session
+    if tmux has-session -t "$1" 2>/dev/null; then
+      tmux attach -t "$1"
+    else
+      tmux new-session -s "$1" -c "$2"
+    fi
+  else
+    # Inside tmux: Create or switch to the session
+    if tmux has-session -t "$1" 2>/dev/null; then
+      tmux attach -d "$1"
+    else 
+      tmux new-session -ds "$1" -c "$2"
+      tmux switch-client -t "$1"
+    fi
+  fi
+}
+
 # Remove any existing alias
 unalias fzf-cd 2>/dev/null
 
-# alias fzf-cd="cd ~ && cd \$(find ~/Dev --max-depth 2 -type d \( -name node_modules -o -name .git \) -prune -o -name '*'  -type d -print | fzf)"
-#
-# Define the fzf-cd function to search only for directories in ~/Dev, skipping node_modules and .git, limited to 2 levels deep
-#
 fzf-cd() {
   [ -n "$ZLE_STATE" ] && trap 'zle reset-prompt' EXIT
   local fd_options fzf_options target
@@ -56,7 +76,6 @@ fzf-cd() {
   target="$(fd . ~/Dev "${fd_options[@]}" | fzf "${fzf_options[@]}")"
 
   if [[ -z "$target" ]]; then
-    # echo "No directory selected, exiting." 
     zle reset-prompt
     return
   fi
@@ -64,15 +83,16 @@ fzf-cd() {
   test -f "$target" && target="${target%/*}"
 
   session_name="fzf-$(basename "$target")"
-  if tmux has-session -t "$session_name" 2>/dev/null; then
-    exec </dev/tty
-    exec <&1
-    tmux attach -t "$session_name"
-  else 
-    exec </dev/tty
-    exec <&1
-    tmux new-session -s "$session_name" -c "$target"
-  fi
+
+  # Print the session name for testing
+  # echo "Session Name: $session_name"
+  # echo "TMUX : $TMUX"
+
+  # Call the new function to manage tmux session
+  manage_tmux_session "$session_name" "$target"
+
+  # Reset the prompt after exiting the tmux session
+  zle reset-prompt
 }
 
 # Create a zsh widget
@@ -110,42 +130,17 @@ fzf_personal() {
   test -f "$target" && target="${target%/*}"
 
   session_name="fzf-$(basename "$target")"
-  if tmux has-session -t "$session_name" 2>/dev/null; then
-    exec </dev/tty
-    exec <&1
-    tmux attach -t "$session_name"
-  else 
-    exec </dev/tty
-    exec <&1
-    tmux new-session -s "$session_name" -c "$target"
-  fi
+
+  # Call the new function to manage tmux session
+  manage_tmux_session "$session_name" "$target"
+
+  # Reset the prompt after exiting the tmux session
+  zle reset-prompt
 }
 
 # Create a zsh widget
 zle -N fzf_personal
-bindkey '^p' fzf_personal
-
-
-ff() {
-  local fd_options fzf_options target
-
-  fd_options=(
-    --type directory
-    --max-depth 2 
-  )
-
-  fzf_options=(
-    --preview='tree -L 1 {}'
-    --bind=ctrl-space:toggle-preview
-    --exit-0
-  )
-
-  target="$(fd . "${1:-.}" "${fd_options[@]}" | fzf "${fzf_options[@]}")"
-
-  test -f "$target" && target="${target%/*}"
-
-  cd "$target" || return 1
-}
+bindkey '^P' fzf_personal
 
 
 # History
@@ -195,3 +190,6 @@ export PATH="/Applications/Postgres.app/Contents/Versions/13/bin:$PATH"
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - zsh)"
