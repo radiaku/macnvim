@@ -47,7 +47,7 @@ return {
 			default = { "lsp", "luasnip", "snippets", "path", "buffer" },
 		},
 		providers = {
-			lsp = {
+			lsg = {
 				fallbacks = { "buffer", "path" },
 			},
 			snippets = {
