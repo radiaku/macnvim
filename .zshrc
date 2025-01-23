@@ -36,17 +36,23 @@ manage_tmux_session() {
   exec <&1
 
   if [ -z "$TMUX" ]; then
+    # echo "not inside tmux"
     # Not inside tmux: Create or attach to a session
     if tmux has-session -t "$1" 2>/dev/null; then
+      # echo "has session attach it"
       tmux attach -t "$1"
     else
       tmux new-session -s "$1" -c "$2"
     fi
   else
     # Inside tmux: Create or switch to the session
+    # echo "inside tmux"
     if tmux has-session -t "$1" 2>/dev/null; then
-      tmux attach -d "$1"
+      # echo "has session attach it"
+      tmux switch-client -t "$1"
+      # tmux attach -dt "$1"
     else 
+      # tmux new-session -A -s "$1"
       tmux new-session -ds "$1" -c "$2"
       tmux switch-client -t "$1"
     fi
