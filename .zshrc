@@ -192,12 +192,13 @@ eval "$(zoxide init zsh)"
 
 
 # export PATH="/usr/local/opt/go@1.22/bin:$PATH"
-# export PATH="/usr/local/opt/postgresql@15/bin:$PATH"
+export PATH="/Users/mac/binapp"
 export PATH="/Applications/Postgres.app/Contents/Versions/13/bin:$PATH"
-#
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init - zsh)"
+export PYENV_ROOT="$HOME/.pyenv"
+
