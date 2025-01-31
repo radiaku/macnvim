@@ -43,6 +43,10 @@ return {
 					width = 0.87,
 					height = 0.80,
 					preview_cutoff = 120,
+					preview = {
+						filesize_limit = 0.9999,
+						timeout = 250,
+					},
 				},
 				mappings = {
 					i = {
