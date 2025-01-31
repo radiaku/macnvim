@@ -18,16 +18,45 @@ return {
 				-- enable syntax highlighting
 				highlight = {
 					enable = true,
+					disable = function(lang, buf)
+						local max_char_count = 10000
+						local min_line_count = 10
+
+						local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
+						if ok and stats then
+							local char_count = stats.size
+							local line_count = vim.api.nvim_buf_line_count(buf)
+
+							if char_count > max_char_count and line_count < min_line_count then
+								return true
+							end
+						end
+
+						return false
+					end,
 				},
 				-- enable indentation
 				indent = { enable = true },
 				-- enable autotagging (w/ nvim-ts-autotag plugin)
-				autotag = {
-					enable = false,
-				},
+				-- autotag = {
+				-- 	enable = false,
+				-- },
 
-				disable = function()
-					return string.len(table.concat(vim.api.nvim_buf_get_lines(0, 0, -1, false), "")) > 500000
+				disable = function(buf)
+					local max_char_count = 10000
+					local min_line_count = 10
+
+					local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
+					if ok and stats then
+						local char_count = stats.size
+						local line_count = vim.api.nvim_buf_line_count(buf)
+
+						if char_count > max_char_count and line_count < min_line_count then
+							return true
+						end
+					end
+
+					return false
 				end,
 
 				context_commentstring = {
