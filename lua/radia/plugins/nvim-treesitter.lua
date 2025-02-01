@@ -18,9 +18,12 @@ return {
 				-- enable syntax highlighting
 				highlight = {
 					enable = true,
-					disable = function(lang, buf)
+					additional_vim_regex_highlighting = false,
+					use_languagetree = false,
+
+					disable = function(lang,buf)
 						local max_char_count = 10000
-						local min_line_count = 10
+						local min_line_count = 50
 
 						local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
 						if ok and stats then
@@ -46,9 +49,9 @@ return {
 				-- 	enable = false,
 				-- },
 
-				disable = function(buf)
+				disable = function(lang, buf)
 					local max_char_count = 10000
-					local min_line_count = 10
+					local min_line_count = 50
 
 					local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
 					if ok and stats then
