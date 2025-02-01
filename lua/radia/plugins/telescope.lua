@@ -46,7 +46,7 @@ return {
 				},
 				preview = {
 					filesize_limit = 0.9999,
-					timeout = 150,
+					timeout = 30,
 				},
 				mappings = {
 					i = {

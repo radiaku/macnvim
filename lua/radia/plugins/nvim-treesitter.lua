@@ -32,6 +32,10 @@ return {
 							end
 						end
 
+						if string.len(table.concat(vim.api.nvim_buf_get_lines(0, 0, -1, false), "")) > 500000 then
+							return true
+						end
+
 						return false
 					end,
 				},
@@ -56,13 +60,17 @@ return {
 						end
 					end
 
+					if string.len(table.concat(vim.api.nvim_buf_get_lines(0, 0, -1, false), "")) > 500000 then
+						return true
+					end
+
 					return false
 				end,
 
-				context_commentstring = {
-					enable = false,
-					enable_autocmd = false,
-				},
+				-- context_commentstring = {
+				-- 	enable = false,
+				-- 	enable_autocmd = false,
+				-- },
 
 				-- ensure these language parsers are installed
 				ensure_installed = {
