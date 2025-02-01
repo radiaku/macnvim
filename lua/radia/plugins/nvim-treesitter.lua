@@ -52,10 +52,10 @@ return {
 				-- 	enable = false,
 				-- },
 
-				-- context_commentstring = {
-				-- 	enable = false,
-				-- 	enable_autocmd = false,
-				-- },
+				context_commentstring = {
+					enable = false,
+					enable_autocmd = false,
+				},
 
 				-- ensure these language parsers are installed
 				ensure_installed = {
@@ -87,7 +87,7 @@ return {
 			})
 
 			-- enable nvim-ts-context-commentstring plugin for commenting tsx and jsx
-			-- require("ts_context_commentstring").setup({})
+			require("ts_context_commentstring").setup({})
 		end,
 	},
 }
