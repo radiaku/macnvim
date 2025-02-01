@@ -42,14 +42,14 @@ return {
 			end
 			file:close()
 			-- print("Line count: " .. count)
-      return count
+			return count
 		end
 
 		local no_preview_minified = function(filepath, bufnr, opts)
 			local max_char_count = 10000
 			local min_line_count = 50
 			local ok, stats = pcall(vim.loop.fs_stat, filepath)
-      local linecount = count_lines(filepath)
+			local linecount = count_lines(filepath)
 
 			-- print("size:", ok and stats and stats.size, "line count:", linecount, "filepath", filepath)
 
@@ -90,8 +90,14 @@ return {
 					preview_cutoff = 120,
 				},
 				preview = {
-					filesize_limit = 0.9999,
-					timeout = 30,
+					timeout_hook = function(filepath, bufnr, opts)
+						local cmd = { "echo", "timeout" }
+						require("telescope.previewers.utils").job_maker(cmd, bufnr, opts)
+					end,
+					filesize_hook = function(filepath, bufnr, opts)
+						local cmd = { "echo", "filesize" }
+						require("telescope.previewers.utils").job_maker(cmd, bufnr, opts)
+					end,
 				},
 				mappings = {
 					i = {
