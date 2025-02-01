@@ -27,10 +27,53 @@ return {
 		local telescope = require("telescope")
 		local actions = require("telescope.actions")
 
+		local previewers = require("telescope.previewers")
 
+		local function count_lines(filepath)
+			local file = io.open(filepath, "r")
+			if not file then
+				-- print("Could not open file: " .. filepath)
+				return 0
+			end
+
+			local count = 0
+			for _ in file:lines() do
+				count = count + 1
+			end
+			file:close()
+			-- print("Line count: " .. count)
+      return count
+		end
+
+		local no_preview_minified = function(filepath, bufnr, opts)
+			local max_char_count = 10000
+			local min_line_count = 50
+			local ok, stats = pcall(vim.loop.fs_stat, filepath)
+      local linecount = count_lines(filepath)
+
+			-- print("size:", ok and stats and stats.size, "line count:", linecount, "filepath", filepath)
+
+			opts = opts or {}
+
+			if ok and stats then
+				local char_count = stats.size
+				local line_count = linecount
+
+				if char_count > max_char_count and line_count < min_line_count then
+					return
+				end
+			end
+
+			if linecount > 500000 then
+				return
+			end
+
+			previewers.buffer_previewer_maker(filepath, bufnr, opts)
+		end
 
 		telescope.setup({
 			defaults = {
+				buffer_previewer_maker = no_preview_minified,
 				path_display = { "truncate" },
 				layout_strategy = "horizontal",
 				layout_config = {
