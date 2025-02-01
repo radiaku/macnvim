@@ -48,6 +48,8 @@ return {
 		local no_preview_minified = function(filepath, bufnr, opts)
 			local max_char_count = 10000
 			local min_line_count = 50
+			local max_bytes = 10000
+
 			local ok, stats = pcall(vim.loop.fs_stat, filepath)
 			local linecount = count_lines(filepath)
 
@@ -55,16 +57,23 @@ return {
 
 			opts = opts or {}
 
+
 			if ok and stats then
 				local char_count = stats.size
 				local line_count = linecount
 
 				if char_count > max_char_count and line_count < min_line_count then
+					-- local cmd = { "echo", "char_larger" }
+					local cmd = { "head", "-c", max_bytes, filepath }
+					require("telescope.previewers.utils").job_maker(cmd, bufnr, opts)
 					return
 				end
 			end
 
 			if linecount > 500000 then
+				local cmd = { "head", "-c", max_bytes, filepath }
+				-- local cmd = { "echo", "limit_line" }
+				require("telescope.previewers.utils").job_maker(cmd, bufnr, opts)
 				return
 			end
 

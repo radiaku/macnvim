@@ -33,6 +33,7 @@ return {
 				local line_count = linecount
 
 				if char_count > max_char_count and line_count < min_line_count then
+          -- print("return true")
 					return true
 				end
 			end
@@ -40,6 +41,8 @@ return {
 			if linecount > 500000 then
 				return true
 			end
+
+      return false
 		end
 
 		require("bigfile").setup({
