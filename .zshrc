@@ -9,8 +9,8 @@
 
 # export TERM='xterm-256color'
 export TERM="xterm-256color"
-export EDITOR='nvim'
-export VISUAL='nvim'
+export EDITOR='vim'
+export VISUAL='vim'
 
 eval "$(/usr/local/bin/brew shellenv)"
 
