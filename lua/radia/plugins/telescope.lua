@@ -22,6 +22,7 @@ return {
 	dependencies = {
 		-- 	{ "nvim-telescope/telescope-fzy-native.nvim" },
 		{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+		"nvim-telescope/telescope-live-grep-args.nvim",
 	},
 	config = function()
 		local telescope = require("telescope")
@@ -56,7 +57,6 @@ return {
 			-- print("size:", ok and stats and stats.size, "line count:", linecount, "filepath", filepath)
 
 			opts = opts or {}
-
 
 			if ok and stats then
 				local char_count = stats.size
@@ -122,6 +122,7 @@ return {
 		-- telescope.load_extension("fzy_native")
 		telescope.load_extension("neoclip")
 		telescope.load_extension("fzf")
+    telescope.load_extension("live_grep_args")
 		-- telescope.load_extension("refactoring")
 
 		-- set keymaps
