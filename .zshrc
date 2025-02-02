@@ -150,6 +150,11 @@ zle -N fzf_personal
 bindkey '^P' fzf_personal
 
 
+function ff() {
+  aerospace list-windows --all | fzf --bind 'enter:execute(bash -c "aerospace focus --window-id {1}")+abort'
+}
+
+
 # History
 #
 HISTSIZE=100000
