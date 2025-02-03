@@ -181,6 +181,7 @@ return {
 									["reportOptionalSubscript"] = "none",
 									["reportOptionalIterable"] = "none",
 									["reportArgumentType"] = "none",
+									["reportAssignmentType"] = "none",
 									["reportOptionalOperand"] = "none",
 									["reportAttributeAccessIssue"] = "none",
 									["reportOptionalMemberAccess"] = "none",
