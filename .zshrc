@@ -28,7 +28,14 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 
 
+
 unalias manage_tmux_session 2>/dev/null
+unalias sanitize_session_name 2>/dev/null
+
+sanitize_session_name() {
+  echo "$1" | tr -c '[:alnum:]_-.' '_'
+}
+
 manage_tmux_session() {
   # Access the session name and target directly using positional parameters
   exec </dev/tty
@@ -89,17 +96,23 @@ fzf-cd() {
 
   test -f "$target" && target="${target%/*}"
 
-  session_name="fzf-$(basename "$target")"
+  session_name="fzf-$(sanitize_session_name "$(basename "$target")")"
+  # session_name="fzf-$(basename "$target")"
 
   # Print the session name for testing
   # echo "Session Name: $session_name"
   # echo "TMUX : $TMUX"
 
   # Call the new function to manage tmux session
-  manage_tmux_session "$session_name" "$target"
+  # manage_tmux_session "$session_name" "$target"
+
+  manage_tmux_session "$session_name" "$target" || {
+    echo "Failed to create or attach to tmux session."
+    return 1
+  }
 
   # Reset the prompt after exiting the tmux session
-  zle reset-prompt
+  # zle reset-prompt
 }
 
 # Create a zsh widget
