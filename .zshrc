@@ -12,6 +12,9 @@ export TERM="xterm-256color"
 export EDITOR='vim'
 export VISUAL='vim'
 
+alias nv='nvim'
+alias v='vim'
+
 eval "$(/usr/local/bin/brew shellenv)"
 
 export ZSH="$HOME/.oh-my-zsh"
