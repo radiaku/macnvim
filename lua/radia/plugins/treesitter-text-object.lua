@@ -7,25 +7,22 @@ return {
         select = {
           enable = true,
 
-          -- Automatically jump forward to textobj, similar to targets.vim
           lookahead = true,
 
           keymaps = {
 
-            ["aa"] = { query = "@parameter.outer", desc = "Select outer part of a parameter/argument" },
-            ["ia"] = { query = "@parameter.inner", desc = "Select inner part of a parameter/argument" },
+            ["pa"] = { query = "@parameter.outer", desc = "Select outer part of a parameter/argument" },
+            ["pi"] = { query = "@parameter.inner", desc = "Select inner part of a parameter/argument" },
 
-            ["al"] = { query = "@loop.outer", desc = "Select outer part of a loop" },
-            ["il"] = { query = "@loop.inner", desc = "Select inner part of a loop" },
+            ["la"] = { query = "@loop.outer", desc = "Select outer part of a loop" },
+            ["li"] = { query = "@loop.inner", desc = "Select inner part of a loop" },
 
-            ["af"] = { query = "@call.outer", desc = "Select outer part of a function call" },
-            ["if"] = { query = "@call.inner", desc = "Select inner part of a function call" },
+            ["ca"] = { query = "@conditional.outer", desc = "Select outer part of a conditional definition" },
+            ["ci"] = { query = "@conditional.inner", desc = "Select inner part of a conditional definition" },
 
-            ["am"] = { query = "@function.outer", desc = "Select outer part of a method/function definition" },
-            ["im"] = { query = "@function.inner", desc = "Select inner part of a method/function definition" },
+            ["fa"] = { query = "@function.outer", desc = "Select outer part of a method/function definition" },
+            ["fi"] = { query = "@function.inner", desc = "Select inner part of a method/function definition" },
 
-            ["ac"] = { query = "@class.outer", desc = "Select outer part of a class" },
-            ["ic"] = { query = "@class.inner", desc = "Select inner part of a class" },
           },
         },
       },
