@@ -11,8 +11,17 @@ return {
 
           keymaps = {
 
-            ["pa"] = { query = "@parameter.outer", desc = "Select outer part of a parameter/argument" },
-            ["pi"] = { query = "@parameter.inner", desc = "Select inner part of a parameter/argument" },
+            -- ["sa"] = { query = "@attribute.outer", desc = "Select outer part of a assignment" },
+            -- ["si"] = { query = "@attribute.inner", desc = "Select inner part of a assignment" },
+            --
+            -- ["ta"] = { query = "@attribute.outer", desc = "Select outer part of a attribute" },
+            -- ["ti"] = { query = "@attribute.inner", desc = "Select inner part of a attribute" },
+
+            -- ["ga"] = { query = "@parameter.outer", desc = "Select outer part of a parameter/argument" },
+            -- ["gi"] = { query = "@parameter.inner", desc = "Select inner part of a parameter/argument" },
+
+            ["ba"] = { query = "@block.outer", desc = "Select outer part of a block" },
+            ["bi"] = { query = "@block.inner", desc = "Select inner part of a block" },
 
             ["la"] = { query = "@loop.outer", desc = "Select outer part of a loop" },
             ["li"] = { query = "@loop.inner", desc = "Select inner part of a loop" },
