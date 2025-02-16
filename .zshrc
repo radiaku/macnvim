@@ -97,9 +97,13 @@ fzf-cd() {
     return
   fi
 
+  # Clean the basename of target by trimming whitespace
+  # cleaned_basename=$(basename "$target" | xargs)
+
   test -f "$target" && target="${target%/*}"
 
   session_name="fzf-$(sanitize_session_name "$(basename "$target")")"
+
   # session_name="fzf-$(basename "$target")"
 
   # Print the session name for testing
@@ -152,7 +156,7 @@ fzf_personal() {
 
   test -f "$target" && target="${target%/*}"
 
-  session_name="fzf-$(basename "$target")"
+  session_name="fzf-$(sanitize_session_name "$(basename "$target")")"
 
   # Call the new function to manage tmux session
   manage_tmux_session "$session_name" "$target"
