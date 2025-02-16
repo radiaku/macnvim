@@ -178,6 +178,7 @@ return {
 								extraPaths = { site_packages_path },
 								useLibraryCodeForTypes = true,
 								diagnosticSeverityOverrides = {
+									["reportOperatorIssue"] = "none",
 									["reportOptionalSubscript"] = "none",
 									["reportOptionalIterable"] = "none",
 									["reportArgumentType"] = "none",
