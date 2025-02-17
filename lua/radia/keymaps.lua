@@ -210,16 +210,16 @@ vim.api.nvim_create_autocmd("LspAttach", {
 })
 
 -- Debug
-keymap.set("n", "<leader>dt", ":DapUiToggle<CR>", { desc = "Open DapUi" })
-keymap.set("n", "<leader>db", ":DapToggleBreakpoint<CR>", { desc = "Toggle Breakpoint" })
-keymap.set("n", "<leader>ds", ":lua require('dap').run_to_cursor()<CR>", { desc = "Run Dap Under Cursor" })
-keymap.set("n", "<leader>drc", ":lua require('dap').continue()<CR>", { desc = "Run Continue" })
-keymap.set("n", "<leader>drs", ":lua require('dap').restart()<CR>", { desc = "Restart Dap" })
-keymap.set("n", "<leader>dO", ":lua require('dap').step_out()<CR>", { desc = "Step Out" })
-keymap.set("n", "<leader>do", ":lua require('dap').step_over()<CR>", { desc = "Step Over" })
-keymap.set("n", "<leader>di", ":lua require('dap').step_into()<CR>", { desc = "Step Into" })
-keymap.set("n", "<leader>da", ":lua require('dap').step_back()<CR>", { desc = "Step Back" })
-keymap.set("n", "<leader>dc", ":lua require('dapui').open({ reset = true })<CR>", { desc = "Reset Dapui" })
+-- keymap.set("n", "<leader>dt", ":DapUiToggle<CR>", { desc = "Open DapUi" })
+-- keymap.set("n", "<leader>db", ":DapToggleBreakpoint<CR>", { desc = "Toggle Breakpoint" })
+-- keymap.set("n", "<leader>ds", ":lua require('dap').run_to_cursor()<CR>", { desc = "Run Dap Under Cursor" })
+-- keymap.set("n", "<leader>drc", ":lua require('dap').continue()<CR>", { desc = "Run Continue" })
+-- keymap.set("n", "<leader>drs", ":lua require('dap').restart()<CR>", { desc = "Restart Dap" })
+-- keymap.set("n", "<leader>dO", ":lua require('dap').step_out()<CR>", { desc = "Step Out" })
+-- keymap.set("n", "<leader>do", ":lua require('dap').step_over()<CR>", { desc = "Step Over" })
+-- keymap.set("n", "<leader>di", ":lua require('dap').step_into()<CR>", { desc = "Step Into" })
+-- keymap.set("n", "<leader>da", ":lua require('dap').step_back()<CR>", { desc = "Step Back" })
+-- keymap.set("n", "<leader>dc", ":lua require('dapui').open({ reset = true })<CR>", { desc = "Reset Dapui" })
 
 -- Folding
 keymap.set("n", "zR", require("ufo").openAllFolds, { desc = "Open AllFolds" })
