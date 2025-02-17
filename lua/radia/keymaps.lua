@@ -165,14 +165,14 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		local opts_lsp = { buffer = ev.buf, silent = true }
 
 		-- set keybinds
-		opts_lsp.desc = "Show LSP references"
-		keymap.set("n", "gR", "<cmd>Telescope lsp_references theme=dropdown<CR>", opts_lsp) -- show definition, references
+		-- opts_lsp.desc = "Show LSP references"
+		-- keymap.set("n", "gR", "<cmd>Telescope lsp_references theme=dropdown<CR>", opts_lsp) -- show definition, references
 
 		opts_lsp.desc = "Show LSP type all References"
 		keymap.set("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts_lsp) -- Show LSP type all References
 
-		opts_lsp.desc = "Go to declaration"
-		keymap.set("n", "gD", vim.lsp.buf.declaration, opts_lsp) -- go to declaration
+		-- opts_lsp.desc = "Go to declaration"
+		-- keymap.set("n", "gD", vim.lsp.buf.declaration, opts_lsp) -- go to declaration
 
 		opts_lsp.desc = "Show LSP definitions"
 		keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts_lsp) -- show lsp definitions
@@ -180,8 +180,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		opts_lsp.desc = "Show LSP implementations"
 		keymap.set("n", "gi", "<cmd>Telescope lsp_implementations<CR>", opts_lsp) -- show lsp implementations
 
-		opts_lsp.desc = "Show LSP type definitions"
-		keymap.set("n", "gt", "<cmd>Telescope lsp_type_definitions<CR>", opts_lsp) -- show lsp type definitions
+		-- opts_lsp.desc = "Show LSP type definitions"
+		-- keymap.set("n", "gt", "<cmd>Telescope lsp_type_definitions<CR>", opts_lsp) -- show lsp type definitions
 
 		opts_lsp.desc = "See available code actions"
 		keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts_lsp) -- see available code actions, in visual mode will apply to selection
@@ -189,17 +189,17 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		opts_lsp.desc = "Smart rename"
 		keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts_lsp) -- smart rename
 
-		opts_lsp.desc = "Show buffer diagnostics"
-		keymap.set("n", "gf", "<cmd>Telescope diagnostics bufnr=0<CR>", opts_lsp) -- show  diagnostics for file
+		-- opts_lsp.desc = "Show buffer diagnostics"
+		-- keymap.set("n", "gf", "<cmd>Telescope diagnostics bufnr=0<CR>", opts_lsp) -- show  diagnostics for file
 
 		opts_lsp.desc = "Show line diagnostics"
 		keymap.set("n", "gl", vim.diagnostic.open_float, opts_lsp) -- show diagnostics for line
 
-		opts_lsp.desc = "Go to previous diagnostic"
-		keymap.set("n", "[d", vim.diagnostic.goto_prev, opts_lsp) -- jump to previous diagnostic in buffer
+		-- opts_lsp.desc = "Go to previous diagnostic"
+		-- keymap.set("n", "[d", vim.diagnostic.goto_prev, opts_lsp) -- jump to previous diagnostic in buffer
 
-		opts_lsp.desc = "Go to next diagnostic"
-		keymap.set("n", "]d", vim.diagnostic.goto_next, opts_lsp) -- jump to next diagnostic in buffer
+		-- opts_lsp.desc = "Go to next diagnostic"
+		-- keymap.set("n", "]d", vim.diagnostic.goto_next, opts_lsp) -- jump to next diagnostic in buffer
 
 		opts_lsp.desc = "Show documentation for what is under cursor"
 		keymap.set("n", "K", vim.lsp.buf.hover, opts_lsp) -- show documentation for what is under cursor
@@ -265,7 +265,12 @@ keymap.set(
 	"<cmd>Telescope oldfiles theme=dropdown previewer=false<cr>",
 	{ desc = "Fuzzy find recent files" }
 )
-keymap.set("n", "<leader>fs", ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>", { desc = "Find string in cwd" })
+keymap.set(
+	"n",
+	"<leader>fs",
+	":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>",
+	{ desc = "Find string in cwd" }
+)
 keymap.set(
 	"n",
 	"<leader>fa",
