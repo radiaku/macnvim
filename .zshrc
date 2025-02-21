@@ -223,6 +223,8 @@ export PATH="/Users/mac/binapp:$PATH"
 export PATH="/Users/mac/bin/flutter/bin:$PATH"
 export PATH="/Applications/Postgres.app/Contents/Versions/13/bin:$PATH"
 
+export PATH="$PATH:/Applications/Xcode.app/Contents/Developer/usr/bin"
+
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
