@@ -215,9 +215,14 @@ eval "$(zoxide init zsh)"
 
 
 
+export ANDROID_HOME="$HOME/Library/Android/sdk"
+export PATH="$HOME/Library/Android/sdk/tools:$HOME/Library/Android/sdk/platform-tools:${PATH}"
+
 # export PATH="/usr/local/opt/go@1.22/bin:$PATH"
 export PATH="/Users/mac/binapp:$PATH"
+export PATH="/Users/mac/bin/flutter/bin:$PATH"
 export PATH="/Applications/Postgres.app/Contents/Versions/13/bin:$PATH"
+
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
