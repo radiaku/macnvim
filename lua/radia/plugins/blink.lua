@@ -1,7 +1,8 @@
 return {
 	"saghen/blink.cmp",
-
-	version = "v0.7.6",
+	build = "cargo build --release",
+	version = "*",
+	-- version = "v0.7.6",
 	dependencies = {
 		"rafamadriz/friendly-snippets",
 	},
@@ -30,34 +31,25 @@ return {
 		completion = {
 			list = {
 				max_items = 20,
-				selection = "auto_insert",
+				selection = {
+					auto_insert = true,
+				},
+
 				cycle = {
 					from_bottom = true,
 					from_top = true,
 				},
 			},
+
 			documentation = {
 				auto_show = true,
 				auto_show_delay_ms = 100,
 			},
 			-- ghost_text = { enabled = true },
 		},
-    snippets = { preset = 'luasnip' },
 		sources = {
-			default = { "lsp", "luasnip", "snippets", "path", "buffer" },
-		},
-		providers = {
-			lsg = {
-				fallbacks = { "buffer", "path" },
-			},
-			snippets = {
-				name = "Snippets",
-				module = "blink.cmp.sources.snippets",
-				min_keyword_length = 3,
-				opts = {
-					friendly_snippets = true,
-				},
-			},
+			default = { "lsp", "snippets", "path", "buffer" },
+			min_keyword_length = 3,
 		},
 	},
 }
