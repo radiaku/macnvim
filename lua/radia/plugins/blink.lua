@@ -11,7 +11,7 @@ return {
 			preset = "default",
 			["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
 			["<C-e>"] = { "hide", "fallback" },
-			["<CR>"] = { "accept", "fallback" },
+			-- ["<CR>"] = { "accept", "fallback" },
 			["<Tab>"] = { "accept", "fallback" },
 
 			-- ["<Tab>"] = { "snippet_forward", "fallback" },
