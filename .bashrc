@@ -31,7 +31,6 @@ unalias fzf-cd 2>/dev/null
 
 # Function to change directories using fzf and manage tmux sessions
 fzf-cd() {
-  [ -n "$ZLE_STATE" ] && trap 'zle reset-prompt' EXIT
   local fd_options fzf_options target
 
   fd_options=(
@@ -49,7 +48,7 @@ fzf-cd() {
 
   target="$(fd . ~/Dev "${fd_options[@]}" | fzf "${fzf_options[@]}")"
 
-  # Check if the Escape key was pressed
+  # Check if the Escape key was pressed (target will be empty)
   if [[ -z "$target" ]]; then
     return 0  # Do nothing if Escape was pressed
   fi
