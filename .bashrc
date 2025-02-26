@@ -1,6 +1,7 @@
 # ln -s ~/.config/nvim/.bashrc ~/.bashrc
 #
 # Function to sanitize session names
+
 sanitize_session_name() {
   echo "$1" | tr -c '[:alnum:]_-.' '_'
 }
@@ -65,3 +66,9 @@ fzf-cd() {
 
 # Bind Ctrl+F to execute fzf-cd
 bind -x '"\C-f": fzf-cd'
+
+
+eval "$(zoxide init bash)"
+
+
+
