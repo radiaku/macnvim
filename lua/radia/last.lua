@@ -42,8 +42,8 @@ vim.g.VM_show_warnings = 0
 -- vim.g.OmniSharp_server_use_net6 = true
 
 
-local pipepath = vim.fn.stdpath("cache") .. "/server.pipe"
-if not vim.loop.fs_stat(pipepath) then
-  vim.fn.serverstart(pipepath)
-end
+-- local pipepath = vim.fn.stdpath("cache") .. "/server.pipe"
+-- if not vim.loop.fs_stat(pipepath) then
+--   vim.fn.serverstart(pipepath)
+-- end
 
