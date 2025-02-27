@@ -3,7 +3,7 @@
 # Function to sanitize session names
 
 sanitize_session_name() {
-  echo "$1" | tr -c '[:alnum:]_-.' '_'
+  echo "$1" | tr -c '[:alnum:]_.-' '_'
 }
 
 # Function to manage tmux sessions

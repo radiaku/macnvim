@@ -36,7 +36,7 @@ unalias manage_tmux_session 2>/dev/null
 unalias sanitize_session_name 2>/dev/null
 
 sanitize_session_name() {
-  echo "$1" | tr -c '[:alnum:]_-.' '_'
+  echo "$1" | tr -c '[:alnum:]_.-' '_'
 }
 
 manage_tmux_session() {
