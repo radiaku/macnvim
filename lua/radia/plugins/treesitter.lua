@@ -61,6 +61,9 @@ return {
 				-- ensure these language parsers are installed
 				ensure_installed = {
 					"json",
+					-- "gdscript",
+					-- "godot_resource",
+					-- "gdshader",
 					"go",
 					"gowork",
 					"gotmpl",
