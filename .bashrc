@@ -1,6 +1,8 @@
 # ln -s ~/.config/nvim/.bashrc ~/.bashrc
 #
 # Function to sanitize session names
+# yum install zoxide
+# apt install zoxide
 
 sanitize_session_name() {
   echo "$1" | tr -c '[:alnum:]_.-' '_'
