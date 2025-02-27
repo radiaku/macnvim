@@ -2,13 +2,12 @@
 # or
 # mv ~/.config/nvim/.bashrc ~/.bashrc
 #
+# /ubuntu
+# sudo apt install git fzf zoxide ripgrep fd-find tree untar tar p7zip-full
+#
 # /centos
 # sudo yum install epel-release
-# sudo yum install git fzf zoxide tree untar tar p7zip p7zip-plugins
-#
-# /ubuntu
-# sudo apt install git fzf zoxide tree untar tar p7zip-full
-#
+# sudo yum install git fzf zoxide ripgrep tree untar tar p7zip p7zip-plugins
 #
 # install fd without rust https://github.com/sharkdp/fd/releases
 # download musl linked binary package, e.g. fd-v7.3.0-x86_64-unknown-linux-musl.tar.gz
