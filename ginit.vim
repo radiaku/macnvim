@@ -21,6 +21,8 @@ function! ResetFont()
   execute "GuiFont! JetBrainsMono Nerd Font:h14"
 endfunction
 
+let g:godot_executable = '/Users/mac/binapp/Godot.app/Contents/MacOS'
+
 
 " Set Editor Font
 if exists(':GuiFont')
