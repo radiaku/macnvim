@@ -1,9 +1,37 @@
 # ln -s ~/.config/nvim/.bashrc ~/.bashrc
+# or
+# mv ~/.config/nvim/.bashrc ~/.bashrc
 #
-# Function to sanitize session names
-# yum install zoxide
-# apt install zoxide
+# /centos
+# sudo yum install epel-release
+# sudo yum install git fzf zoxide tree untar tar p7zip p7zip-plugins
+#
+# /ubuntu
+# sudo apt install git fzf zoxide tree untar tar p7zip-full
+#
+#
+# install fd without rust https://github.com/sharkdp/fd/releases
+# download musl linked binary package, e.g. fd-v7.3.0-x86_64-unknown-linux-musl.tar.gz
+# untar it
+#
+# cp ./fd /usr/local/bin/
+# cp ./fd.1 /usr/local/share/man/man1/
+#
 
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+    . /etc/bashrc
+fi
+
+# User specific environment
+if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]
+then
+    PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+fi
+export PATH
+
+# Function to sanitize session names
 sanitize_session_name() {
   echo "$1" | tr -c '[:alnum:]_.-' '_'
 }
