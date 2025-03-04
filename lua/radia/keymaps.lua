@@ -105,7 +105,10 @@ keymap.set("n", "<M-,>", "<C-w>5<", { desc = "Resize to Left" })
 keymap.set("n", "<M-.>", "<C-w>5>", { desc = "Resize to Right" })
 keymap.set("n", "<M-u>", "<C-w>+", { desc = "Resize Up" })
 keymap.set("n", "<M-d>", "<C-w>-", { desc = "Resize Down" })
-keymap.set("n", "<M-f>", "<C-w>=", { desc = "Resize to Equal" })
+
+-- set previous and next opened buffer
+keymap.set("n", "<C-n>", ":bnext<CR>", { desc = "Next Buffer" })
+keymap.set("n", "<C-p>", ":bprevious<CR>", { desc = "Previous Buffer" })
 
 -- keymap.set("n", "<M-,>", "<C-w>5<", { desc = "Resize to right" })
 -- keymap.set("n", "<M-.>", "<C-w>5>", { desc = "Resize to Left" })
