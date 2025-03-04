@@ -17,6 +17,7 @@
 # cp ./fd.1 /usr/local/share/man/man1/
 #
 
+export TERM="xterm-256color"
 
 # Source global definitions
 if [ -f /etc/bashrc ]; then
@@ -29,6 +30,7 @@ then
     PATH="$HOME/.local/bin:$HOME/bin:$PATH"
 fi
 export PATH
+
 
 # Function to sanitize session names
 sanitize_session_name() {
