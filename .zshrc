@@ -130,7 +130,8 @@ zle -N fzf-cd
 bindkey '^F' fzf-cd
 
 unalias jump_to_tmux_session 2>/dev/null
-jump_to_tmux_session() {
+
+function jump_to_tmux_session() {
   if [ -z "$TMUX" ]; then
     # If not in tmux, get the list of sessions
     local session_names
@@ -149,20 +150,20 @@ jump_to_tmux_session() {
       echo "No session selected."
     fi
   else
-    # If in tmux, list sessions and switch
+    # If in tmux, list sessions and switch with preview
     tmux list-sessions -F '#{?session_attached,,#{session_activity},#{session_name}}' | \
       sort -r | \
       sed '/^$/d' | \
       cut -d',' -f2- | \
-      fzf --reverse --header jump-to-session --preview 'tmux capture-pane -pt {}' | \
+      fzf --reverse --header "Jump to session" \
+          --preview 'tmux capture-pane -pt {} | head -20' | \
       xargs -r tmux switch-client -t
   fi
-
-  zle reset-prompt
 }
 
 zle -N jump_to_tmux_session
 bindkey '^L' jump_to_tmux_session
+
 
 
 unalias fzf_personal 2>/dev/null
