@@ -4,6 +4,7 @@
 #
 # /ubuntu
 # sudo apt install git fzf zoxide ripgrep fd-find tree untar tar p7zip-full
+# sudo ln --symbolic $(which fdfind) /usr/local/bin/fd
 #
 # /centos
 # sudo yum install epel-release
