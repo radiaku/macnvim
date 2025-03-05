@@ -115,6 +115,19 @@ cas() {
 # Bind Ctrl+F to execute fzf-cd
 bind -x '"\C-f": fzf-cd'
 
+# Add this function to your ~/.bashrc
+function jump_to_tmux_session {
+    tmux list-sessions -F '#{?session_attached,,#{session_activity},#{session_name}}' | \
+    sort -r | \
+    sed '/^$/d' | \
+    cut -d',' -f2- | \
+    fzf --reverse --header jump-to-session --preview 'tmux capture-pane -pt {}' | \
+    xargs -r tmux switch-client -t
+}
+
+# Bind Alt+l to the function
+bind -x '"\C-L": jump_to_tmux_session'
+
 
 eval "$(zoxide init bash)"
 export PYENV_ROOT="$HOME/.pyenv"

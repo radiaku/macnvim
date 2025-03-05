@@ -122,9 +122,26 @@ fzf-cd() {
   # zle reset-prompt
 }
 
+
+
+
 # Create a zsh widget
 zle -N fzf-cd
 bindkey '^F' fzf-cd
+
+# Add this function to your ~/.bashrc
+unalias jump_to_tmux_session 2>/dev/null
+jump_to_tmux_session() {
+    tmux list-sessions -F '#{?session_attached,,#{session_activity},#{session_name}}' | \
+    sort -r | \
+    sed '/^$/d' | \
+    cut -d',' -f2- | \
+    fzf --reverse --header jump-to-session --preview 'tmux capture-pane -pt {}' | \
+    xargs -r tmux switch-client -t
+}
+
+zle -N jump_to_tmux_session
+bindkey '^L' jump_to_tmux_session
 
 
 unalias fzf_personal 2>/dev/null
