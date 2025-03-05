@@ -159,6 +159,8 @@ function jump_to_tmux_session() {
           --preview 'tmux capture-pane -pt {} | head -20' | \
       xargs -r tmux switch-client -t
   fi
+  # Reset the prompt after exiting the tmux session
+  zle reset-prompt
 }
 
 zle -N jump_to_tmux_session
