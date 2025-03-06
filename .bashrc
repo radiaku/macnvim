@@ -119,12 +119,23 @@ bind -x '"\C-f": fzf-cd'
 function jump_to_tmux_session() {
   if [ -z "$TMUX" ]; then
     # If not in tmux, get the list of sessions
-    tmux list-sessions -F '#{?session_attached,,#{session_activity},#{session_name}}' | \
+    # Prompt user to select a session
+    local selected_session
+    selected_session=$(tmux list-sessions -F '#{?session_attached,,#{session_activity},#{session_name}}' | \
       sort -r | \
       sed '/^$/d' | \
       cut -d',' -f2- | \
-      fzf --reverse --header jump-to-session --preview 'tmux capture-pane -pt {}' | \
-      xargs -r tmux attach -t
+      fzf --reverse --header "Jump to session" \
+          --preview 'tmux capture-pane -t {} -p | head -20')
+
+    if [ -n "$selected_session" ]; then
+      manage_tmux_session "$selected_session" || {
+        echo "Failed to attach to tmux session."
+        return 1
+      }
+    else
+      echo "No session selected."
+    fi
   else
     # If in tmux, list sessions and switch
     tmux list-sessions -F '#{?session_attached,,#{session_activity},#{session_name}}' | \

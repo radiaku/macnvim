@@ -134,12 +134,15 @@ unalias jump_to_tmux_session 2>/dev/null
 function jump_to_tmux_session() {
   if [ -z "$TMUX" ]; then
     # If not in tmux, get the list of sessions
-    local session_names
-    session_names=$(tmux list-sessions -F '#{session_name}' 2>/dev/null)
 
     # Prompt user to select a session
     local selected_session
-    selected_session=$(echo "$session_names" | fzf --header "Select a tmux session to attach")
+    selected_session=$(tmux list-sessions -F '#{?session_attached,,#{session_activity},#{session_name}}' | \
+      sort -r | \
+      sed '/^$/d' | \
+      cut -d',' -f2- | \
+      fzf --reverse --header "Jump to session" \
+          --preview 'tmux capture-pane -t {} -p | head -20')
 
     if [ -n "$selected_session" ]; then
       manage_tmux_session "$selected_session" || {
