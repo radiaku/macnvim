@@ -112,10 +112,17 @@ return {
 			-- 	})
 			-- end,
 
+			["kotlin"] = function()
+				lspconfig["kotlin_language_server"].setup({
+					-- capabilities = capabilities,
+					root_dir = util.root_pattern("package.json", "gradlew", ".git") or vim.fn.getcwd(),
+				})
+			end,
+
 			["vtsls"] = function()
 				lspconfig["vtsls"].setup({
 					-- capabilities = capabilities,
-					root_dir = util.root_pattern("package.json") or vim.fn.getcwd(),
+					root_dir = util.root_pattern("package.json", ".git") or vim.fn.getcwd(),
 					-- cmd = { bin_path .. "typescript-language-server.cmd" },
 				})
 			end,
