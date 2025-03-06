@@ -112,8 +112,13 @@ return {
 			-- 	})
 			-- end,
 
-			["kotlin"] = function()
+			["kotlin_language_server"] = function()
 				lspconfig["kotlin_language_server"].setup({
+					filetypes = {
+						".kt",
+						"kt",
+						"kotlin",
+					},
 					-- capabilities = capabilities,
 					root_dir = util.root_pattern("package.json", "gradlew", ".git") or vim.fn.getcwd(),
 				})
