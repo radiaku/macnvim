@@ -13,6 +13,7 @@ return {
 				yaml = { "prettier" },
 				graphql = { "prettier" },
 				lua = { "stylua" },
+				gdscript = { "gdtoolkit" },
 				python = { "isort", "black" },
 			},
 
