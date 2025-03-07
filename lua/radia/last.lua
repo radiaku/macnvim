@@ -47,3 +47,16 @@ vim.g.VM_show_warnings = 0
 --   vim.fn.serverstart(pipepath)
 -- end
 
+-- only for gdscript
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "gdscript",
+  callback = function()
+    print("its gdscript")
+    vim.o.tabstop = 4
+    vim.o.expandtab = false
+    vim.o.softtabstop = 4
+    vim.o.shiftwidth = 4
+    vim.o.commentstring = "# %s"
+  end,
+})
+

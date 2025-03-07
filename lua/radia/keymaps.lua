@@ -140,7 +140,7 @@ keymap.set({ "n", "v" }, "<leader>rf", function()
 	conform.format({
 		lsp_fallback = true,
 		async = false,
-		timeout_ms = 500,
+		timeout_ms = 5000,
 	})
 end, { desc = "Format file" })
 

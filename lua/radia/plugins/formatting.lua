@@ -18,6 +18,15 @@ return {
 			},
 
 			formatters = {
+				gdtoolkit = {
+					command = "gdformat",
+					args = function(bufnr)
+						return { vim.api.nvim_buf_get_name(bufnr) } -- Dynamic file name
+					end,
+					-- stdin = true,
+					require_cwd = false,
+				},
+
 				isort = {
 					command = "isort",
 					args = {
