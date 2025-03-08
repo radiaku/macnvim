@@ -41,7 +41,6 @@ vim.g.VM_show_warnings = 0
 -- vim.g.OmniSharp_server_path = "/Users/mac/.cache/omnisharp-vim/omnisharp-roslyn/run"
 -- vim.g.OmniSharp_server_use_net6 = true
 
-
 -- local pipepath = vim.fn.stdpath("cache") .. "/server.pipe"
 -- if not vim.loop.fs_stat(pipepath) then
 --   vim.fn.serverstart(pipepath)
@@ -49,14 +48,15 @@ vim.g.VM_show_warnings = 0
 
 -- only for gdscript
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = "gdscript",
-  callback = function()
-    print("its gdscript")
-    vim.o.tabstop = 4
-    vim.o.expandtab = false
-    vim.o.softtabstop = 4
-    vim.o.shiftwidth = 4
-    vim.o.commentstring = "# %s"
-  end,
+	pattern = "gdscript",
+	callback = function()
+		-- print("its gdscript")
+		-- vim.o.setlocal = true
+		vim.o.tabstop = 4
+		vim.o.expandtab = true
+		vim.o.softtabstop = 4
+		vim.o.shiftwidth = 4
+		vim.o.smartindent = true
+		vim.o.commentstring = "# %s"
+	end,
 })
-
