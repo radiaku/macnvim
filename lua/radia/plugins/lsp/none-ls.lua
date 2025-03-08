@@ -43,10 +43,12 @@ return {
 				null_ls.builtins.diagnostics.commitlint,
 				-- null_ls.builtins.diagnostics.cppcheck,
 				null_ls.builtins.diagnostics.pylint,
+				null_ls.builtins.diagnostics.gdlint,
 				-- null_ls.builtins.diagnostics.trivy,
 				-- null_ls.builtins.diagnostics.eslint_d,
 				-- null_ls.builtins.diagnostics.markdownlint,
 
+				null_ls.builtins.formatting.gdformat,
 				null_ls.builtins.formatting.stylua,
 				null_ls.builtins.formatting.isortd,
 				null_ls.builtins.formatting.blackd,

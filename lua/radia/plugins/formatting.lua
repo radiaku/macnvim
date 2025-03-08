@@ -3,6 +3,7 @@ return {
 	event = { "BufReadPre", "BufNewFile" },
 	config = function()
 		local conform = require("conform")
+		local prefix = vim.fn.stdpath("data") .. "/mason/bin/"
 		conform.setup({
 			formatters_by_ft = {
 				javascript = { "prettier" },
@@ -13,17 +14,18 @@ return {
 				yaml = { "prettier" },
 				graphql = { "prettier" },
 				lua = { "stylua" },
-				gdscript = { "gdtoolkit" },
+				gdscript = { "gdformat" },
 				python = { "isort", "black" },
 			},
 
 			formatters = {
 				gdtoolkit = {
 					command = "gdformat",
-					args = function(bufnr)
-						return { vim.api.nvim_buf_get_name(bufnr) } -- Dynamic file name
-					end,
-					-- stdin = true,
+					args = { "$FILENAME" },
+					-- args = function(bufnr)
+					-- 	return { vim.api.nvim_buf_get_name(bufnr) } -- Dynamic file name
+					-- end,
+					stdin = true,
 					require_cwd = false,
 				},
 
