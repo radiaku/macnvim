@@ -52,6 +52,7 @@ vim.api.nvim_create_autocmd("FileType", {
 	callback = function()
 		-- print("its gdscript")
 		-- vim.o.setlocal = true
+    vim.o.autoindent = true
 		vim.o.tabstop = 4
 		vim.o.expandtab = true
 		vim.o.softtabstop = 4
