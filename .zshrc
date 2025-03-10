@@ -266,6 +266,7 @@ export PATH="$HOME/Library/Android/sdk/tools:$HOME/Library/Android/sdk/platform-
 export PATH="/Users/mac/binapp:$PATH"
 export PATH="/Users/mac/bin/flutter/bin:$PATH"
 export PATH="/Applications/Postgres.app/Contents/Versions/13/bin:$PATH"
+export PATH="/Applications/MAMP/Library/bin:$PATH"
 
 export PATH="$PATH:/Applications/Xcode.app/Contents/Developer/usr/bin"
 
