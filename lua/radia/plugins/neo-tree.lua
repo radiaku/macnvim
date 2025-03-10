@@ -100,6 +100,7 @@ return {
 					["fn"] = { "order_by_name", nowait = false },
 					["fs"] = { "order_by_size", nowait = false },
 					["ft"] = { "order_by_type", nowait = false },
+
 					["."] = "set_root",
 					["h"] = "toggle_hidden",
 
