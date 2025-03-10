@@ -57,8 +57,8 @@ keymap.set("n", "<leader>ba", ":%bd|e#|bd#<CR>", { desc = "Close Buffer All exce
 keymap.set("n", "<leader>co", ":only<CR>", { desc = "Close Other Split windows" })
 keymap.set("n", "<leader>bk", ":q!<CR>", { desc = "Quit " }) --  Close Buffer (bd)
 
-keymap.set("n", "<leader>db", ":DBUIToggle<CR>", { desc = "TOGGLE DBUI " }) --  Close Buffer (bd)
-keymap.set("n", "<leader>dc", ":DBUIAddConnection<CR>", { desc = "ADD CONNECTION " }) --  Close Buffer (bd)
+keymap.set("n", "<leader>db", ":DBUIToggle<CR>", { desc = "TOGGLE DBUI" })
+keymap.set("n", "<leader>dc", ":DBUIAddConnection<CR>", { desc = "ADD CONNECTION" })
 
 -- move between windows, uppside done on mac set to iterm2
 -- \<C-w>h on profile

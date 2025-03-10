@@ -8,6 +8,6 @@ return {
 			-- post_restore_cmds = {"Neotree"}
 		})
 
-		vim.o.sessionoptions = "buffers,curdir,folds,help,tabpages,winsize,winpos,localoptions"
+		vim.o.sessionoptions = "buffers,curdir,help,tabpages,winsize,winpos,localoptions"
 	end,
 }
