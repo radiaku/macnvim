@@ -32,21 +32,21 @@ return {
 					default = "*",
 					highlight = "NeoTreeFileIcon",
 				},
-			-- 	git_status = {
-			-- 		symbols = {
-			-- 			-- Change type
-			-- 			added = "",
-			-- 			deleted = "",
-			-- 			modified = "",
-			-- 			renamed = "",
-			-- 			-- Status type
-			-- 			untracked = "",
-			-- 			ignored = "",
-			-- 			unstaged = "",
-			-- 			staged = "",
-			-- 			conflict = "",
-			-- 		},
-			-- 	},
+				-- 	git_status = {
+				-- 		symbols = {
+				-- 			-- Change type
+				-- 			added = "",
+				-- 			deleted = "",
+				-- 			modified = "",
+				-- 			renamed = "",
+				-- 			-- Status type
+				-- 			untracked = "",
+				-- 			ignored = "",
+				-- 			unstaged = "",
+				-- 			staged = "",
+				-- 			conflict = "",
+				-- 		},
+				-- 	},
 			},
 			window = {
 				position = "float",
@@ -88,6 +88,18 @@ return {
 					["os"] = "noop",
 					["ot"] = "noop",
 
+					["f"] = {
+						"show_help",
+						nowait = false,
+						config = { title = "Order by", prefix_key = "f" },
+					},
+					["fc"] = { "order_by_created", nowait = false },
+					["fd"] = { "order_by_diagnostics", nowait = false },
+					["fg"] = { "order_by_git_status", nowait = false },
+					["fm"] = { "order_by_modified", nowait = false },
+					["fn"] = { "order_by_name", nowait = false },
+					["fs"] = { "order_by_size", nowait = false },
+					["ft"] = { "order_by_type", nowait = false },
 					["."] = "set_root",
 					["h"] = "toggle_hidden",
 
