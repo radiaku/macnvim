@@ -91,8 +91,8 @@ keymap.set("n", "<leader>dc", ":DBUIAddConnection<CR>", { desc = "ADD CONNECTION
 -- )
 
 -- Move between buffers
-keymap.set("n", "<S-h>", ":bnext<CR>", { desc = "Move to left tab buffer", noremap = true })
-keymap.set("n", "<S-l>", ":bprevious<CR>", { desc = "Move to right tab buffer", noremap = true })
+keymap.set("n", "<S-l>", ":bnext<CR>", { desc = "Move to left tab buffer", noremap = true })
+keymap.set("n", "<S-h>", ":bprevious<CR>", { desc = "Move to right tab buffer", noremap = true })
 
 keymap.set(
 	"n",
