@@ -77,18 +77,22 @@ keymap.set("n", "<leader>dc", ":DBUIAddConnection<CR>", { desc = "ADD CONNECTION
 -- keymap.set("n", "<C-k>", "<C-w>k", { desc = "Move to upper windows", noremap = true })
 
 -- Move Between tab buffer
-keymap.set(
-	"n",
-	"<S-l>",
-	"<CMD>BufferLineCycleNext<CR>",
-	{ desc = "Move to left tab buffer", noremap = true, silent = true }
-)
-keymap.set(
-	"n",
-	"<S-h>",
-	"<CMD>BufferLineCyclePrev<CR>",
-	{ desc = "Move to right tab buffer", noremap = true, silent = true }
-)
+-- keymap.set(
+-- 	"n",
+-- 	"<S-l>",
+-- 	"<CMD>BufferLineCycleNext<CR>",
+-- 	{ desc = "Move to left tab buffer", noremap = true, silent = true }
+-- )
+-- keymap.set(
+-- 	"n",
+-- 	"<S-h>",
+-- 	"<CMD>BufferLineCyclePrev<CR>",
+-- 	{ desc = "Move to right tab buffer", noremap = true, silent = true }
+-- )
+
+-- Move between buffers
+keymap.set("n", "<S-h>", ":bnext<CR>", { desc = "Move to left tab buffer", noremap = true })
+keymap.set("n", "<S-l>", ":bprevious<CR>", { desc = "Move to right tab buffer", noremap = true })
 
 keymap.set(
 	"n",
