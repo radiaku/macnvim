@@ -57,6 +57,7 @@ keymap.set("n", "<leader>sx", "<cmd>close<CR>", { desc = "Close current split" }
 -- destory buffer
 keymap.set("n", "<leader>bd", "<cmd>bd!<CR>", { desc = "Close Buffer (bd)" }) --  Close Buffer (bd)
 keymap.set("n", "<leader>ba", ":%bd|e#|bd#<CR>", { desc = "Close Buffer All except unsaved (bd)" }) --  Close Buffer (bd)
+
 -- keymap.set("n", "<leader>baf", ":qa!", { desc = "Kill all and exit" })
 keymap.set("n", "<leader>co", ":only<CR>", { desc = "Close Other Split windows" })
 keymap.set("n", "<leader>bk", ":q!<CR>", { desc = "Quit " }) --  Close Buffer (bd)
@@ -118,8 +119,8 @@ keymap.set("n", "<M-u>", "<C-w>+", { desc = "Resize Up" })
 keymap.set("n", "<M-d>", "<C-w>-", { desc = "Resize Down" })
 
 -- set previous and next opened buffer
-keymap.set("n", "<C-n>", ":bnext<CR>", { desc = "Next Buffer" })
-keymap.set("n", "<C-p>", ":bprevious<CR>", { desc = "Previous Buffer" })
+-- keymap.set("n", "<C-n>", ":bnext<CR>", { desc = "Next Buffer" })
+-- keymap.set("n", "<C-p>", ":bprevious<CR>", { desc = "Previous Buffer" })
 
 -- keymap.set("n", "<M-,>", "<C-w>5<", { desc = "Resize to right" })
 -- keymap.set("n", "<M-.>", "<C-w>5>", { desc = "Resize to Left" })
