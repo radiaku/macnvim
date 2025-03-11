@@ -34,6 +34,10 @@ local keymap = vim.keymap -- for conciseness
 -- use jk to exit insert mode
 keymap.set("i", "jk", "<ESC>", { desc = "Exit insert mode with jk" })
 
+-- Move around auto complete using jk
+keymap.set('c', '<C-j>', '<C-n>', { noremap = true, silent = true })
+keymap.set('c', '<C-k>', '<C-p>', { noremap = true, silent = true })
+
 -- set shift insert to paste on insert mode
 keymap.set("i", "<S-Insert>", "<C-R>+", { desc = "Paste with shift+insert", noremap = true, silent = true })
 keymap.set("i", "<A-P>", "<C-R>+", { noremap = true, silent = true, desc = "Paste with Alt+P on insert mode" })
