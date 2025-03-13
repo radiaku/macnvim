@@ -97,6 +97,8 @@ return {
 									["reportAttributeAccessIssue"] = "none",
 									["reportOptionalMemberAccess"] = "none",
 									["reportCallIssue"] = "none",
+									["reportUnusedImport"] = "none",
+									["reportUnusedParameter"] = "none",
 								},
 							},
 						},
