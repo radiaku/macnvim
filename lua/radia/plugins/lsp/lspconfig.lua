@@ -99,6 +99,7 @@ return {
 									["reportCallIssue"] = "none",
 									["reportUnusedImport"] = "none",
 									["reportUnusedParameter"] = "none",
+									["reportUnusedVariable"] = "none",
 								},
 							},
 						},
