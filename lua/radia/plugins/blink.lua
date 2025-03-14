@@ -7,9 +7,9 @@ return {
 		"rafamadriz/friendly-snippets",
 	},
 	opts = {
-		-- cmdline = {
-		-- 	enabled = false,
-		-- },
+		cmdline = {
+			enabled = false,
+		},
 		keymap = {
 			preset = "default",
 			["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
