@@ -1,7 +1,8 @@
 # mv ~/.zshrc ~/.config/nvim/zshrc
 # ln -s ~/.config/nvim/.zshrc ~/.zshrc
-# ln -s ~/.config/nvim/.zshrc.d ~/.zshrc.d
-#
+# ln -s "$HOME/.config/nvim/.zshrc.d" "$HOME/.zshrc.d"
+
+
 # curl -sSL https://github.com/zthxxx/jovial/raw/master/installer.sh | sudo -E bash -s ${USER:=whoami}
 # brew install zsh-autocomplete
 # git clone --depth 1 -- https://github.com/marlonrichert/zsh-autocomplete.git $ZSH_CUSTOM/plugins/zsh-autocomplete
@@ -31,8 +32,8 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 
 # plugin zsh
-for file in ~/.zshrc.d/*.zsh; do
-    source "$file"
+for file in "$HOME/.zshrc.d"/*.zsh; do
+    [ -r "$file" ] && source "$file"
 done
 
 
