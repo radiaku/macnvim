@@ -98,8 +98,12 @@ return {
 
 			["mesonlsp"] = function()
 				lspconfig["mesonlsp"].setup({
+					filetypes = {
+						".swift",
+						"swift",
+					},
 					capabilities = capabilities,
-					root_dir = vim.fn.getcwd(),
+          root_dir = util.root_pattern('meson.build', 'meson_options.txt', 'meson.options', '.git'),
 					-- cmd = { bin_path .. "typescript-language-server.cmd" },
 				})
 			end,

@@ -31,6 +31,9 @@ targets:
     platform: macOS
     sources: Sources
     resources: Resources
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
 EOL
 
     # Create a basic Swift file
@@ -60,4 +63,31 @@ EOL
 
     # Open the project
     # open "$PROJECT_NAME.xcodeproj"
+}
+
+
+
+function run_swiftui_project() {
+    # Ensure we are inside a project folder with .xcodeproj
+    PROJECT_FILE=$(find . -maxdepth 1 -name "*.xcodeproj" | head -n 1)
+
+    if [ -z "$PROJECT_FILE" ]; then
+        echo "Error: No Xcode project found in the current directory."
+        return 1
+    fi
+
+    PROJECT_NAME=$(basename "$PROJECT_FILE" .xcodeproj)
+
+    echo "Building the project..."
+    xcrun xcodebuild -project "$PROJECT_FILE" -scheme "$PROJECT_NAME" -configuration Debug
+
+    # Locate the built executable using the DerivedData path
+    EXECUTABLE_PATH=$(find ~/Library/Developer/Xcode/DerivedData -type f -path "*/Build/Products/Debug/$PROJECT_NAME.app/Contents/MacOS/$PROJECT_NAME" 2>/dev/null)
+
+    if [ -n "$EXECUTABLE_PATH" ]; then
+        echo "Running the project..."
+        "$EXECUTABLE_PATH"
+    else
+        echo "Error: Executable not found."
+    fi
 }
