@@ -29,10 +29,8 @@ targets:
   $PROJECT_NAME:
     type: application
     platform: macOS
-    sources: [Sources/**]
-    resources: [Resources/**]
-    dependencies:
-      - target: $PROJECT_NAME
+    sources: Sources
+    resources: Resources
 EOL
 
     # Create a basic Swift file
@@ -61,6 +59,5 @@ EOL
     xcodegen
 
     # Open the project
-    open "$PROJECT_NAME.xcodeproj"
+    # open "$PROJECT_NAME.xcodeproj"
 }
-
