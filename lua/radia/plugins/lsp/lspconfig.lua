@@ -13,21 +13,10 @@ return {
 		local lspconfig = require("lspconfig")
 		local util = require("lspconfig/util")
 
-		-- import mason_lspconfig plugin
-		-- local mason = require("mason")
 		local mason_lspconfig = require("mason-lspconfig")
-
-		-- import cmp-nvim-lsp plugin
-		-- local cmp_nvim_lsp = require("cmp_nvim_lsp")
-		--
-
-		-- used to enable autocompletion (assign to every lsp server config)
-		-- local capabilities = cmp_nvim_lsp.default_capabilities()
 
 		local capabilities = require("blink.cmp").get_lsp_capabilities()
 
-		-- Change the Diagnostic symbols in the sign column (gutter)
-		-- (not in youtube nvim video)
 		local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
 		for type, icon in pairs(signs) do
 			local hl = "DiagnosticSign" .. type
@@ -107,13 +96,13 @@ return {
 				})
 			end,
 
-			-- ["ts_ls"] = function()
-			-- 	lspconfig["ts_ls"].setup({
-			-- 		capabilities = capabilities,
-			-- 		root_dir = util.root_pattern("package.json") or vim.fn.getcwd(),
-			-- 		-- cmd = { bin_path .. "typescript-language-server.cmd" },
-			-- 	})
-			-- end,
+			["mesonlsp"] = function()
+				lspconfig["mesonlsp"].setup({
+					capabilities = capabilities,
+					root_dir = vim.fn.getcwd(),
+					-- cmd = { bin_path .. "typescript-language-server.cmd" },
+				})
+			end,
 
 			["kotlin_language_server"] = function()
 				lspconfig["kotlin_language_server"].setup({
@@ -314,6 +303,7 @@ return {
 			end,
 		})
 
+    -- this is for godot, cause we use another server
 		local port = os.getenv("GDScript_Port") or "6005"
 		local cmd = vim.lsp.rpc.connect("127.0.0.1", tonumber(port))
 		lspconfig["gdscript"].setup({
@@ -322,5 +312,17 @@ return {
 			-- name = "godot",
 			cmd = cmd,
 		})
+
+    -- -- this is for swift
+    -- lspconfig["sourcekit"].setup {}
+    -- vim.api.nvim_create_autocmd('LspAttach', {
+    --     desc = 'LSP Actions',
+    --     callback = function(args)
+    --         vim.keymap.set('n', 'K', vim.lsp.buf.hover, {noremap = true, silent = true})
+    --         vim.keymap.set('n', 'gd', vim.lsp.buf.definition, {noremap = true, silent = true})
+    --     end,
+    -- })
+
+
 	end,
 }
