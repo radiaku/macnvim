@@ -62,6 +62,7 @@ if vim.fn.has("win32") == 1 then
 end
 
 vim.opt.smartindent = true
+vim.g.have_nerd_font = true
 
 -- cleaning shada
 -- vim.api.nvim_create_user_command("ClearShada", function()
