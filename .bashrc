@@ -126,7 +126,8 @@ function jump_to_tmux_session() {
       sed '/^$/d' | \
       cut -d',' -f2- | \
       fzf --reverse --header "Jump to session" \
-          --preview 'tmux capture-pane -t {} -p | head -20')
+          --preview 'tmux capture-pane -t {} -p | head -20' \
+          --bind 'ctrl-d:execute-silent(tmux kill-session -t {})+reload(tmux list-sessions -F "#{?session_attached,,#{session_activity},#{session_name}}" | sort -r | sed "/^$/d" | cut -d"," -f2-)')
 
     if [ -n "$selected_session" ]; then
       manage_tmux_session "$selected_session" || {
@@ -142,10 +143,11 @@ function jump_to_tmux_session() {
       sort -r | \
       sed '/^$/d' | \
       cut -d',' -f2- | \
-      fzf --reverse --header jump-to-session --preview 'tmux capture-pane -pt {}' | \
+      fzf --reverse --header "Jump to session" \
+          --preview 'tmux capture-pane -pt {} | head -20' \
+          --bind 'ctrl-d:execute-silent(tmux kill-session -t {})+reload(tmux list-sessions -F "#{?session_attached,,#{session_activity},#{session_name}}" | sort -r | sed "/^$/d" | cut -d"," -f2-)' | \
       xargs -r tmux switch-client -t
   fi
-
 }
 
 # Bind Alt+l to the function
