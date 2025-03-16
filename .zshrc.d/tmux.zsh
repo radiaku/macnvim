@@ -89,27 +89,24 @@ fzf-cd() {
   zle reset-prompt
 }
 
-
-
-
 # Create a zsh widget
 zle -N fzf-cd
 bindkey '^F' fzf-cd
+
 
 unalias jump_to_tmux_session 2>/dev/null
 
 function jump_to_tmux_session() {
   if [ -z "$TMUX" ]; then
     # If not in tmux, get the list of sessions
-
-    # Prompt user to select a session
     local selected_session
     selected_session=$(tmux list-sessions -F '#{?session_attached,,#{session_activity},#{session_name}}' | \
       sort -r | \
       sed '/^$/d' | \
       cut -d',' -f2- | \
       fzf --reverse --header "Jump to session" \
-          --preview 'tmux capture-pane -t {} -p | head -20')
+          --preview 'tmux capture-pane -t {} -p | head -20' \
+          --bind 'ctrl-d:execute-silent(tmux kill-session -t {})+reload(tmux list-sessions -F "#{?session_attached,,#{session_activity},#{session_name}}" | sort -r | sed "/^$/d" | cut -d"," -f2-)')
 
     if [ -n "$selected_session" ]; then
       manage_tmux_session "$selected_session" || {
@@ -126,7 +123,8 @@ function jump_to_tmux_session() {
       sed '/^$/d' | \
       cut -d',' -f2- | \
       fzf --reverse --header "Jump to session" \
-          --preview 'tmux capture-pane -pt {} | head -20' | \
+          --preview 'tmux capture-pane -pt {} | head -20' \
+          --bind 'ctrl-d:execute-silent(tmux kill-session -t {})+reload(tmux list-sessions -F "#{?session_attached,,#{session_activity},#{session_name}}" | sort -r | sed "/^$/d" | cut -d"," -f2-)' | \
       xargs -r tmux switch-client -t
   fi
   # Reset the prompt after exiting the tmux session
