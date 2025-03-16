@@ -103,7 +103,7 @@ return {
 						"swift",
 					},
 					capabilities = capabilities,
-          root_dir = util.root_pattern('meson.build', 'meson_options.txt', 'meson.options', '.git'),
+					root_dir = util.root_pattern("meson.build", "meson_options.txt", "meson.options", ".git"),
 					-- cmd = { bin_path .. "typescript-language-server.cmd" },
 				})
 			end,
@@ -307,7 +307,7 @@ return {
 			end,
 		})
 
-    -- this is for godot, cause we use another server
+		-- this is for godot, cause we use another server
 		local port = os.getenv("GDScript_Port") or "6005"
 		local cmd = vim.lsp.rpc.connect("127.0.0.1", tonumber(port))
 		lspconfig["gdscript"].setup({
@@ -316,17 +316,6 @@ return {
 			-- name = "godot",
 			cmd = cmd,
 		})
-
-    -- -- this is for swift
-    -- lspconfig["sourcekit"].setup {}
-    -- vim.api.nvim_create_autocmd('LspAttach', {
-    --     desc = 'LSP Actions',
-    --     callback = function(args)
-    --         vim.keymap.set('n', 'K', vim.lsp.buf.hover, {noremap = true, silent = true})
-    --         vim.keymap.set('n', 'gd', vim.lsp.buf.definition, {noremap = true, silent = true})
-    --     end,
-    -- })
-
 
 	end,
 }
