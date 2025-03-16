@@ -20,17 +20,13 @@ return {
 	-- 		}),
 	-- 	}
 	--
-	-- 	lint.linters.cspell = require("lint.util").wrap(lint.linters.cspell, function(diagnostic)
-	-- 		diagnostic.severity = vim.diagnostic.severity.HINT
-	-- 		return diagnostic
-	-- 	end)
-	--
 	-- 	lint.linters_by_ft = {
 	-- 		javascript = { "eslint_d" },
-	-- 		go = { "gdlint" },
-	-- 		python = { "pylint" },
+	-- 		go = { "golangcilint" },
+	-- 		gdscript = { "gdlint" },
+	-- 		-- python = { "pylint" },
 	-- 		swift = { "swiftlint" },
-	-- 		php = { "phpcs" },
+	-- 		-- php = { "phpcs" },
 	-- 		lua = { "luacheck" },
 	-- 	}
 	-- 	local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
