@@ -26,6 +26,15 @@ return {
 						path = 3,
 						symbols = { modified = "  ", readonly = "", unnamed = "" },
 					},
+					-- {
+					--        function()
+					--          local linters = require("lint").get_running()
+					--          if #linters == 0 then
+					--              return "󰦕"
+					--          end
+					--          return "󱉶 " .. table.concat(linters, ", ")
+					--        end
+					-- },
 					{
 						function()
 							return require("lsp-progress").progress()
@@ -34,6 +43,7 @@ return {
 				},
 
 				lualine_y = {
+					-- end
 					-- {
 					-- 	require("lazy.status").updates,
 					-- 	cond = require("lazy.status").has_updates,

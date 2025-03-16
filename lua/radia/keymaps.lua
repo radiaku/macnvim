@@ -35,11 +35,11 @@ local keymap = vim.keymap -- for conciseness
 keymap.set("i", "jk", "<ESC>", { desc = "Exit insert mode with jk" })
 
 -- Move around commandline cmdline or wildmenu auto complete using jk
-keymap.set('c', '<C-j>', '<C-n>', { noremap = true, silent = true })
-keymap.set('c', '<C-k>', '<C-p>', { noremap = true, silent = true })
+keymap.set("c", "<C-j>", "<C-n>", { noremap = true, silent = true })
+keymap.set("c", "<C-k>", "<C-p>", { noremap = true, silent = true })
 
-keymap.set('i', '<C-j>', '<C-n>', { noremap = true, silent = true })
-keymap.set('i', '<C-k>', '<C-p>', { noremap = true, silent = true })
+keymap.set("i", "<C-j>", "<C-n>", { noremap = true, silent = true })
+keymap.set("i", "<C-k>", "<C-p>", { noremap = true, silent = true })
 
 -- set shift insert to paste on insert mode
 keymap.set("i", "<S-Insert>", "<C-R>+", { desc = "Paste with shift+insert", noremap = true, silent = true })
@@ -391,3 +391,15 @@ keymap.set("n", "<leader>so", "<cmd>ObsidianSearch<cr>", { desc = "Search Obsidi
 keymap.set("n", "<leader>sn", "<cmd>ObsidianNew<cr>", { desc = "New Obsidian Note", noremap = true })
 -- Mark
 keymap.set("n", "<leader>ml", "<cmd>:MarksQFListBuf<cr>", { desc = "List Mark On Buffer", noremap = true })
+
+-- keymap.set("n", "<leader>lt", function()
+-- 	require("lint").try_lint()
+-- end, { desc = "Trigger linting for current file" })
+
+-- keymap.set("n", "<leader>st", function()
+-- 	local linters = require("lint").get_running()
+-- 	if #linters == 0 then
+-- 		print("󰦕 no linter")
+-- 	end
+-- 	print(table.concat(linters, ", "))
+-- end, { desc = "Trigger linting for current file" })

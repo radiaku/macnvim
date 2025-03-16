@@ -60,7 +60,7 @@ return {
 					capabilities = capabilities,
 
 					root_dir = function(fname)
-						table.unpack = table.unpack or unpack -- 5.1 compatibility
+						table.unpack = table.unpack or unpack
 						return util.root_pattern(table.unpack(python_root_files))(fname)
 							or util.find_git_ancestor(fname)
 							or util.path.dirname(fname)
@@ -279,19 +279,19 @@ return {
 						Lua = {
 							-- make the language server recognize "vim" global
 							diagnostics = {
-								globals = { "vim" },
-								disable = { "missing-fields" },
+								globals = { "vim", "MiniMap" },
+                disable = { "incomplete-signature-doc", "missing-fields" },
 							},
 							workspace = {
 								-- Make the server aware of Neovim runtime files
 								library = {
+									"${3rd}/luv/library",
 									vim.env.VIMRUNTIME,
 									vim.api.nvim_get_runtime_file("", true),
 									vim.fn.expand("$VIMRUNTIME/lua"),
 									vim.fn.expand("$VIMRUNTIME/lua/vim/lsp"),
 									vim.fn.stdpath("data") .. "/lazy/ui/nvchad_types",
 									vim.fn.stdpath("data") .. "/lazy/lazy.nvim/lua/lazy",
-									"${3rd}/luv/library",
 								},
 							},
 							-- Do not send telemetry data containing a randomized but unique identifier
