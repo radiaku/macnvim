@@ -39,7 +39,7 @@ return {
 							end
 						end
 
-						if string.len(table.concat(vim.api.nvim_buf_get_lines(0, 0, -1, false), "")) > 500000 then
+						if string.len(table.concat(vim.api.nvim_buf_get_lines(0, 0, -1, false), "")) > 50000 then
 							return true
 						end
 
