@@ -1,5 +1,8 @@
 local opt = vim.opt -- for conciseness
 
+opt.smartindent = true
+vim.g.have_nerd_font = true
+
 -- line numbers
 opt.relativenumber = true -- show relative line numbers
 opt.number = true -- shows absolute line number on cursor line (when relative number is on)
