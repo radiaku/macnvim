@@ -20,6 +20,23 @@ return {
 			}),
 		}
 
+		local pattern = "[^:]+:(%d+):(%d+):(%w+):(.+)"
+		local groups = { "lnum", "col", "code", "message" }
+
+		lint.linters.flake8 = {
+			cmd = "flake8",
+			stdin = true,
+			args = {
+				"--ignore=E1,E23,W503,F541, E501",
+			},
+			stream = "stdout",
+			ignore_exitcode = true,
+			parser = require("lint.parser").from_pattern(pattern, groups, nil, {
+				["source"] = "flake8",
+				["severity"] = vim.diagnostic.severity.WARN,
+			}),
+		}
+
 		lint.linters_by_ft = {
 			-- javascript = { "standardjs" },
 			-- javascript = { "biomejs" },
@@ -37,7 +54,7 @@ return {
 		vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
 			group = lint_augroup,
 			callback = function()
-				lint.try_lint(nil, {ignore_errors = true})
+				lint.try_lint(nil, { ignore_errors = true })
 			end,
 		})
 	end,
