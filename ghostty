@@ -8,7 +8,8 @@ keybind = cmd+h=text:\x17\x68
 keybind = cmd+j=text:\x17\x6A
 keybind = cmd+k=text:\x17\x6B
 
-font-family = "JetBrainsMono NFM Regular"
+# font-family = "JetBrainsMono NFM Regular"
+font-family = "Iosevka Nerd Font"
 font-style = Regular
-font-size = 15 
+font-size = 17 
 font-thicken = true
