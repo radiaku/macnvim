@@ -2,12 +2,13 @@ return {
 	"neovim/nvim-lspconfig",
 	event = { "BufReadPre", "BufNewFile" },
 	dependencies = {
-		-- "hrsh7th/cmp-nvim-lsp",
+		"hrsh7th/cmp-nvim-lsp",
 		-- "williamboman/mason-lspconfig.nvim",
 		-- { "antosha417/nvim-lsp-file-operations", config = true },
 		-- { "folke/neodev.nvim", opts = {} },
 		-- { "folke/lazydev.nvim", opts = {} },
 	},
+
 	config = function()
 		-- import lspconfig plugin
 		local lspconfig = require("lspconfig")
@@ -15,7 +16,9 @@ return {
 
 		local mason_lspconfig = require("mason-lspconfig")
 
-		local capabilities = require("blink.cmp").get_lsp_capabilities()
+		-- local capabilities = require("blink.cmp").get_lsp_capabilities()
+		local capabilities = require("cmp_nvim_lsp").default_capabilities()
+		-- local capabilities = require("blink.cmp").get_lsp_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 		local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
 		for type, icon in pairs(signs) do
@@ -280,7 +283,7 @@ return {
 							-- make the language server recognize "vim" global
 							diagnostics = {
 								globals = { "vim", "MiniMap" },
-                disable = { "incomplete-signature-doc", "missing-fields" },
+								disable = { "incomplete-signature-doc", "missing-fields" },
 							},
 							workspace = {
 								-- Make the server aware of Neovim runtime files
@@ -316,6 +319,5 @@ return {
 			-- name = "godot",
 			cmd = cmd,
 		})
-
 	end,
 }
