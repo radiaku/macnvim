@@ -37,6 +37,20 @@ return {
 			}),
 		}
 
+		lint.linters.gdlint = {
+			cmd = "gdlint",
+			stdin = true,
+			args = {
+				"--ignore=unused-argument",
+			},
+			stream = "stdout",
+			ignore_exitcode = true,
+			parser = require("lint.parser").from_errorformat("%f:%l:%c: %m", {
+				source = "luacheck",
+			}),
+		}
+
+
 		lint.linters_by_ft = {
 			-- javascript = { "standardjs" },
 			-- javascript = { "biomejs" },
