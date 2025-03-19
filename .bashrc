@@ -18,6 +18,10 @@
 # cp ./fd.1 /usr/local/share/man/man1/
 #
 
+export HISTSIZE=5000  # Number of commands kept in memory
+export HISTFILESIZE=100000  # Number of commands kept in the history file
+export HISTCONTROL=ignoredups:erasedups  # Ignore duplicate commands
+
 export TERM="xterm-256color"
 
 # Source global definitions
