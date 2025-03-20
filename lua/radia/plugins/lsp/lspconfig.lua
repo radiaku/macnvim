@@ -1,8 +1,9 @@
+local blink_ok, blink = pcall(require, "blink.cmp")
 return {
 	"neovim/nvim-lspconfig",
 	event = { "BufReadPre", "BufNewFile" },
 	dependencies = {
-		"hrsh7th/cmp-nvim-lsp",
+		-- (not blink_ok) and "hrsh7th/cmp-nvim-lsp" or nil,
 		-- "williamboman/mason-lspconfig.nvim",
 		-- { "antosha417/nvim-lsp-file-operations", config = true },
 		-- { "folke/neodev.nvim", opts = {} },
@@ -17,8 +18,20 @@ return {
 		local mason_lspconfig = require("mason-lspconfig")
 
 		-- local capabilities = require("blink.cmp").get_lsp_capabilities()
-		local capabilities = require("cmp_nvim_lsp").default_capabilities()
+		-- local capabilities = require("cmp_nvim_lsp").default_capabilities()
 		-- local capabilities = require("blink.cmp").get_lsp_capabilities(vim.lsp.protocol.make_client_capabilities())
+		local capabilities
+
+		if blink_ok then
+			capabilities = blink.get_lsp_capabilities()
+		else
+			local cmp_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
+			if cmp_ok then
+				capabilities = cmp_nvim_lsp.default_capabilities()
+			else
+				error("Neither 'blink.cmp' nor 'cmp_nvim_lsp' could be loaded.")
+			end
+		end
 
 		local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
 		for type, icon in pairs(signs) do
@@ -45,10 +58,10 @@ return {
 			function(server_name)
 				-- https://github.com/neovim/nvim-lspconfig/pull/3232
 				-- server_name = server_name == "tsserver" and "ts_ls" or server_name
-        
+
 				lspconfig[server_name].setup({
 					capabilities = capabilities,
-          on_attach = on_attach,
+					on_attach = on_attach,
 					flags = {
 						debounce_text_changes = 350,
 					},

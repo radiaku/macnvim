@@ -1,5 +1,6 @@
 return {
 	"saghen/blink.cmp",
+	commit = "c5ca0f2",
 	build = "cargo build --release",
 	version = "*",
 	-- version = "v0.7.6",
