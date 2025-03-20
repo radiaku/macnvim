@@ -111,6 +111,7 @@ return {
 									["reportUnusedImport"] = "none",
 									["reportUnusedParameter"] = "none",
 									["reportUnusedVariable"] = "none",
+									["reportPrivateImportUsage"] = "none",
 								},
 							},
 						},
