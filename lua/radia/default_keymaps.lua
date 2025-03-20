@@ -35,128 +35,130 @@ local opts = { noremap = true, silent = true }
 -- keymap.set("c", "<M-v>", "<C-R>+", { desc="ctrl+shift+v paste neovim",  opts})
 
 -- use jk to exit insert mode
-opts.desc = "Exit insert mode with jk"
+opts = { desc = "Exit insert mode with jk" }
 keymap.set("i", "jk", "<ESC>", opts)
 
 -- Move around commandline cmdline or wildmenu auto complete using jk
-opts.desc = "Move down on wildmenu"
+opts = { desc = "Move down on wildmenu"}
 keymap.set("c", "<C-j>", "<C-n>", opts)
-opts.desc = "Move up on wildmenu"
+opts = { desc  = "Move up on wildmenu"}
 keymap.set("c", "<C-k>", "<C-p>", opts)
 
 -- Move around when insertmode using ctrl j + k
-opts.desc = "Move down on wildmenu"
+opts = { desc  = "Move down on wildmenu"}
 keymap.set("i", "<C-j>", "<C-n>", opts)
-opts.desc = "Move down on wildmenu"
+opts = { desc  = "Move down on wildmenu"}
 keymap.set("i", "<C-k>", "<C-p>", opts)
 
 -- set shift insert to paste on insert mode
-opts.desc = "Paste with shift+insert"
+opts = { desc = "Paste with shift+insert"}
 keymap.set("i", "<S-Insert>", "<C-R>+", opts)
-opts.desc = "Paste with Alt+P on insert mode"
+opts = { desc = "Paste with Alt+P on insert mode"}
 keymap.set("i", "<A-P>", "<C-R>+", opts)
 
 -- clear search highlights
-opts.desc = "Clear search highlights"
+opts = { desc = "Clear search highlights"}
 keymap.set("n", "<leader>nh", ":nohl<CR>", opts)
 
 -- Hop
-opts.desc = "Hop"
+opts = { desc = "Hop"}
 keymap.set("n", "t", "<cmd>HopPattern<CR>", opts)
--- '<,'>normal 0f{f"yi"Oopts.desc = "^[pA"^[n
+-- '<,'>normal 0f{f"yi"Oopts = { desc = "^[pA"^[n}
 
 -- window management
-opts.desc = "Split window vertically"
+opts = { desc = "Split window vertically"}
 keymap.set("n", "<leader>sv", "<C-w>v", opts) -- split window vertically
-opts.desc = "Split window horizontally"
+opts = { desc = "Split window horizontally"}
 keymap.set("n", "<leader>sh", "<C-w>s", opts) -- split window horizontally
--- opts.desc = "Make splits equal size"
+-- opts = { desc = "Make splits equal size"}
 -- keymap.set("n", "<leader>se", "<C-w>=", opts) -- make split windows equal width & height
-opts.desc = "Close current split"
+opts = { desc = "Close current split"}
 keymap.set("n", "<leader>sx", "<cmd>close<CR>", opts) -- close current split window
 
 -- destory buffer
-opts.desc = "Close Buffer (bd)"
+opts = { desc = "Close Buffer (bd)"}
 keymap.set("n", "<leader>bd", "<cmd>bd!<CR>", opts) --  Close Buffer (bd)
-opts.desc = "Close Buffer All except unsaved (bd)"
+opts = { desc = "Close Buffer All except unsaved (bd)"}
 keymap.set("n", "<leader>ba", ":%bd|e#|bd#<CR>", opts) --  Close Buffer (bd)
 
--- opts.desc = "Kill all and exit"
+-- opts = { desc = "Kill all and exit"}
 -- keymap.set("n", "<leader>baf", ":qa!", opts)
-opts.desc = "Close Other Split windows"
+opts = { desc = "Close Other Split windows"}
 keymap.set("n", "<leader>co", ":only<CR>", opts)
-opts.desc = "Quit "
+opts = { desc = "Quit "}
 keymap.set("n", "<leader>bk", ":q!<CR>", opts) --  Close Buffer (bd)
 
-opts.desc = "TOGGLE DBUI"
+opts = { desc = "TOGGLE DBUI"}
 keymap.set("n", "<leader>db", ":DBUIToggle<CR>", opts)
-opts.desc = "ADD CONNECTION"
+opts = { desc = "ADD CONNECTION"}
 keymap.set("n", "<leader>dc", ":DBUIAddConnection<CR>", opts)
 
 -- move between windows, uppside done on mac set to iterm2
 -- \<C-w>h on profile
--- opts.desc = "Move to left windows"
+-- opts = { desc = "Move to left windows"}
 -- keymap.set("n", "<M-h>", "<C-w>h", opts)
--- opts.desc = "Move to right windows"
+-- opts = { desc = "Move to right windows"}
 -- keymap.set("n", "<M-l>", "<C-w>l", opts)
--- opts.desc = "Move to down windows"
+-- opts = { desc = "Move to down windows"}
 -- keymap.set("n", "<M-j>", "<C-w>j", opts)
--- opts.desc = "Move to upper windows"
+-- opts = { desc = "Move to upper windows"}
 -- keymap.set("n", "<M-k>", "<C-w>k", opts)
 
--- opts.desc = "Move to left windows"
+-- opts = { desc = "Move to left windows"}
 -- keymap.set("n", "<C-h>", "<C-w>h", opts)
--- opts.desc = "Move to right windows"
+-- opts = { desc = "Move to right windows"}
 -- keymap.set("n", "<C-l>", "<C-w>l", opts)
--- opts.desc = "Move to down windows"
+-- opts = { desc = "Move to down windows"}
 -- keymap.set("n", "<C-j>", "<C-w>j", opts)
--- opts.desc = "Move to upper windows"
+-- opts = { desc = "Move to upper windows"}
 -- keymap.set("n", "<C-k>", "<C-w>k", opts)
 
 -- change working directory to the location of the current file
-opts.desc = "Changing Working Directory"
+opts = { desc = "Changing Working Directory"}
 keymap.set("n", "<leader>cd", ":cd %:p:h<CR>:pwd<CR>", opts)
--- opts.desc = "Changing Working Directory"
+-- opts = { desc = "Changing Working Directory"}
 -- keymap.set("n", "<leader>cd", ":cd %:p:h<CR>:pwd<CR>", opts)
 
 -- resize split
-opts.desc = "Resize to Left"
+opts = { desc = "Resize to Left"}
 keymap.set("n", "<M-,>", "<C-w>5<", opts)
-opts.desc = "Resize to Right"
+opts = { desc = "Resize to Right"}
 keymap.set("n", "<M-.>", "<C-w>5>", opts)
-opts.desc = "Resize Up"
+opts = { desc = "Resize Up"}
 keymap.set("n", "<M-u>", "<C-w>+", opts)
-opts.desc = "Resize Down"
+opts = { desc = "Resize Down"}
 keymap.set("n", "<M-d>", "<C-w>-", opts)
 
 -- set previous and next opened buffer
--- opts.desc = "Next Buffer"
+-- opts = { desc = "Next Buffer"}
 -- keymap.set("n", "<C-n>", ":bnext<CR>", opts)
--- opts.desc = "Previous Buffer"
+-- opts = { desc = "Previous Buffer"}
 -- keymap.set("n", "<C-p>", ":bprevious<CR>", opts)
 
--- opts.desc = "Resize to right"
+-- opts = { desc = "Resize to right"}
 -- keymap.set("n", "<M-,>", "<C-w>5<", opts)
--- opts.desc = "Resize to Left"
+-- opts = { desc = "Resize to Left"}
 -- keymap.set("n", "<M-.>", "<C-w>5>", opts)
--- opts.desc = "Resize Up"
+-- opts = { desc = "Resize Up"}
 -- keymap.set("n", "<M-u>", "<C-w>+", opts)
--- opts.desc = "Resize Down"
+-- opts = { desc = "Resize Down"}
 -- keymap.set("n", "<M-d>", "<C-w>-", opts)
--- opts.desc = "Resize F"
+-- opts = { desc = "Resize F"}
 -- keymap.set("n", "<M-f>", "<C-w>=", opts)
 
 -- reset font
-opts.desc = "Reset Font"
+opts = { desc = "Reset Font"}
 keymap.set("n", "<M-0>", "<cmd>:GuiFont! JetBrainsMono Nerd Font:h14<CR>", opts)
 
 -- save all
-opts.desc = "Save all"
+opts = { desc = "Save all"}
 keymap.set("n", "<leader>sa", ":wa<CR>", opts)
+
 --  :copen
-opts.desc = "quick fix"
+opts = { desc = "quick fix"}
 keymap.set("n", "<leader>qf", ":copen<CR>", opts)
-opts.desc = "Close QuickFix"
+
+opts = { desc = "Close QuickFix"}
 keymap.set("n", "<leader>cc", ":cclose<CR>", opts)
 
 -- Lsp
