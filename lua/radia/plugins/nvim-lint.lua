@@ -20,22 +20,22 @@ return {
 			}),
 		}
 
-		local pattern = "[^:]+:(%d+):(%d+):(%w+):(.+)"
-		local groups = { "lnum", "col", "code", "message" }
-
-		lint.linters.flake8 = {
-			cmd = "flake8",
-			stdin = true,
-			args = {
-				"--ignore=E1,E23,W503,F541, E501",
-			},
-			stream = "stdout",
-			ignore_exitcode = true,
-			parser = require("lint.parser").from_pattern(pattern, groups, nil, {
-				["source"] = "flake8",
-				["severity"] = vim.diagnostic.severity.WARN,
-			}),
-		}
+		-- local pattern = "[^:]+:(%d+):(%d+):(%w+):(.+)"
+		-- local groups = { "lnum", "col", "code", "message" }
+		--
+		-- lint.linters.flake8 = {
+		-- 	cmd = "flake8",
+		-- 	stdin = true,
+		-- 	args = {
+		-- 		"--ignore=E1,E23,W503,F541, E501",
+		-- 	},
+		-- 	stream = "stdout",
+		-- 	ignore_exitcode = true,
+		-- 	parser = require("lint.parser").from_pattern(pattern, groups, nil, {
+		-- 		["source"] = "flake8",
+		-- 		["severity"] = vim.diagnostic.severity.WARN,
+		-- 	}),
+		-- }
 
 		lint.linters.gdlint = {
 			cmd = "gdlint",
@@ -58,7 +58,7 @@ return {
 			go = { "golangcilint" },
 			gdscript = { "gdlint" },
 			-- python = { "pylint" },
-			python = { "flake8" },
+			-- python = { "flake8" },
 			swift = { "swiftlint" },
 			-- php = { "phpcs" },
 			lua = { "luacheck" },

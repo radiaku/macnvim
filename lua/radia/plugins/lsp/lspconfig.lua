@@ -26,12 +26,32 @@ return {
 			vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 		end
 
+		-- Common on_attach function for all LSPs
+		local on_attach = function(client, bufnr)
+			-- Disable automatic diagnostics on insert
+			client.server_capabilities.documentFormattingProvider = false
+			client.server_capabilities.documentRangeFormattingProvider = false
+
+			-- Format on save
+			vim.api.nvim_create_autocmd("BufWritePre", {
+				buffer = bufnr,
+				callback = function()
+					vim.lsp.buf.format({ async = false })
+				end,
+			})
+		end
+
 		mason_lspconfig.setup_handlers({
 			function(server_name)
 				-- https://github.com/neovim/nvim-lspconfig/pull/3232
 				-- server_name = server_name == "tsserver" and "ts_ls" or server_name
+        
 				lspconfig[server_name].setup({
 					capabilities = capabilities,
+          on_attach = on_attach,
+					flags = {
+						debounce_text_changes = 350,
+					},
 				})
 			end,
 
@@ -60,7 +80,6 @@ return {
 
 				lspconfig["basedpyright"].setup({
 					filetypes = { "python", ".py" },
-					capabilities = capabilities,
 
 					root_dir = function(fname)
 						table.unpack = table.unpack or unpack

@@ -52,7 +52,7 @@ vim.api.nvim_create_autocmd("FileType", {
 	callback = function()
 		-- print("its gdscript")
 		-- vim.o.setlocal = true
-    vim.o.autoindent = true
+		vim.o.autoindent = true
 		vim.o.tabstop = 4
 		vim.o.expandtab = false -- false to tab insteat
 		vim.o.softtabstop = 4
@@ -60,4 +60,17 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.o.smartindent = true
 		vim.o.commentstring = "# %s"
 	end,
+})
+
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+	update_in_insert = false,
+})
+
+vim.diagnostic.config({
+  underline = {
+    severity = { max = vim.diagnostic.severity.INFO },
+  },
+  virtual_text = {
+    severity = { min = vim.diagnostic.severity.WARN },
+  },
 })
