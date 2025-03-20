@@ -3,7 +3,7 @@ return {
 	"neovim/nvim-lspconfig",
 	event = { "BufReadPre", "BufNewFile" },
 	dependencies = {
-		-- (not blink_ok) and "hrsh7th/cmp-nvim-lsp" or nil,
+		(not blink_ok) and "hrsh7th/cmp-nvim-lsp" or nil,
 		-- "williamboman/mason-lspconfig.nvim",
 		-- { "antosha417/nvim-lsp-file-operations", config = true },
 		-- { "folke/neodev.nvim", opts = {} },
@@ -17,10 +17,10 @@ return {
 
 		local mason_lspconfig = require("mason-lspconfig")
 
-		-- local capabilities = require("blink.cmp").get_lsp_capabilities()
-		-- local capabilities = require("cmp_nvim_lsp").default_capabilities()
-		-- local capabilities = require("blink.cmp").get_lsp_capabilities(vim.lsp.protocol.make_client_capabilities())
 		local capabilities
+		-- capabilities = require("blink.cmp").get_lsp_capabilities()
+		-- capabilities = require("cmp_nvim_lsp").default_capabilities()
+		-- capabilities = require("blink.cmp").get_lsp_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 		if blink_ok then
 			capabilities = blink.get_lsp_capabilities()
