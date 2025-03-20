@@ -101,6 +101,39 @@ fzf-cd() {
 }
 
 
+# Bind Ctrl+F to execute fzf-cd
+bind -x '"\C-f": fzf-cd'
+
+function jump_to_tmux_session() {
+  if [ -z "$TMUX" ]; then
+    local selected_session
+    selected_session=$(tmux list-sessions -F '#{session_name}' | \
+      sort -r | \
+      fzf --reverse --header "Jump to session" \
+          --preview 'tmux capture-pane -t {} -p | head -20' \
+          --bind 'ctrl-d:execute-silent(tmux kill-session -t {})+reload(tmux list-sessions -F "#{session_name}" | sort -r)')
+
+    if [ -n "$selected_session" ]; then
+      manage_tmux_session "$selected_session" || {
+        echo "Failed to attach to tmux session."
+        return 1
+      }
+    else
+      echo "No session selected."
+    fi
+  else
+    tmux list-sessions -F '#{session_name}' | \
+      sort -r | \
+      fzf --reverse --header "Jump to session" \
+          --preview 'tmux capture-pane -pt {} | head -20' \
+          --bind 'ctrl-d:execute-silent(tmux kill-session -t {})+reload(tmux list-sessions -F "#{session_name}" | sort -r)' | \
+      xargs -r tmux switch-client -t
+  fi
+}
+
+# Bind Alt+l to the function
+bind -x '"\C-L": jump_to_tmux_session'
+
 # Function to enter alternate screen mode and clear the screen
 ias() {
     echo -e "\033[?1049h"
@@ -114,49 +147,6 @@ cas() {
     clear
     printf '\e[3J'
 }
-
-
-# Bind Ctrl+F to execute fzf-cd
-bind -x '"\C-f": fzf-cd'
-
-# Add this function to your ~/.bashrc
-function jump_to_tmux_session() {
-  if [ -z "$TMUX" ]; then
-    # If not in tmux, get the list of sessions
-    # Prompt user to select a session
-    local selected_session
-    selected_session=$(tmux list-sessions -F '#{?session_attached,,#{session_activity},#{session_name}}' | \
-      sort -r | \
-      sed '/^$/d' | \
-      cut -d',' -f2- | \
-      fzf --reverse --header "Jump to session" \
-          --preview 'tmux capture-pane -t {} -p | head -20' \
-          --bind 'ctrl-d:execute-silent(tmux kill-session -t {})+reload(tmux list-sessions -F "#{?session_attached,,#{session_activity},#{session_name}}" | sort -r | sed "/^$/d" | cut -d"," -f2-)')
-
-    if [ -n "$selected_session" ]; then
-      manage_tmux_session "$selected_session" || {
-        echo "Failed to attach to tmux session."
-        return 1
-      }
-    else
-      echo "No session selected."
-    fi
-  else
-    # If in tmux, list sessions and switch
-    tmux list-sessions -F '#{?session_attached,,#{session_activity},#{session_name}}' | \
-      sort -r | \
-      sed '/^$/d' | \
-      cut -d',' -f2- | \
-      fzf --reverse --header "Jump to session" \
-          --preview 'tmux capture-pane -pt {} | head -20' \
-          --bind 'ctrl-d:execute-silent(tmux kill-session -t {})+reload(tmux list-sessions -F "#{?session_attached,,#{session_activity},#{session_name}}" | sort -r | sed "/^$/d" | cut -d"," -f2-)' | \
-      xargs -r tmux switch-client -t
-  fi
-}
-
-# Bind Alt+l to the function
-bind -x '"\C-L": jump_to_tmux_session'
-
 
 eval "$(zoxide init bash)"
 export PYENV_ROOT="$HOME/.pyenv"

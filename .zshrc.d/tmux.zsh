@@ -100,13 +100,11 @@ function jump_to_tmux_session() {
   if [ -z "$TMUX" ]; then
     # If not in tmux, get the list of sessions
     local selected_session
-    selected_session=$(tmux list-sessions -F '#{?session_attached,,#{session_activity},#{session_name}}' | \
+    selected_session=$(tmux list-sessions -F '#{session_name}' | \
       sort -r | \
-      sed '/^$/d' | \
-      cut -d',' -f2- | \
       fzf --reverse --header "Jump to session" \
           --preview 'tmux capture-pane -t {} -p | head -20' \
-          --bind 'ctrl-d:execute-silent(tmux kill-session -t {})+reload(tmux list-sessions -F "#{?session_attached,,#{session_activity},#{session_name}}" | sort -r | sed "/^$/d" | cut -d"," -f2-)')
+          --bind 'ctrl-d:execute-silent(tmux kill-session -t {})+reload(tmux list-sessions -F "#{session_name}" | sort -r)')
 
     if [ -n "$selected_session" ]; then
       manage_tmux_session "$selected_session" || {
@@ -118,13 +116,11 @@ function jump_to_tmux_session() {
     fi
   else
     # If in tmux, list sessions and switch with preview
-    tmux list-sessions -F '#{?session_attached,,#{session_activity},#{session_name}}' | \
+    tmux list-sessions -F '#{session_name}' | \
       sort -r | \
-      sed '/^$/d' | \
-      cut -d',' -f2- | \
       fzf --reverse --header "Jump to session" \
           --preview 'tmux capture-pane -pt {} | head -20' \
-          --bind 'ctrl-d:execute-silent(tmux kill-session -t {})+reload(tmux list-sessions -F "#{?session_attached,,#{session_activity},#{session_name}}" | sort -r | sed "/^$/d" | cut -d"," -f2-)' | \
+          --bind 'ctrl-d:execute-silent(tmux kill-session -t {})+reload(tmux list-sessions -F "#{session_name}" | sort -r)' | \
       xargs -r tmux switch-client -t
   fi
   # Reset the prompt after exiting the tmux session
