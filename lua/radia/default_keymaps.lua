@@ -213,3 +213,4 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		keymap.set("n", "<leader>rs", ":LspRestart<CR>", opts_lsp) -- mapping to restart lsp if necessary
 	end,
 })
+
