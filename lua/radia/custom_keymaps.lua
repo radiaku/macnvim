@@ -98,6 +98,59 @@ keymap.set(
 	"<cmd>Telescope buffers show_all_buffers=true sort_lastused=true theme=dropdown<cr>",
 	opts
 )
+
+
+local pickers = require('telescope.pickers')
+local finders = require('telescope.finders')
+local actions = require('telescope.actions')
+local action_state = require('telescope.actions.state')
+local sorters = require('telescope.config').values.generic_sorter
+
+-- All Buffers picker
+local all_buffers = function()
+  local buffers = {}
+  for buffer = 1, vim.fn.bufnr('$') do
+    local name = vim.fn.bufname(buffer)
+    if name ~= '' then
+      table.insert(buffers, {
+        bufnum = buffer,
+        name = string.format('%3d: %s', buffer, name)
+      })
+    end
+  end
+
+  pickers.new({}, {
+    prompt_title = 'All Buffers',
+    finder = finders.new_table {
+      results = buffers,
+      entry_maker = function(entry)
+        return {
+          value = entry,
+          display = entry.name,
+          ordinal = entry.name,
+        }
+      end,
+    },
+    sorter = sorters(),
+    attach_mappings = function(prompt_bufnr, map)
+      actions.select_default:replace(function()
+        local selection = action_state.get_selected_entry()
+        if selection == nil then
+          print("[Telescope] No buffer selected!")
+          return
+        end
+        actions.close(prompt_bufnr)
+        vim.cmd('buffer ' .. selection.value.bufnum)
+      end)
+      return true
+    end,
+  }):find()
+end
+
+-- Optionally, you can create a Telescope command
+opts = { desc = "Find buffer on buffers Uncensored" }
+vim.keymap.set("n", "<leader>fu", all_buffers, opts)
+
 -- opts. desc = "Find string under cursor in cwd"
 -- keymap.set("n", "<leader>fc", "<cmd>Telescope grep_string<cr>",opts)
 local live_grep_cmdc_buffer =

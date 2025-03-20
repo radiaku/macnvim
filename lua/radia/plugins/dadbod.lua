@@ -11,8 +11,13 @@ return {
 		"DBUIFindBuffer",
 	},
 	init = function()
+		local data_path = vim.fn.stdpath("data")
 		-- Your DBUI configuration
 		vim.g.db_ui_use_nerd_fonts = 1
-		vim.g.db_ui_save_location = vim.fn.stdpath("data") .. "/querydadbod"
+		vim.g.db_ui_save_location = data_path .. "/querydadbod"
+		vim.g.db_ui_show_database_icon = true
+		vim.g.db_ui_tmp_query_location = data_path .. "/dadbod_ui/tmp"
+		vim.g.db_ui_use_nerd_fonts = true
+		vim.g.db_ui_use_nvim_notify = true
 	end,
 }

@@ -74,3 +74,5 @@ vim.diagnostic.config({
     severity = { min = vim.diagnostic.severity.WARN },
   },
 })
+
+
