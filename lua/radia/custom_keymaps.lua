@@ -55,7 +55,7 @@ opts = { desc = "ToggleTerm" }
 keymap.set("n", "<C-t>", ":ToggleTerm<CR>", opts)
 
 -- Telescope map
--- opts. desc = "Find Clipboard on Insert"
+-- opts = {desc = "Find Clipboard on Insert"}
 -- keymap.set("i", "<C-o>", "<cmd>:Telescope neoclip <CR>", opts)
 opts = { desc = "Find Clipboard Normal" }
 keymap.set("n", "<leader>fc", "<cmd>:Telescope neoclip <CR>", opts)
@@ -154,7 +154,7 @@ end
 opts = { desc = "Find buffer on buffers Uncensored" }
 vim.keymap.set("n", "<leader>fu", all_buffers, opts)
 
--- opts. desc = "Find string under cursor in cwd"
+-- opts = { desc = "Find string under cursor in cwd"}
 -- keymap.set("n", "<leader>fc", "<cmd>Telescope grep_string<cr>",opts)
 local live_grep_cmdc_buffer =
 	'<cmd>Telescope live_grep search_dirs={"%:p"} vimgrep_arguments=rg,--color=never,--no-heading,--with-filename,--line-number,--column,--smart-case,--fixed-strings --theme=ivy<cr>'
