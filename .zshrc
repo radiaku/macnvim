@@ -26,7 +26,6 @@ ZSH_THEME="jovial"
 plugins=(
   git
   zsh-autocomplete
-  z
 )
 
 source $ZSH/oh-my-zsh.sh
