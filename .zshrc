@@ -23,7 +23,7 @@ eval "$(/usr/local/bin/brew shellenv)"
 
 export ZSH="$HOME/.oh-my-zsh"
 
-ZSH_THEME="aussiegeek"
+ZSH_THEME="jovial"
 
 plugins=(
   git
