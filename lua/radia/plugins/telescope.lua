@@ -117,14 +117,14 @@ return {
 					i = {
 						["<C-k>"] = actions.move_selection_previous,
 						["<C-j>"] = actions.move_selection_next,
-						["<Tab>"] = actions.toggle_selection + actions.move_selection_better,
+						["<Tab>"] = actions.toggle_selection + actions.move_selection_worse,
 						["x"] = actions.toggle_selection + actions.move_selection_better,
 						["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
 						["<C-Q>"] = actions.smart_send_to_qflist + actions.open_qflist,
 					},
           n = {
 						["x"] = actions.toggle_selection + actions.move_selection_better,
-						["<Tab>"] = actions.toggle_selection + actions.move_selection_better,
+						["<Tab>"] = actions.toggle_selection + actions.move_selection_worse,
 						["<C-k>"] = actions.move_selection_previous,
 						["<C-j>"] = actions.move_selection_next,
 						["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
