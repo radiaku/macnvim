@@ -15,6 +15,8 @@ require("radia.lazy")
 require("radia.default_keymaps")
 -- Load custom keymaps
 require("radia.custom_keymaps")
+-- Load custom function keymaps
+require("radia.custom_function_keymaps")
 -- setting themes
 require("radia.themes")
 -- settings neovide

@@ -3,6 +3,8 @@ local keymap = vim.keymap -- for conciseness
 -- Plugin map
 local opts = { noremap = true, silent = true }
 
+local cmd = ""
+
 -- Move Between tab buffer
 opts = { desc = "Move to left tab buffer" }
 keymap.set("n", "<S-l>", "<CMD>BufferLineCycleNext<CR>", opts)
@@ -61,28 +63,17 @@ opts = { desc = "Find Clipboard Normal" }
 keymap.set("n", "<leader>fc", "<cmd>:Telescope neoclip <CR>", opts)
 
 opts = { desc = "Find Clipboard Visual" }
-keymap.set(
-	"v",
-	"<leader>fc",
-	"<cmd>:lua require('telescope.builtin').registers({ layout_strategy='vertical', layout_config={ height=100 } })<CR>",
-	opts
-)
+cmd =
+	"<cmd>:lua require('telescope.builtin').registers({ layout_strategy='vertical', layout_config={ height=100 } })<CR>"
+keymap.set("v", "<leader>fc", cmd, opts)
 
 opts = { desc = "Find Registers" }
-keymap.set(
-	"n",
-	"<leader>fr",
-	"<cmd>:lua require('telescope.builtin').registers({layout_strategy='vertical',layout_config={height=100}})<cr>",
-	opts
-)
+cmd = "<cmd>:lua require('telescope.builtin').registers({layout_strategy='vertical',layout_config={height=100}})<cr>"
+keymap.set("n", "<leader>fr", cmd, opts)
 
 opts = { desc = "Find Keymaps" }
-keymap.set(
-	"n",
-	"<leader>fm",
-	"<cmd>:lua require('telescope.builtin').keymaps({layout_strategy='vertical',layout_config={height=100}})<cr>",
-	opts
-)
+cmd = "<cmd>:lua require('telescope.builtin').keymaps({layout_strategy='vertical',layout_config={height=100}})<cr>"
+keymap.set("n", "<leader>fm", cmd, opts)
 
 opts = { desc = "Fuzzy find files in cwd" }
 keymap.set("n", "<leader>ff", "<cmd>Telescope find_files theme=ivy previewer=false<cr>", opts)
@@ -92,116 +83,14 @@ keymap.set("n", "<leader>fh", "<cmd>Telescope find_files theme=ivy previewer=fal
 
 opts = { desc = "Fuzzy find recent files" }
 keymap.set("n", "<leader>fn", "<cmd>Telescope oldfiles theme=dropdown previewer=false<cr>", opts)
+
 opts = { desc = "Find string in cwd" }
 keymap.set("n", "<leader>fs", ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>", opts)
+
 opts = { desc = "Find buffer on buffers" }
-keymap.set(
-	"n",
-	"<leader>fa",
-	"<cmd>Telescope buffers show_all_buffers=true sort_lastused=true theme=dropdown<cr>",
-	opts
-)
+cmd = "<cmd>Telescope buffers show_all_buffers=true sort_lastused=true theme=dropdown<cr>"
+keymap.set("n", "<leader>fa", cmd, opts)
 
-
-local pickers = require('telescope.pickers')
-local finders = require('telescope.finders')
-local actions = require('telescope.actions')
-local action_state = require('telescope.actions.state')
-local sorters = require('telescope.config').values.generic_sorter
-
--- All Buffers picker
-local all_buffers = function()
-  local get_buffers = function()
-    local buffers = {}
-    for buffer = 1, vim.fn.bufnr('$') do
-      local name = vim.fn.bufname(buffer)
-      if name ~= '' then
-        table.insert(buffers, {
-          bufnum = buffer,
-          name = string.format('%3d: %s', buffer, name)
-        })
-      end
-    end
-    return buffers
-  end
-
-  local update_picker = function(prompt_bufnr)
-    local picker = action_state.get_current_picker(prompt_bufnr)
-    picker:refresh(finders.new_table {
-      results = get_buffers(),
-      entry_maker = function(entry)
-        return {
-          value = entry,
-          display = entry.name,
-          ordinal = entry.name,
-        }
-      end,
-    }, { reset_prompt = true })
-  end
-
-  pickers.new({}, {
-    prompt_title = 'All Buffers',
-    finder = finders.new_table {
-      results = get_buffers(),
-      entry_maker = function(entry)
-        return {
-          value = entry,
-          display = entry.name,
-          ordinal = entry.name,
-        }
-      end,
-    },
-    sorter = sorters(),
-    attach_mappings = function(prompt_bufnr, map)
-      -- Default action to open the buffer
-      actions.select_default:replace(function()
-        local selection = action_state.get_selected_entry()
-        if selection == nil then
-          print("[Telescope] No buffer selected!")
-          return
-        end
-        actions.close(prompt_bufnr)
-        vim.cmd('buffer ' .. selection.value.bufnum)
-      end)
-
-      -- Toggle selection with <Tab> and 'x'
-      -- map('n', '<Tab>', actions.toggle_selection)
-      -- map('n', 'x', actions.toggle_selection)
-
-      -- Delete selected buffers without closing the picker
-      local delete_selected_buffers = function()
-        local picker = action_state.get_current_picker(prompt_bufnr)
-        local selections = picker:get_multi_selection()
-
-        if #selections == 0 then
-          local selection = action_state.get_selected_entry()
-          if selection == nil then
-            print("[Telescope] No buffer selected!")
-            return
-          end
-          selections = { selection }
-        end
-
-        for _, selection in ipairs(selections) do
-          vim.cmd('bwipeout ' .. selection.value.bufnum)
-          print("Deleted buffer: " .. selection.value.name)
-        end
-
-        update_picker(prompt_bufnr)
-      end
-
-      -- Map for both single delete and multi delete
-      map('i', '<C-d>', delete_selected_buffers) -- Insert mode
-      map('n', 'dd', delete_selected_buffers)    -- Normal mode
-
-      return true
-    end,
-  }):find()
-end
-
--- Optionally, you can create a Telescope command
-opts = { desc = "Find and manage buffers" }
-vim.keymap.set("n", "<leader>fu", all_buffers, opts)
 
 -- opts = { desc = "Find string under cursor in cwd"}
 -- keymap.set("n", "<leader>fc", "<cmd>Telescope grep_string<cr>",opts)
@@ -287,6 +176,7 @@ opts = { desc = "Open harpoon window" }
 keymap.set("n", "<leader>hm", function()
 	toggle_telescope(harpoon:list())
 end, opts)
+
 opts = { desc = "+Add to harpoon" }
 keymap.set("n", "<leader>ha", function()
 	harpoon:list():add()
@@ -296,6 +186,7 @@ opts = { desc = "Next Harpoon" }
 keymap.set("n", "<leader>hn", function()
 	harpoon:list():next()
 end, opts)
+
 opts = { desc = "Previous Harpoon" }
 keymap.set("n", "<leader>hp", function()
 	harpoon:list():prev()
