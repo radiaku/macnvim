@@ -17,6 +17,8 @@ export VISUAL='vim'
 alias nv='nvim'
 alias v='vim'
 
+DISABLE_AUTO_UPDATE="true"
+
 eval "$(/usr/local/bin/brew shellenv)"
 
 export ZSH="$HOME/.oh-my-zsh"
@@ -39,8 +41,9 @@ done
 export HOMEBREW_NO_AUTO_UPDATE=true
 
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+#[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+alias nvm="unalias nvm; [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"; nvm $@"
 
 export PATH=~/.local/bin/:$PATH
 eval "$(rbenv init - --no-rehash zsh)"
