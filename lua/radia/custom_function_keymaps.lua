@@ -6,7 +6,7 @@ local opts = { noremap = true, silent = true }
 opts = { desc = "Source current file" }
 keymap.set("n", "<leader>xs", "<cmd>source %<CR>", opts)
 
-opts = { desc = "run current lua file" }
+opts = { desc = "Run current lua file" }
 keymap.set("v", "<leader>xr", ":lua<CR>", opts)
 
 local pickers = require("telescope.pickers")
