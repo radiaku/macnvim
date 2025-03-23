@@ -164,20 +164,35 @@ local all_buffers = function()
         vim.cmd('buffer ' .. selection.value.bufnum)
       end)
 
-      -- Delete buffer without closing the picker
-      local delete_buffer = function()
-        local selection = action_state.get_selected_entry()
-        if selection == nil then
-          print("[Telescope] No buffer selected!")
-          return
+      -- Toggle selection with <Tab> and 'x'
+      -- map('n', '<Tab>', actions.toggle_selection)
+      -- map('n', 'x', actions.toggle_selection)
+
+      -- Delete selected buffers without closing the picker
+      local delete_selected_buffers = function()
+        local picker = action_state.get_current_picker(prompt_bufnr)
+        local selections = picker:get_multi_selection()
+
+        if #selections == 0 then
+          local selection = action_state.get_selected_entry()
+          if selection == nil then
+            print("[Telescope] No buffer selected!")
+            return
+          end
+          selections = { selection }
         end
-        vim.cmd('bwipeout ' .. selection.value.bufnum)
-        print("Deleted buffer: " .. selection.value.name)
+
+        for _, selection in ipairs(selections) do
+          vim.cmd('bwipeout ' .. selection.value.bufnum)
+          print("Deleted buffer: " .. selection.value.name)
+        end
+
         update_picker(prompt_bufnr)
       end
 
-      map('i', '<C-d>', delete_buffer)
-      map('n', 'dd', delete_buffer)
+      -- Map for both single delete and multi delete
+      map('i', '<C-d>', delete_selected_buffers) -- Insert mode
+      map('n', 'dd', delete_selected_buffers)    -- Normal mode
 
       return true
     end,
