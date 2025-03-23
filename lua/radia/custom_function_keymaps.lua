@@ -3,6 +3,12 @@ local keymap = vim.keymap -- for conciseness
 -- Plugin map
 local opts = { noremap = true, silent = true }
 
+opts = { desc = "Source current file" }
+keymap.set("n", "<leader>xs", "<cmd>source %<CR>", opts)
+
+opts = { desc = "run current lua file" }
+keymap.set("v", "<leader>xr", ":lua<CR>", opts)
+
 local pickers = require("telescope.pickers")
 local finders = require("telescope.finders")
 local actions = require("telescope.actions")
@@ -13,9 +19,12 @@ local sorters = require("telescope.config").values.generic_sorter
 local all_buffers = function()
 	local get_buffers = function()
 		local buffers = {}
-		for buffer = 1, vim.fn.bufnr("$") do
-			local name = vim.fn.bufname(buffer)
-			if name ~= "" then
+		for _, buffer in ipairs(vim.api.nvim_list_bufs()) do
+			if vim.api.nvim_buf_is_valid(buffer) then
+				local name = vim.api.nvim_buf_get_name(buffer)
+				if name == "" then
+					name = "[No Name]"
+				end
 				table.insert(buffers, {
 					bufnum = buffer,
 					name = string.format("%3d: %s", buffer, name),
