@@ -95,5 +95,7 @@ bindings = [
   { key = "End",      mods = "Shift",         action = "ScrollToBottom",    mode = "~Alt" },
 ]
 
+[mouse]
+  hide_when_typing = true
 
 
