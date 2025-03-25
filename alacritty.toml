@@ -3,6 +3,9 @@
 # program = "/usr/local/bin/zsh"
 # args = ["--nologo"]
 
+# font dont bold it, ( only for mac )
+# defaults write -g AppleFontSmoothing -int 0
+
 
 # live_config_reload = true
 # Working directory
