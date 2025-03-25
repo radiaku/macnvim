@@ -13,3 +13,4 @@ font-family = "Iosevka Nerd Font"
 font-style = Regular
 font-size = 20
 font-thicken = false
+mouse-hide-while-typing = true
