@@ -27,10 +27,10 @@ normal                = { family = "Iosevka Nerd Font", style = "Regular" }
 bold                  = { family = "Iosevka Nerd Font", style = "Bold" }
 italic                = { family = "Iosevka Nerd Font", style = "Italic" }
 # bold_italic           = { family = "CaskaydiaCove Nerd Font Mono", style = "Bold Italic" }
-size                  = 17
-offset                = { x = 0, y = 1 }
+size                  = 20
+offset                = { x = 0, y = 0}
 glyph_offset          = { x = 0, y = 0 }
-builtin_box_drawing   = true
+# builtin_box_drawing   = true
 
 
 [window]
