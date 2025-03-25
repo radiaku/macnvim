@@ -11,5 +11,5 @@ keybind = cmd+k=text:\x17\x6B
 # font-family = "JetBrainsMono NFM Regular"
 font-family = "Iosevka Nerd Font"
 font-style = Regular
-font-size = 17 
-font-thicken = true
+font-size = 20
+font-thicken = false
