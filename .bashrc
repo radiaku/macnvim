@@ -51,13 +51,15 @@ manage_tmux_session() {
     if tmux ls | grep -q "^$1:"; then
       tmux attach -t "$1"
     else
-      tmux new-session -s "$1" -c "$2"
+      tmux new-session -s "$1"
+      tmux send-keys "cd $2" C-m  # Change directory after creating the session
     fi
   else
     if tmux ls | grep -q "^$1:"; then
       tmux switch-client -t "$1"
     else 
-      tmux new-session -ds "$1" -c "$2"
+      tmux new-session -ds "$1"
+      tmux send-keys "cd $2" C-m  # Change directory after creating the session
       tmux switch-client -t "$1"
     fi
   fi
