@@ -12,25 +12,15 @@ manage_tmux_session() {
   exec <&1
 
   if [ -z "$TMUX" ]; then
-    # echo "not inside tmux"
-    # Not inside tmux: Create or attach to a session
-    # if tmux has-session -t "$1" 2>/dev/null; then
     if tmux ls | grep -q "^$1:"; then
-      # echo "not inside tmux has session attach it $1"
       tmux attach -t "$1"
     else
       tmux new-session -s "$1" -c "$2"
     fi
   else
-    # Inside tmux: Create or switch to the session
-    # echo "inside tmux"
-    # if tmux has-session -t "$1" 2>/dev/null; then
     if tmux ls | grep -q "^$1:"; then
-      # echo "inside tmux has session attach it $1"
       tmux switch-client -t "$1"
-      # tmux attach -dt "$1"
     else 
-      # tmux new-session -A -s "$1"
       tmux new-session -ds "$1" -c "$2"
       tmux switch-client -t "$1"
     fi
@@ -70,15 +60,6 @@ fzf-cd() {
   test -f "$target" && target="${target%/*}"
 
   session_name="fzf-$(sanitize_session_name "$(basename "$target")")"
-
-  # session_name="fzf-$(basename "$target")"
-
-  # Print the session name for testing
-  # echo "Session Name: $session_name"
-  # echo "TMUX : $TMUX"
-
-  # Call the new function to manage tmux session
-  # manage_tmux_session "$session_name" "$target"
 
   manage_tmux_session "$session_name" "$target" || {
     echo "Failed to create or attach to tmux session."
