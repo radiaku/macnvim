@@ -208,6 +208,11 @@ return {
 						gopls = {
 							analyses = {
 								modernize = false,
+								unusedparams = false,
+								unusedwrite = false,
+								errcheck = false,
+								unusedfunc = false,
+								unused = false,
 							},
 						},
 					},

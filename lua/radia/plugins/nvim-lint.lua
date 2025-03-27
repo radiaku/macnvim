@@ -55,7 +55,7 @@ return {
 			-- javascript = { "standardjs" },
 			-- javascript = { "biomejs" },
 			-- javascript = { "eslint_d" },
-			go = { "golangcilint" },
+			-- go = { "golangcilint" },
 			gdscript = { "gdlint" },
 			-- python = { "pylint" },
 			-- python = { "flake8" },
