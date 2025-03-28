@@ -139,10 +139,10 @@ bind -x '"\C-L": jump_to_tmux_session'
 
 
 
-ff() {
-    aerospace list-windows --all | fzf --bind 'enter:execute(bash -c "aerospace focus --window-id {1}")+abort'
-}
-bind -x '"\C-A": ff'
+# ff() {
+#     aerospace list-windows --all | fzf --bind 'enter:execute(bash -c "aerospace focus --window-id {1}")+abort'
+# }
+# bind -x '"\C-A": ff'
 
 # Function to enter alternate screen mode and clear the screen
 ias() {
