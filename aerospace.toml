@@ -1,3 +1,7 @@
+# mkdir -p ~/.config/sketchybar/plugins
+# cp $(brew --prefix)/share/sketchybar/examples/sketchybarrc ~/.config/sketchybar/sketchybarrc
+# cp -r $(brew --prefix)/share/sketchybar/examples/plugins/ ~/.config/sketchybar/plugins/
+
 # ln -s ~/.config/nvim/aerospace.toml ~/.config/aerospace/aerospace.toml
 
 # Place a copy of this config to ~/.aerospace.toml
@@ -11,7 +15,11 @@ after-login-command = []
 # You can use it to add commands that run after AeroSpace startup.
 # 'after-startup-command' is run after 'after-login-command'
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
-after-startup-command = []
+after-startup-command = ['exec-and-forget sketchybar']
+
+exec-on-workspace-change = ['/bin/bash', '-c',
+  'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE',
+]
 
 # Start AeroSpace at login
 start-at-login = false
@@ -26,7 +34,7 @@ enable-normalization-opposite-orientation-for-nested-containers = true
 accordion-padding = 0
 
 # Possible values: tiles|accordion
-default-root-container-layout = 'tiles'
+default-root-container-layout = 'accordion'
 
 # Possible values: horizontal|vertical|auto
 # 'auto' means: wide monitor (anything wider than high) gets horizontal orientation,
@@ -68,7 +76,7 @@ run = 'layout floating'
     inner.vertical =   0
     outer.left =       0
     outer.bottom =     0
-    outer.top =        40
+    outer.top =        50
     outer.right =      0
 
 # 'main' binding mode declaration
@@ -219,3 +227,4 @@ run = 'layout floating'
     down = 'volume down'
     up = 'volume up'
     shift-down = ['volume set 0', 'mode main']
+
