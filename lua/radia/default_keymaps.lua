@@ -44,6 +44,9 @@ keymap.set("c", "<C-j>", "<C-n>", opts)
 opts = { desc = "Move up on wildmenu" }
 keymap.set("c", "<C-k>", "<C-p>", opts)
 
+-- Cause treesitter have mode on visual ca, ci , we need pointing it to cc to delete
+keymap.set('v', 'cc', 'c', opts)
+
 -- Move around when insertmode using ctrl j + k
 opts = { desc = "Move down on wildmenu" }
 keymap.set("i", "<C-j>", "<C-n>", opts)
