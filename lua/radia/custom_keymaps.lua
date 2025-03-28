@@ -134,6 +134,7 @@ keymap.set("v", "<S-k>", ":MoveBlock(-1)<CR>", opts)
 -- LazyGit
 opts = { desc = "Toggle Lazygit" }
 keymap.set("n", "<leader>lg", "<cmd>LazyGit<cr>", opts)
+-- keymap.set("n", "<leader>lg", "<cmd>:!lazygit<cr>", opts)
 
 -- Harpoon
 local harpoon = require("harpoon")
