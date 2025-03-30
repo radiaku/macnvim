@@ -141,13 +141,9 @@ fzf_personal() {
   fi
 
   test -f "$target" && target="${target%/*}"
-
   session_name="fzf-$(sanitize_session_name "$(basename "$target")")"
-
-  # Call the new function to manage tmux session
   manage_tmux_session "$session_name" "$target"
 
-  # Reset the prompt after exiting the tmux session
   zle reset-prompt
 }
 
