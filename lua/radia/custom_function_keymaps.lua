@@ -73,13 +73,25 @@ local all_buffers = function()
 						print("[Telescope] No buffer selected!")
 						return
 					end
-					actions.close(prompt_bufnr)
-					vim.cmd("buffer " .. selection.value.bufnum)
-				end)
 
-				-- Toggle selection with <Tab> and 'x'
-				-- map('n', '<Tab>', actions.toggle_selection)
-				-- map('n', 'x', actions.toggle_selection)
+					-- Check if buffer is valid before switching
+					if not vim.api.nvim_buf_is_valid(selection.value.bufnum) then
+						print("[Telescope] Selected buffer no longer exists!")
+						return
+					end
+
+					actions.close(prompt_bufnr)
+
+					local success, err = pcall(function()
+						vim.cmd("buffer " .. selection.value.bufnum)
+					end)
+
+					if not success then
+						print("[Telescope] Failed to open buffer: " .. err)
+						vim.cmd("enew") -- Open a new blank buffer instead
+					end
+
+				end)
 
 				-- Delete selected buffers without closing the picker
 				local delete_selected_buffers = function()
@@ -92,12 +104,19 @@ local all_buffers = function()
 							print("[Telescope] No buffer selected!")
 							return
 						end
+
 						selections = { selection }
 					end
 
 					for _, selection in ipairs(selections) do
-						vim.cmd("bwipeout " .. selection.value.bufnum)
-						print("Deleted buffer: " .. selection.value.name)
+						local buf_count = #vim.api.nvim_list_bufs()
+						if buf_count <= 1 then
+							print("[Telescope] Cannot delete the last buffer!")
+							vim.cmd("enew") -- Open a blank buffer instead
+						else
+							vim.cmd("bwipeout " .. selection.value.bufnum)
+							print("Deleted buffer: " .. selection.value.name)
+						end
 					end
 
 					update_picker(prompt_bufnr)
