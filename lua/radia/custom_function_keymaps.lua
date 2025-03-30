@@ -132,6 +132,5 @@ local all_buffers = function()
 		:find()
 end
 
--- Optionally, you can create a Telescope command
 opts = { desc = "Find and manage buffers" }
 vim.keymap.set("n", "<leader>fu", all_buffers, opts)
