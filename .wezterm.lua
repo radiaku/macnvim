@@ -15,7 +15,7 @@ end
 local config = {
 	audible_bell = "Disabled",
 	check_for_updates = false,
-	-- color_scheme = "Builtin Solarized Dark",
+	color_scheme = "Chameleon (Gogh)",
 	inactive_pane_hsb = {
 		hue = 1.0,
 		saturation = 1.0,
