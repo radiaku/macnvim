@@ -1,0 +1,13 @@
+# ln -s ~/.config/nvim/.yabairc ~/.yabairc
+
+#!/bin/bash
+
+
+# Ensure Yabai starts properly
+yabai -m config external_bar all:0
+
+# Add rules for managing all apps
+yabai -m rule --add app=".*" manage=on
+
+# Automatically fullscreen all new windows
+yabai -m signal --add event=window_created action="yabai -m window --grid 1:1:0:0:1:1"
