@@ -63,7 +63,6 @@ export PATH="$HOME/Library/Android/sdk/tools:$HOME/Library/Android/sdk/platform-
 # export PATH="/usr/local/opt/go@1.22/bin:$PATH"
 export PATH="/Users/mac/binapp:$PATH"
 export PATH="/Users/mac/bin/flutter/bin:$PATH"
-export PATH="/Applications/Postgres.app/Contents/Versions/13/bin:$PATH"
 export PATH="/Applications/MAMP/Library/bin:$PATH"
 
 export PATH="$PATH:/Applications/Xcode.app/Contents/Developer/usr/bin"
@@ -79,3 +78,5 @@ eval "$(pyenv init - zsh)"
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+export PATH="/usr/local/opt/postgresql@15/bin:$PATH"
