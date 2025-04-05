@@ -16,6 +16,7 @@ export VISUAL='vim'
 
 alias nv='nvim'
 alias v='vim'
+alias py3='python3'
 
 DISABLE_AUTO_UPDATE="true"
 
