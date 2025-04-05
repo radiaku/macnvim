@@ -24,6 +24,8 @@ export HISTCONTROL=ignoredups:erasedups  # Ignore duplicate commands
 
 export TERM="xterm-256color"
 
+alias py3='python3'
+
 # Source global definitions
 if [ -f /etc/bashrc ]; then
     . /etc/bashrc
