@@ -3,7 +3,9 @@ unalias manage_tmux_session 2>/dev/null
 unalias sanitize_session_name 2>/dev/null
 
 sanitize_session_name() {
-  echo "$1" | tr -c '[:alnum:]_.-' '_'
+  local trimmed="$(echo -n "$1" | xargs)"
+  local cleaned="$(echo -n "$trimmed" | tr -c '[:alnum:]_.-' '_')"
+  echo "${cleaned%"_"}"
 }
 
 manage_tmux_session() {
@@ -59,7 +61,11 @@ fzf-cd() {
 
   test -f "$target" && target="${target%/*}"
 
-  session_name="fzf-$(sanitize_session_name "$(basename "$target")")"
+  parent_dir="$(basename "$(dirname "$target")")"
+  prefix="${parent_dir:0:1}"  # First letter
+  basename="$(basename "$target")"
+  session_name="fzf-${prefix}_${basename}"
+  session_name="$(sanitize_session_name "$session_name")"
 
   manage_tmux_session "$session_name" "$target" || {
     echo "Failed to create or attach to tmux session."
@@ -141,7 +147,13 @@ fzf_personal() {
   fi
 
   test -f "$target" && target="${target%/*}"
-  session_name="fzf-$(sanitize_session_name "$(basename "$target")")"
+
+  parent_dir="$(basename "$(dirname "$target")")"
+  prefix="${parent_dir:0:1}"  # First letter
+  basename="$(basename "$target")"
+  session_name="fzf-${prefix}_${basename}"
+  session_name="$(sanitize_session_name "$session_name")"
+
   manage_tmux_session "$session_name" "$target"
 
   zle reset-prompt
