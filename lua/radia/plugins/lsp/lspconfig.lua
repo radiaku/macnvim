@@ -123,6 +123,7 @@ return {
 									["reportCallIssue"] = "none",
 									["reportUnusedImport"] = "none",
 									["reportUnusedParameter"] = "none",
+									["reportUnusedFunction"] = "none",
 									["reportUnusedVariable"] = "none",
 									["reportPrivateImportUsage"] = "none",
 								},
