@@ -208,8 +208,6 @@ return {
 								classRegex = {
 									[[class= "([^"]*)]],
 									[[class: "([^"]*)]],
-									'~H""".*class="([^"]*)".*"""',
-									'~F""".*class="([^"]*)".*"""',
 								},
 							},
 						},
@@ -315,6 +313,7 @@ return {
 					-- capabilities = capabilities,
 					filetypes = {
 						"html",
+						"templ",
 						"typescriptreact",
 						"typescript",
 						"javascriptreact",

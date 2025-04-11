@@ -79,31 +79,6 @@ return {
 			},
 		})
 
-		-- BufIsBig = function()
-		-- 	-- local max_filesize = 100 * 1024 -- 100 KB
-		-- 	-- local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(bufnr))
-		-- 	-- if ok and stats and stats.size > max_filesize then
-		--
-		-- 	if string.len(table.concat(vim.api.nvim_buf_get_lines(0, 0, -1, false), "")) > 100000 then
-		-- 		return true
-		-- 	else
-		-- 		return false
-		-- 	end
-		-- end
-
-		-- -- If a file is too large, I don't want to add to it's cmp sources treesitter, see:
-		-- -- https://github.com/hrsh7th/nvim-cmp/issues/1522
-		-- vim.api.nvim_create_autocmd("BufReadPre", {
-		-- 	callback = function()
-		-- 		local sources = default_cmp_sources
-		-- 		if not BufIsBig() then
-		-- 			sources[#sources + 1] = { name = "treesitter", group_index = 2 }
-		-- 		end
-		-- 		cmp.setup.buffer({
-		-- 			sources = sources,
-		-- 		})
-		-- 	end,
-		-- })
 
 	end,
 }
