@@ -6,6 +6,8 @@
 # sudo apt install git fzf zoxide ripgrep fd-find tree untar tar p7zip-full
 # sudo ln --symbolic $(which fdfind) /usr/local/bin/fd
 #
+# sudo ln --symbolic $(which fdfind) /usr/local/bin/fd
+#
 # /centos
 # sudo yum install epel-release
 # sudo yum install git fzf zoxide ripgrep tree untar tar p7zip p7zip-plugins
