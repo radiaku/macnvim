@@ -1,5 +1,6 @@
 return {
 	"ray-x/go.nvim",
+  commit = "6ad0804",
 	dependencies = {
 		"ray-x/guihua.lua",
 	},

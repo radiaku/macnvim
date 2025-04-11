@@ -197,8 +197,23 @@ return {
 						"svelte",
 					},
 					-- capabilities = capabilities,
-					root_dir = util.root_pattern("package.json") or vim.fn.getcwd(),
+					root_dir = util.root_pattern("tailwind.config.js", "package.json") or vim.fn.getcwd(),
 					autoformat = false,
+					settings = {
+						tailwindCSS = {
+							includeLanguages = {
+								templ = "html",
+							},
+							experimental = {
+								classRegex = {
+									[[class= "([^"]*)]],
+									[[class: "([^"]*)]],
+									'~H""".*class="([^"]*)".*"""',
+									'~F""".*class="([^"]*)".*"""',
+								},
+							},
+						},
+					},
 					-- cmd = { bin_path .. "tailwindcss-language-server.cmd" },
 				})
 			end,
