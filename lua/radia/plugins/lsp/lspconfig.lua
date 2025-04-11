@@ -190,6 +190,7 @@ return {
 						"javascriptreact",
 						"javascript",
 						"sass",
+						"templ",
 						"scss",
 						"less",
 						"liquid",
