@@ -207,7 +207,7 @@ keymap.set("n", "<leader>ml", "<cmd>:MarksQFListBuf<cr>", opts)
 
 -- Neogit
 opts = { desc = "Neogit" }
-keymap.set("n", "<leader>ng", ":Neogit<CR>", opts)
+keymap.set("n", "<leader>ng", ":Neogit kind=floating<CR>", opts)
 
 -- opts = { desc = "Trigger linting for current file"}
 -- keymap.set("n", "<leader>lt", function() require("lint").try_lint() end, opts)
