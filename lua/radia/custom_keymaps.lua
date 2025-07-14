@@ -85,7 +85,21 @@ opts = { desc = "Fuzzy find recent files" }
 keymap.set("n", "<leader>fn", "<cmd>Telescope oldfiles theme=dropdown previewer=false<cr>", opts)
 
 opts = { desc = "Find string in cwd" }
-keymap.set("n", "<leader>fs", ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>", opts)
+keymap.set("n", "<leader>fs", function ()
+  require('telescope').extensions.live_grep_args.live_grep_args({
+    default_text = '-F ',
+  })
+end, opts)
+
+opts = { desc = "Find string in cwd including hidden files" }
+keymap.set("n", "<leader>fx, function ()
+  require('telescope').extensions.live_grep_args.live_grep_args({
+    default_text = '-F ',
+    additional_args = function()
+      return { "--hidden" }
+    end,
+  })
+end, opts)
 
 opts = { desc = "Find buffer on buffers" }
 cmd = "<cmd>Telescope buffers show_all_buffers=true sort_lastused=true theme=dropdown<cr>"
