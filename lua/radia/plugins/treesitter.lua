@@ -1,77 +1,40 @@
 return {
 	{
 		"nvim-treesitter/nvim-treesitter",
+		commit = "7bbed4",
 		event = { "BufReadPre", "BufNewFile" },
 		-- build = ":TSUpdate",
 		dependencies = {
-			"windwp/nvim-ts-autotag",
-			"nvim-treesitter/nvim-treesitter-textobjects",
+			{ "windwp/nvim-ts-autotag", commit = "a1d526" },
+			{ "nvim-treesitter/nvim-treesitter-textobjects" },
 		},
 		config = function()
 			-- import nvim-treesitter plugin
 			local treesitter = require("nvim-treesitter.configs")
-
-			-- NOTE: toggle below to ignore Lua_LS's noisy `missing-fields` warnings
-			-- diagnostics = { disable = { 'missing-fields' } },
 
 			-- configure treesitter
 			treesitter.setup({
 				-- enable syntax highlighting
 				highlight = {
 					enable = true,
-					additional_vim_regex_highlighting = false,
-					use_languagetree = false,
-
-					disable = function(lang, buf)
-						local max_char_count = 10000
-						local min_line_count = 50
-
-						local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
-						if ok and stats then
-							local char_count = stats.size
-							local line_count = vim.api.nvim_buf_line_count(buf)
-
-							-- print("char_count:", char_count, "line_count:", line_count)
-
-							if char_count > max_char_count and line_count < min_line_count then
-								-- print("disable it")
-								return true
-							end
-						end
-
-						if string.len(table.concat(vim.api.nvim_buf_get_lines(0, 0, -1, false), "")) > 50000 then
-							return true
-						end
-
-						return false
-					end,
 				},
 				-- enable indentation
 				indent = { enable = true },
 				-- enable autotagging (w/ nvim-ts-autotag plugin)
-				-- autotag = {
-				-- 	enable = false,
-				-- },
-
-				context_commentstring = {
+				autotag = {
 					enable = false,
-					enable_autocmd = false,
 				},
-
+				disable = function()
+					return string.len(table.concat(vim.api.nvim_buf_get_lines(0, 0, -1, false), "")) > 500000
+				end,
 				-- ensure these language parsers are installed
 				ensure_installed = {
 					"json",
-					-- "gdscript",
-					-- "godot_resource",
-					-- "gdshader",
-					"go",
-					"gowork",
-					"gotmpl",
-					"gomod",
-					"gosum",
-					"comment",
 					"javascript",
 					"html",
+					"go",
+					"php",
+					"python",
 					"css",
 					"bash",
 					"lua",
@@ -88,10 +51,53 @@ return {
 					-- 	node_decremental = "<bs>",
 					-- },
 				},
+				textobjects = {
+					select = {
+						enable = true,
+
+						lookahead = true,
+
+						keymaps = {
+
+							-- ["sa"] = { query = "@attribute.outer", desc = "Select outer part of a assignment" },
+							-- ["si"] = { query = "@attribute.inner", desc = "Select inner part of a assignment" },
+							--
+							-- ["ta"] = { query = "@attribute.outer", desc = "Select outer part of a attribute" },
+							-- ["ti"] = { query = "@attribute.inner", desc = "Select inner part of a attribute" },
+
+							-- ["ga"] = { query = "@parameter.outer", desc = "Select outer part of a parameter/argument" },
+							-- ["gi"] = { query = "@parameter.inner", desc = "Select inner part of a parameter/argument" },
+
+							["ab"] = { query = "@block.outer", desc = "Select outer part of a block" },
+							["ib"] = { query = "@block.inner", desc = "Select inner part of a block" },
+
+							["al"] = { query = "@loop.outer", desc = "Select outer part of a loop" },
+							["il"] = { query = "@loop.inner", desc = "Select inner part of a loop" },
+
+							["ac"] = {
+								query = "@conditional.outer",
+								desc = "Select outer part of a conditional definition",
+							},
+							["ic"] = {
+								query = "@conditional.inner",
+								desc = "Select inner part of a conditional definition",
+							},
+
+							["af"] = {
+								query = "@function.outer",
+								desc = "Select outer part of a method/function definition",
+							},
+							["if"] = {
+								query = "@function.inner",
+								desc = "Select inner part of a method/function definition",
+							},
+						},
+					},
+				},
 			})
 
 			-- enable nvim-ts-context-commentstring plugin for commenting tsx and jsx
-			require("ts_context_commentstring").setup({})
+			-- require("ts_context_commentstring").setup({})
 		end,
 	},
 }
