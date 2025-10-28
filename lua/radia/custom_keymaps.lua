@@ -30,21 +30,18 @@ opts = { desc = "clear QuickFix" }
 keymap.set("n", "<leader>cf", ":ClearQuickfixList<CR>", opts)
 
 -- conform
-local conform = require("conform")
 opts = { desc = "Format file" }
 keymap.set({ "n", "v" }, "<leader>rf", function()
-	conform.format({
-		lsp_fallback = true,
-		async = false,
-		timeout_ms = 5000,
-	})
+  local conform = require("conform")
+  conform.format({
+    lsp_fallback = true,
+    async = false,
+    timeout_ms = 5000,
+  })
 end, opts)
 
 -- Folding
-opts = { desc = "Open AllFolds" }
-keymap.set("n", "zR", require("ufo").openAllFolds, opts)
-opts = { desc = "Close AllFolds" }
-keymap.set("n", "zM", require("ufo").closeAllFolds, opts)
+-- UFO fold keymaps are provided by the plugin spec to avoid early require errors
 
 -- Todo Telescope
 opts = { desc = "Todo Telescope" }
@@ -150,62 +147,7 @@ opts = { desc = "Toggle Lazygit" }
 keymap.set("n", "<leader>lg", "<cmd>LazyGit<cr>", opts)
 -- keymap.set("n", "<leader>lg", "<cmd>:!lazygit<cr>", opts)
 
--- Harpoon
-local harpoon = require("harpoon")
-local conf = require("telescope.config").values
-local function toggle_telescope(harpoon_files)
-	local finder = function()
-		local paths = {}
-		for _, item in ipairs(harpoon_files.items) do
-			table.insert(paths, item.value)
-		end
-
-		return require("telescope.finders").new_table({
-			results = paths,
-		})
-	end
-
-	require("telescope.pickers")
-		.new({}, {
-			prompt_title = "Harpoon",
-			finder = finder(),
-			-- previewer = conf.file_previewer({}),
-			previewer = false,
-			sorter = conf.generic_sorter({}),
-			attach_mappings = function(prompt_bufnr, map)
-				map("n", "dd", function()
-					local state = require("telescope.actions.state")
-					local selected_entry = state.get_selected_entry()
-					local current_picker = state.get_current_picker(prompt_bufnr)
-
-					table.remove(harpoon_files.items, selected_entry.index)
-					current_picker:refresh(finder())
-				end)
-				return true
-			end,
-		})
-		:find()
-end
-
-opts = { desc = "Open harpoon window" }
-keymap.set("n", "<leader>hm", function()
-	toggle_telescope(harpoon:list())
-end, opts)
-
-opts = { desc = "+Add to harpoon" }
-keymap.set("n", "<leader>ha", function()
-	harpoon:list():add()
-end, opts)
-
-opts = { desc = "Next Harpoon" }
-keymap.set("n", "<leader>hn", function()
-	harpoon:list():next()
-end, opts)
-
-opts = { desc = "Previous Harpoon" }
-keymap.set("n", "<leader>hp", function()
-	harpoon:list():prev()
-end, opts)
+-- Harpoon keymaps are defined in the plugin spec to lazy-load properly
 
 -- Trouble
 opts = { desc = "Diagnostics (Trouble)" }

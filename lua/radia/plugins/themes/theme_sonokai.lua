@@ -1,3 +1,5 @@
 return {
-	"sainnhe/sonokai",
+  "sainnhe/sonokai",
+  lazy = false,
+  priority = 1000,
 }

@@ -43,5 +43,9 @@ end
 -- 	end,
 -- })
 
--- vim.cmd([[colorscheme tokyonight]])
-vim.cmd("colorscheme " .. themesname)
+-- Try to apply selected colorscheme; fall back if missing
+local ok, _ = pcall(vim.cmd, "colorscheme " .. themesname)
+if not ok then
+  vim.notify("Colorscheme '" .. themesname .. "' not found. Falling back to 'tokyonight'.", vim.log.levels.WARN)
+  pcall(vim.cmd, "colorscheme tokyonight")
+end

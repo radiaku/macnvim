@@ -1,7 +1,29 @@
 return {
 	"kevinhwang91/nvim-ufo",
+	-- Load when reading a buffer or on keypress
+	event = { "BufReadPost" },
 	dependencies = {
 		"kevinhwang91/promise-async",
+	},
+
+	-- Provide fold keymaps that load the plugin on demand
+	keys = {
+		{
+			"zR",
+			function()
+				require("ufo").openAllFolds()
+			end,
+			desc = "Open all folds (UFO)",
+			mode = "n",
+		},
+		{
+			"zM",
+			function()
+				require("ufo").closeAllFolds()
+			end,
+			desc = "Close all folds (UFO)",
+			mode = "n",
+		},
 	},
 
 	config = function()
@@ -10,7 +32,7 @@ return {
 		vim.o.foldlevelstart = 99
 		vim.o.foldenable = true
 
-		-- Using ufo provider need remap `zR` and `zM`. If Neovim is 0.6.1, remap yourself
+		-- Using ufo provider need remap `zR` and `zM`. Keymaps are defined in this spec.
 
 		-- Option 3: treesitter as a main provider instead
 		-- (Note: the `nvim-treesitter` plugin is *not* needed.)

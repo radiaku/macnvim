@@ -16,7 +16,14 @@ vim.opt.rtp:prepend(lazypath)
 -- local themesname = "tokyonight"
 -- local themesname = "sonokai"
 local themesname = _G.themesname
-require("lazy").setup({ { import = "radia.plugins" }, { import = "radia.plugins.lsp" } }, {
+require("lazy").setup({
+  { import = "radia.plugins" },
+  { import = "radia.plugins.ui" },
+  { import = "radia.plugins.search" },
+  { import = "radia.plugins.git" },
+  { import = "radia.plugins.themes" },
+  { import = "radia.plugins.lsp" },
+}, {
   install = {
     colorscheme = { themesname },
   },

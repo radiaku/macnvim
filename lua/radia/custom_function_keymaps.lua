@@ -9,14 +9,21 @@ keymap.set("n", "<leader>xs", "<cmd>source %<CR>", opts)
 opts = { desc = "Run selected lua script" }
 keymap.set("v", "<leader>xr", ":lua<CR>", opts)
 
-local pickers = require("telescope.pickers")
-local finders = require("telescope.finders")
-local actions = require("telescope.actions")
-local action_state = require("telescope.actions.state")
-local sorters = require("telescope.config").values.generic_sorter
+-- Defer Telescope requires until the picker runs to support lazy-loading
 
 -- All Buffers picker
 local all_buffers = function()
+  local ok, _ = pcall(require, "telescope")
+  if not ok then
+    vim.notify("Telescope is not available", vim.log.levels.ERROR)
+    return
+  end
+
+  local pickers = require("telescope.pickers")
+  local finders = require("telescope.finders")
+  local actions = require("telescope.actions")
+  local action_state = require("telescope.actions.state")
+  local sorters = require("telescope.config").values.generic_sorter
 	local get_buffers = function()
 		local buffers = {}
 		for _, buffer in ipairs(vim.api.nvim_list_bufs()) do
