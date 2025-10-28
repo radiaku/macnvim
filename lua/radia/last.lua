@@ -67,12 +67,57 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagn
 })
 
 vim.diagnostic.config({
-  underline = {
-    severity = { max = vim.diagnostic.severity.INFO },
-  },
-  virtual_text = {
-    severity = { min = vim.diagnostic.severity.WARN },
-  },
+	-- underline = {
+	-- 	severity = { max = vim.diagnostic.severity.INFO },
+	-- },
+	-- Use tiny-inline-diagnostic for inline messages; disable built-in virtual_text
+	virtual_text = false,
+	virtual_lines = false,
+})
+
+-- Reinforce global diagnostic settings whenever an LSP attaches
+vim.api.nvim_create_autocmd("LspAttach", {
+  callback = function()
+    vim.diagnostic.config({ virtual_text = false, virtual_lines = false })
+  end,
+})
+
+-- Prevent overlap: temporarily disable tiny-inline-diagnostic when opening floats
+local function setup_tiny_float_wrapper()
+  if vim.g._tiny_inline_float_wrapped then
+    return
+  end
+  local ok, tiny = pcall(require, "tiny-inline-diagnostic")
+  if not ok then
+    return
+  end
+  vim.g._tiny_inline_float_wrapped = true
+  local orig_open_float = vim.diagnostic.open_float
+  vim.diagnostic.open_float = function(...)
+    -- Disable inline diagnostics before opening the float
+    if tiny and tiny.disable then tiny.disable() end
+    local win = orig_open_float(...)
+    -- Re-enable once the float window is closed
+    if type(win) == "number" and vim.api.nvim_win_is_valid(win) then
+      vim.api.nvim_create_autocmd("WinClosed", {
+        once = true,
+        pattern = tostring(win),
+        callback = function()
+          if tiny and tiny.enable then tiny.enable() end
+        end,
+      })
+    else
+      if tiny and tiny.enable then tiny.enable() end
+    end
+    return win
+  end
+end
+
+-- Try now; also ensure wrapper is set when an LSP attaches
+setup_tiny_float_wrapper()
+vim.api.nvim_create_autocmd("LspAttach", {
+  once = true,
+  callback = setup_tiny_float_wrapper,
 })
 
 
