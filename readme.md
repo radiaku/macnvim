@@ -8,7 +8,26 @@ Opinionated Neovim setup focused on speed, clean UI, and practical LSP/diagnosti
 - macOS or Linux recommended (Windows supported, some commands differ)
 
 ## Install
-- Clone/symlink this directory to `~/.config/nvim`
+- Backup existing config (optional):
+```
+mv ~/.config/nvim ~/.config/nvim.bak
+```
+
+- Clone directly into `~/.config/nvim` (git):
+```
+git clone --depth 1 https://github.com/radiaku/macnvim ~/.config/nvim
+```
+
+- Or using GitHub CLI:
+```
+git clone git@github.com:radiaku/macnvim.git ~/.config/nvim
+```
+
+- Or symlink from a local repo you already have:
+```
+ln -s /absolute/path/to/this/repo ~/.config/nvim
+```
+
 - Start Neovim; the plugin manager will bootstrap automatically
 - Run `:Lazy sync` to install plugins, then `:TSUpdate` for Treesitter parsers
 
