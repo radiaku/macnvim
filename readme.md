@@ -12,6 +12,11 @@ Opinionated Neovim setup focused on speed, clean UI, and practical LSP/diagnosti
 - Start Neovim; the plugin manager will bootstrap automatically
 - Run `:Lazy sync` to install plugins, then `:TSUpdate` for Treesitter parsers
 
+## Documentation
+- [Requirements](./requirements.md) — system tools, language servers, formatters/linters
+- [Keymaps](./keymap.md) — leader mappings and workflows
+- [Git Config](./.gitconfig.md) — SSH keys and multi-profile Git setup
+
 ## Layout
 - Core: `lua/radia/core/` (settings, utility, lazy bootstrap)
   - Settings: `lua/radia/core/settings.lua`

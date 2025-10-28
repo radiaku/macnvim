@@ -1,5 +1,7 @@
 # Requirements
 
+Related Docs: [README](./readme.md) · [Keymaps](./keymap.md) · [Git Config](./.gitconfig.md)
+
 This repo’s Neovim setup uses several external tools. The commands below prioritize Homebrew on macOS and include npm/pipx fallbacks where Brew doesn’t provide a package.
 
 ## Core Prerequisites (macOS)

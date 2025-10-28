@@ -1,5 +1,7 @@
 # Radia Keymaps
 
+Related Docs: [README](./readme.md) · [Requirements](./requirements.md) · [Git Config](./.gitconfig.md)
+
 Leader is set to a single space: `mapleader = " "`.
 
 ## Editing
