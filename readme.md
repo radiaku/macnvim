@@ -20,10 +20,14 @@ Opinionated Neovim setup focused on speed, clean UI, and practical LSP/diagnosti
 - Keymaps: `lua/radia/keymaps/` (`default_keymaps.lua`, `custom_keymaps.lua`, `custom_function_keymaps.lua`)
 - Plugins: `lua/radia/plugins/` grouped by purpose:
   - `lua/radia/plugins/themes/` — colorschemes and theme setup (priority-loaded)
-  - `lua/radia/plugins/ui/` — visual/UI plugins (statusline, bufferline, folds, diagnostics UI, window picker, terminal, notes, DB UI, etc.)
-  - `lua/radia/plugins/git/` — Git integrations (fugitive, neogit, diffview, lazygit helpers)
-  - `lua/radia/plugins/search/` — search/navigation (Telescope, Hop, todo-comments, Harpoon)
+  - `lua/radia/plugins/ui/` — visual/UI plugins (statusline, bufferline, folds, diagnostics UI, window picker, file explorer, status/winbar, etc.)
+  - `lua/radia/plugins/editing/` — editing helpers (comments, text objects, marks, move lines, wrapping)
+  - `lua/radia/plugins/search/` — search/navigation (Telescope, Hop, todo-comments, Harpoon, NeoClip)
+  - `lua/radia/plugins/tools/` — general tools (terminal, DB UI)
+  - `lua/radia/plugins/notes/` — note-taking (Obsidian, markdown rendering)
+  - `lua/radia/plugins/perf/` — performance tuning (Bigfile, LargeFile)
   - `lua/radia/plugins/lsp/` — language tooling: LSP (mason, lspconfig, none-ls), completion/snippets (`nvim-cmp`, `LuaSnip`), formatting (`conform.nvim`), linting (`nvim-lint`), parsing (`treesitter`), language-specific tools (Go, Godot, Flutter)
+  - `lua/radia/plugins/util/` — utilities (sessions and helpers)
   - `lua/radia/plugins/disabled/` — disabled or experimental specs kept for reference
 - Theme orchestration: `lua/radia/themes.lua` (selects `_G.themesname` and applies colorscheme with fallback)
 - Diagnostics: `lua/radia/plugins/ui/tiny-line-diagnostic.lua`, `lua/radia/last.lua`

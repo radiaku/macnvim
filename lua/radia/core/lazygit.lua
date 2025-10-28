@@ -19,10 +19,15 @@ local themesname = _G.themesname
 require("lazy").setup({
   { import = "radia.plugins" },
   { import = "radia.plugins.ui" },
+  { import = "radia.plugins.editing" },
   { import = "radia.plugins.search" },
   { import = "radia.plugins.git" },
   { import = "radia.plugins.themes" },
   { import = "radia.plugins.lsp" },
+  { import = "radia.plugins.tools" },
+  { import = "radia.plugins.notes" },
+  { import = "radia.plugins.perf" },
+  { import = "radia.plugins.util" },
 }, {
   install = {
     colorscheme = { themesname },
