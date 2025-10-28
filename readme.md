@@ -13,15 +13,19 @@ Opinionated Neovim setup focused on speed, clean UI, and practical LSP/diagnosti
 - Run `:Lazy sync` to install plugins, then `:TSUpdate` for Treesitter parsers
 
 ## Layout
-- Core: `lua/radia/core/`, `lua/radia/default_settings.lua`, `lua/radia/default_keymaps.lua`
+- Core: `lua/radia/core/` (settings, utility, lazy bootstrap)
+  - Settings: `lua/radia/core/settings.lua`
+  - Defaults: `lua/radia/core/default_settings.lua` (sets `_G.themesname` and core globals)
+  - Lazy config: `lua/radia/lazy.lua`
+- Keymaps: `lua/radia/keymaps/` (`default_keymaps.lua`, `custom_keymaps.lua`, `custom_function_keymaps.lua`)
 - Plugins: `lua/radia/plugins/` grouped by purpose:
   - `lua/radia/plugins/themes/` — colorschemes and theme setup (priority-loaded)
-  - `lua/radia/plugins/ui/` — visual/UI plugins (statusline, bufferline, folds, diagnostics UI, window picking, terminal, etc.)
+  - `lua/radia/plugins/ui/` — visual/UI plugins (statusline, bufferline, folds, diagnostics UI, window picker, terminal, notes, DB UI, etc.)
   - `lua/radia/plugins/git/` — Git integrations (fugitive, neogit, diffview, lazygit helpers)
   - `lua/radia/plugins/search/` — search/navigation (Telescope, Hop, todo-comments, Harpoon)
-  - `lua/radia/plugins/lsp/` — LSP-related specs (mason, lspconfig, none-ls)
+  - `lua/radia/plugins/lsp/` — language tooling: LSP (mason, lspconfig, none-ls), completion/snippets (`nvim-cmp`, `LuaSnip`), formatting (`conform.nvim`), linting (`nvim-lint`), parsing (`treesitter`), language-specific tools (Go, Godot, Flutter)
   - `lua/radia/plugins/disabled/` — disabled or experimental specs kept for reference
-- Theme orchestration: `lua/radia/themes.lua` (selects `_G.themesname` and applies highlights)
+- Theme orchestration: `lua/radia/themes.lua` (selects `_G.themesname` and applies colorscheme with fallback)
 - Diagnostics: `lua/radia/plugins/ui/tiny-line-diagnostic.lua`, `lua/radia/last.lua`
 
 ## Core Workflows
@@ -66,10 +70,10 @@ Opinionated Neovim setup focused on speed, clean UI, and practical LSP/diagnosti
 - Go tools: Go-specific helpers (formatter, test runner, etc.)
 - Tiny Inline Diagnostic: compact inline messages without overlaying code
 
-Disabled plugin configs live under `plugins/disabled/` and can be enabled by moving them out or toggling the specs in `plugins/init.lua`.
+Disabled plugin configs live under `plugins/disabled/`. Enable them by moving their spec files out of `disabled/` into the appropriate group.
 
 ## Keymaps
-- See `lua/radia/default_keymaps.lua` for all core and LSP mappings
+- See `lua/radia/keymaps/*.lua` for all core, plugin, and function mappings
 - Many plugins provide mappings that show via Which-Key
 
 ## Tips

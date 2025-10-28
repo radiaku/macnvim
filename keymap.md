@@ -76,6 +76,7 @@ These are buffer-local and active when a language server attaches.
 - Inline diagnostics shown via `tiny-inline-diagnostic` at end-of-line.
 - Built-in `virtual_text` and `virtual_lines` are disabled globally.
 - Use `gl` for a focused float on the current line.
+- `<leader>xx` (normal): toggle Trouble diagnostics list.
 
 ## TODOs
 - `<leader>td` (normal): open todos in Telescope.
@@ -85,6 +86,10 @@ These are buffer-local and active when a language server attaches.
 - `<leader>lg` (normal): open LazyGit.
 - `<leader>ng` (normal): open Neogit (floating).
 - `:DiffviewOpen` / `:DiffviewClose`: open/close diff view (no direct mapping).
+
+## Database (Dadbod UI)
+- `<leader>db` (normal): toggle DBUI.
+- `<leader>dc` (normal): add DB connection.
 
 ## Notes (Obsidian)
 - `<leader>so` (normal): search Obsidian notes.
@@ -100,6 +105,7 @@ These are buffer-local and active when a language server attaches.
 ## Utility
 - `<leader>xs` (normal): source current file.
 - `<leader>xr` (visual): run selected Lua.
+- `<leader>rf` (normal/visual): format current file.
 
 ---
-For more details, see `lua/radia/default_keymaps.lua`, `lua/radia/custom_keymaps.lua`, and `lua/radia/custom_function_keymaps.lua`.
+For more details, see `lua/radia/keymaps/*.lua` and plugin specs under `lua/radia/plugins/`.
