@@ -81,3 +81,10 @@ export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
 export PATH="/usr/local/opt/postgresql@15/bin:$PATH"
+
+# bun completions
+[ -s "/Users/mac/.bun/_bun" ] && source "/Users/mac/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
