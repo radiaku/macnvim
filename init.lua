@@ -10,7 +10,7 @@ require("radia.default_settings")
 -- Load Core
 require("radia.core")
 -- Load Lazy
-require("radia.lazy")
+require("radia.lazynvim")
 -- Load Keymaps for plugin etc
 require("radia.default_keymaps")
 -- Load custom keymaps
