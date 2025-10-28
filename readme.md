@@ -1,4 +1,4 @@
-# Radia Neovim Config
+# Radia Osx ( Mac ) Neovim Config
 
 Opinionated Neovim setup focused on speed, clean UI, and practical LSP/diagnostics. Tested on Neovim `0.10.x`.
 
