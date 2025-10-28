@@ -14,10 +14,15 @@ Opinionated Neovim setup focused on speed, clean UI, and practical LSP/diagnosti
 
 ## Layout
 - Core: `lua/radia/core/`, `lua/radia/default_settings.lua`, `lua/radia/default_keymaps.lua`
-- Plugins: `lua/radia/plugins/` (each file configures a plugin)
-- LSP: `lua/radia/plugins/lsp/` (`mason.lua`, `lspconfig.lua`, `none-ls.lua`)
-- UI/Theme: `lua/radia/themes.lua`, `lua/radia/plugins/theme_*.lua`, `lualine.lua`, `bufferline.lua`
-- Diagnostics: `lua/radia/plugins/tiny-line-diagnostic.lua`, `lua/radia/last.lua`
+- Plugins: `lua/radia/plugins/` grouped by purpose:
+  - `lua/radia/plugins/themes/` — colorschemes and theme setup (priority-loaded)
+  - `lua/radia/plugins/ui/` — visual/UI plugins (statusline, bufferline, folds, diagnostics UI, window picking, terminal, etc.)
+  - `lua/radia/plugins/git/` — Git integrations (fugitive, neogit, diffview, lazygit helpers)
+  - `lua/radia/plugins/search/` — search/navigation (Telescope, Hop, todo-comments, Harpoon)
+  - `lua/radia/plugins/lsp/` — LSP-related specs (mason, lspconfig, none-ls)
+  - `lua/radia/plugins/disabled/` — disabled or experimental specs kept for reference
+- Theme orchestration: `lua/radia/themes.lua` (selects `_G.themesname` and applies highlights)
+- Diagnostics: `lua/radia/plugins/ui/tiny-line-diagnostic.lua`, `lua/radia/last.lua`
 
 ## Core Workflows
 - File search: `:Telescope find_files`, `:Telescope live_grep`
