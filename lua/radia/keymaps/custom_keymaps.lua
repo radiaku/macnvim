@@ -145,6 +145,9 @@ keymap.set("v", "<S-k>", ":MoveBlock(-1)<CR>", opts)
 -- LazyGit
 opts = { desc = "Toggle Lazygit" }
 keymap.set("n", "<leader>lg", "<cmd>LazyGit<cr>", opts)
+
+opts = { desc = "Toggle GitBlame" }
+keymap.set("n", "<leader>lb", "<cmd>GitBlameToggle<cr>", opts)
 -- keymap.set("n", "<leader>lg", "<cmd>:!lazygit<cr>", opts)
 
 -- Harpoon keymaps are defined in the plugin spec to lazy-load properly
