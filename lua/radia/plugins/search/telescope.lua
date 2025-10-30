@@ -82,9 +82,22 @@ return {
 
 		telescope.setup({
 			defaults = {
+				vimgrep_arguments = {
+					"rg",
+					"--color=never",
+					"--no-heading",
+					"--with-filename",
+					"--line-number",
+					"--column",
+					"--smart-case",
+					"--hidden",
+					"--no-ignore",
+					"--glob",
+					"!**/.git/*",
+				},
 				file_ignore_patterns = {
 					"node_modules",
-					".git",
+					"%.git/",
 					"venv",
 				},
 				buffer_previewer_maker = no_preview_minified,
@@ -129,6 +142,11 @@ return {
 						["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
 						["<C-Q>"] = actions.smart_send_to_qflist + actions.open_qflist,
           },
+				},
+			},
+			extensions = {
+				live_grep_args = {
+					auto_quoting = true,
 				},
 			},
 		})
