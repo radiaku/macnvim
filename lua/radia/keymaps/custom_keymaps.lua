@@ -93,7 +93,7 @@ keymap.set("n", "<leader>fx", function ()
   require('telescope').extensions.live_grep_args.live_grep_args({
     default_text = '-F ',
     additional_args = function()
-      return { "--hidden" }
+      return { "--hidden", "--no-ignore" }
     end,
   })
 end, opts)
