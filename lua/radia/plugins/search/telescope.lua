@@ -29,7 +29,7 @@ return {
 		local actions = require("telescope.actions")
 
 		local previewers = require("telescope.previewers")
-    local utils = require("telescope.previewers.utils")
+		local utils = require("telescope.previewers.utils")
 
 		local function count_lines(filepath)
 			local file = io.open(filepath, "r")
@@ -47,50 +47,101 @@ return {
 			return count
 		end
 
-    local function count_lines_capped(path, cap)
-      local f = io.open(path, "r")
-      if not f then return 0 end
+		local function count_lines_capped(path, cap)
+			local f = io.open(path, "r")
+			if not f then
+				return 0
+			end
 
-      local count = 0
-      for _ in f:lines() do
-        count = count + 1
-        if cap and count > cap then
-          break
-        end
-      end
+			local count = 0
+			for _ in f:lines() do
+				count = count + 1
+				if cap and count > cap then
+					break
+				end
+			end
 
-      f:close()
-      return count
-    end
+			f:close()
+			return count
+		end
 
-    local no_preview_minified = function(filepath, bufnr, opts)
-      local max_char_count = 10000
-      local min_line_count = 50
+		local no_preview_minified = function(filepath, bufnr, opts)
+			local max_char_count = 10000
+			local min_line_count = 50
 
-      local ok, stats = pcall(vim.loop.fs_stat, filepath)
-      local linecount = count_lines(filepath) or 0
+			local ok, stats = pcall(vim.loop.fs_stat, filepath)
+			local linecount = count_lines(filepath) or 0
 
-      opts = opts or {}
+			opts = opts or {}
 
-      if ok and stats then
-        local char_count = stats.size
-        local line_count = linecount
+			if ok and stats then
+				local char_count = stats.size
+				local line_count = linecount
 
-        -- big file + very few lines → minified bundle, SKIP preview
-        if char_count > max_char_count and line_count < min_line_count then
-          return  -- ← no preview
-        end
-      end
+				-- big file + very few lines → minified bundle, SKIP preview
+				if char_count > max_char_count and line_count < min_line_count then
+					return -- ← no preview
+				end
+			end
 
-      if linecount > 500000 then
-        return  -- absurdly huge → also skip preview
-      end
+			if linecount > 500000 then
+				return -- absurdly huge → also skip preview
+			end
 
-      previewers.buffer_previewer_maker(filepath, bufnr, opts)
-    end
+			previewers.buffer_previewer_maker(filepath, bufnr, opts)
+		end
+
+		local function is_minified(filepath)
+			local stat = vim.loop.fs_stat(filepath)
+			if not stat then
+				return false
+			end
+
+			if stat.size < 20000 then
+				return false
+			end
+
+			-- Only read first line
+			local f = io.open(filepath, "r")
+			if not f then
+				return false
+			end
+			local first = f:read("*l") or ""
+			f:close()
+
+			-- Extremely long first line → minified
+			return #first > 2000
+		end
+
+		local function small_head_preview(filepath, bufnr, opts)
+			utils.job_maker({ "head", "-c", "8000", filepath }, bufnr, opts)
+		end
+
+		local function make_smart_grep_previewer()
+			local orig = previewers.vim_buffer_vimgrep.new
+
+			return function(opts)
+				local previewer = orig(opts)
+
+				local old_dyn = previewer.dynamic_preview
+
+				previewer.dynamic_preview = function(self, entry, status)
+					local filepath = entry.filename or entry.value
+
+					if filepath and is_minified(filepath) then
+						return small_head_preview(filepath, self.state.bufnr, opts)
+					end
+
+					return old_dyn(self, entry, status)
+				end
+
+				return previewer
+			end
+		end
 
 		telescope.setup({
 			defaults = {
+				grep_previewer = make_smart_grep_previewer(),
 				vimgrep_arguments = {
 					"rg",
 					"--color=never",
@@ -143,14 +194,14 @@ return {
 						["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
 						["<C-Q>"] = actions.smart_send_to_qflist + actions.open_qflist,
 					},
-          n = {
+					n = {
 						["x"] = actions.toggle_selection + actions.move_selection_better,
 						["<Tab>"] = actions.toggle_selection + actions.move_selection_worse,
 						["<C-k>"] = actions.move_selection_previous,
 						["<C-j>"] = actions.move_selection_next,
 						["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
 						["<C-Q>"] = actions.smart_send_to_qflist + actions.open_qflist,
-          },
+					},
 				},
 			},
 			extensions = {
