@@ -47,48 +47,47 @@ return {
 			return count
 		end
 
-		local no_preview_minified = function(filepath, bufnr, opts)
-			opts = opts or {}
+    local function count_lines_capped(path, cap)
+      local f = io.open(path, "r")
+      if not f then return 0 end
 
-			local max_char_count = 10000 -- if file bigger than this, we start being careful
-			local min_line_count = 50 -- "few lines" threshold (likely minified)
-			local max_preview_len = 10000 -- bytes to show with head -c
-			local insane_line_cnt = 500000 -- absurdly many lines: also clip preview
+      local count = 0
+      for _ in f:lines() do
+        count = count + 1
+        if cap and count > cap then
+          break
+        end
+      end
 
-			-- get file stats first
-			local ok, stats = pcall(vim.loop.fs_stat, filepath)
-			if not (ok and stats and stats.size) then
-				-- if we can’t stat, just fall back to normal preview
-				return previewers.buffer_previewer_maker(filepath, bufnr, opts)
-			end
+      f:close()
+      return count
+    end
 
-			local size = stats.size
+    local no_preview_minified = function(filepath, bufnr, opts)
+      local max_char_count = 10000
+      local min_line_count = 50
 
-			-- For small files, just use normal previewer
-			if size <= max_char_count then
-				return previewers.buffer_previewer_maker(filepath, bufnr, opts)
-			end
+      local ok, stats = pcall(vim.loop.fs_stat, filepath)
+      local linecount = count_lines(filepath) or 0
 
-			-- Only now pay the cost of counting lines (since we know file is big)
-			local linecount = count_lines(filepath) or 0
+      opts = opts or {}
 
-			-- Case 1: big file but very few lines → probably minified
-			if size > max_char_count and linecount > 0 and linecount < min_line_count then
-				local cmd = { "head", "-c", tostring(max_preview_len), filepath }
-				utils.job_maker(cmd, bufnr, opts)
-				return
-			end
+      if ok and stats then
+        local char_count = stats.size
+        local line_count = linecount
 
-			-- Case 2: ridiculous line count → clip preview as well
-			if linecount > insane_line_cnt then
-				local cmd = { "head", "-c", tostring(max_preview_len), filepath }
-				utils.job_maker(cmd, bufnr, opts)
-				return
-			end
+        -- big file + very few lines → minified bundle, SKIP preview
+        if char_count > max_char_count and line_count < min_line_count then
+          return  -- ← no preview
+        end
+      end
 
-			-- Default: normal preview
-			return previewers.buffer_previewer_maker(filepath, bufnr, opts)
-		end
+      if linecount > 500000 then
+        return  -- absurdly huge → also skip preview
+      end
+
+      previewers.buffer_previewer_maker(filepath, bufnr, opts)
+    end
 
 		telescope.setup({
 			defaults = {
