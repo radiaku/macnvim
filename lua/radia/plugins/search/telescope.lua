@@ -57,27 +57,43 @@ return {
 			utils.job_maker({ "head", "-c", "8000", filepath }, bufnr, opts)
 		end
 
-		local function make_smart_grep_previewer()
-			local orig = previewers.vim_buffer_vimgrep.new
+    local function make_smart_grep_previewer()
+      local orig = previewers.vim_buffer_vimgrep.new
 
-			return function(opts)
-				local previewer = orig(opts)
+      return function(opts)
+        local previewer = orig(opts)
+        if not previewer then
+          -- if original constructor failed, just bail
+          return previewer
+        end
 
-				local old_dyn = previewer.dynamic_preview
+        local old_dyn = previewer.dynamic_preview
 
-				previewer.dynamic_preview = function(self, entry, status)
-					local filepath = entry.filename or entry.value
+        -- if there is no dynamic_preview, don't wrap it
+        if not old_dyn then
+          return previewer
+        end
 
-					if filepath and is_minified(filepath) then
-						return small_head_preview(filepath, self.state.bufnr, opts)
-					end
+        previewer.dynamic_preview = function(self, entry, status)
+          -- be defensive: entry can be nil
+          local filepath = entry and (entry.filename or entry.value) or nil
 
-					return old_dyn(self, entry, status)
-				end
+          if filepath and is_minified(filepath) then
+            -- self or self.state can be nil
+            local bufnr = self and self.state and self.state.bufnr
+            if bufnr then
+              return small_head_preview(filepath, bufnr, opts)
+            end
+            -- if no bufnr, just fall back to original behavior
+          end
 
-				return previewer
-			end
-		end
+          -- always fall back to original implementation
+          return old_dyn(self, entry, status)
+        end
+
+        return previewer
+      end
+    end
 
     -- Scan at most first N lines and see if any line is "very long"
     local function has_very_long_line(filepath, long_threshold, max_lines)
