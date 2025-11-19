@@ -31,66 +31,6 @@ return {
 		local previewers = require("telescope.previewers")
 		local utils = require("telescope.previewers.utils")
 
-		local function count_lines(filepath)
-			local file = io.open(filepath, "r")
-			if not file then
-				-- print("Could not open file: " .. filepath)
-				return 0
-			end
-
-			local count = 0
-			for _ in file:lines() do
-				count = count + 1
-			end
-			file:close()
-			-- print("Line count: " .. count)
-			return count
-		end
-
-		local function count_lines_capped(path, cap)
-			local f = io.open(path, "r")
-			if not f then
-				return 0
-			end
-
-			local count = 0
-			for _ in f:lines() do
-				count = count + 1
-				if cap and count > cap then
-					break
-				end
-			end
-
-			f:close()
-			return count
-		end
-
-		local no_preview_minified = function(filepath, bufnr, opts)
-			local max_char_count = 10000
-			local min_line_count = 50
-
-			local ok, stats = pcall(vim.loop.fs_stat, filepath)
-			local linecount = count_lines(filepath) or 0
-
-			opts = opts or {}
-
-			if ok and stats then
-				local char_count = stats.size
-				local line_count = linecount
-
-				-- big file + very few lines → minified bundle, SKIP preview
-				if char_count > max_char_count and line_count < min_line_count then
-					return -- ← no preview
-				end
-			end
-
-			if linecount > 500000 then
-				return -- absurdly huge → also skip preview
-			end
-
-			previewers.buffer_previewer_maker(filepath, bufnr, opts)
-		end
-
 		local function is_minified(filepath)
 			local stat = vim.loop.fs_stat(filepath)
 			if not stat then
@@ -139,6 +79,57 @@ return {
 			end
 		end
 
+    -- Scan at most first N lines and see if any line is "very long"
+    local function has_very_long_line(filepath, long_threshold, max_lines)
+      local f = io.open(filepath, "r")
+      if not f then
+        return false
+      end
+
+      local n = 0
+      for line in f:lines() do
+        if #line >= long_threshold then
+          f:close()
+          return true
+        end
+        n = n + 1
+        if n >= max_lines then
+          break
+        end
+      end
+
+      f:close()
+      return false
+    end
+
+    -- Our smart previewer:
+    -- - If file is big AND has a very long line → skip preview completely
+    -- - Otherwise, use normal Telescope preview
+    local function smart_buffer_previewer(filepath, bufnr, opts)
+      opts = opts or {}
+
+      -- Fast path: skip all dist/assets bundles entirely
+      if filepath:match("dist/assets/") then
+        return
+      end
+
+      local ok, stat = pcall(vim.loop.fs_stat, filepath)
+      if ok and stat and stat.size then
+        local size = stat.size
+
+        -- Only bother checking content if file is reasonably large
+        if size > 50 * 1024 then -- 50KB
+          if has_very_long_line(filepath, 1000, 200) then
+            -- large file + at least one line >= 1000 chars → minified style
+            return   -- <-- NO preview at all
+          end
+        end
+      end
+
+      -- Default: normal preview
+      return previewers.buffer_previewer_maker(filepath, bufnr, opts)
+    end
+
 		telescope.setup({
 			defaults = {
 				grep_previewer = make_smart_grep_previewer(),
@@ -160,7 +151,7 @@ return {
 					"%.git/",
 					"venv",
 				},
-				buffer_previewer_maker = no_preview_minified,
+				buffer_previewer_maker = smart_buffer_previewer,
 				path_display = { "truncate" },
 				layout_strategy = "horizontal",
 				layout_config = {
