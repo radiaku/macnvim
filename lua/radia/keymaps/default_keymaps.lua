@@ -39,10 +39,10 @@ opts = { desc = "Exit insert mode with jk" }
 keymap.set("i", "jk", "<ESC>", opts)
 
 -- Move around commandline cmdline or wildmenu auto complete using jk
--- opts = { desc = "Move down on wildmenu" }
--- keymap.set("c", "<C-n>", "<C-n>", opts)
--- opts = { desc = "Move up on wildmenu" }
--- keymap.set("c", "<C-p>", "<C-p>", opts)
+opts = { desc = "Move down on wildmenu" }
+keymap.set("c", "<C-j>", "<C-n>", opts)
+opts = { desc = "Move up on wildmenu" }
+keymap.set("c", "<C-k>", "<C-p>", opts)
 
 -- Cause treesitter have mode on visual ca, ci , we need pointing it to cc to delete
 keymap.set('v', 'cc', 'c', opts)
