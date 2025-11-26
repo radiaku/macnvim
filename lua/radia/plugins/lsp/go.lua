@@ -8,7 +8,7 @@ return {
 		require("go").setup({
 			lsp_codelens = false,
 			lsp_inlay_hints = {
-				enable = false,
+				enable = true,
 			},
 		})
 

@@ -39,19 +39,19 @@ opts = { desc = "Exit insert mode with jk" }
 keymap.set("i", "jk", "<ESC>", opts)
 
 -- Move around commandline cmdline or wildmenu auto complete using jk
-opts = { desc = "Move down on wildmenu" }
-keymap.set("c", "<C-j>", "<C-n>", opts)
-opts = { desc = "Move up on wildmenu" }
-keymap.set("c", "<C-k>", "<C-p>", opts)
+-- opts = { desc = "Move down on wildmenu" }
+-- keymap.set("c", "<C-n>", "<C-n>", opts)
+-- opts = { desc = "Move up on wildmenu" }
+-- keymap.set("c", "<C-p>", "<C-p>", opts)
 
 -- Cause treesitter have mode on visual ca, ci , we need pointing it to cc to delete
 keymap.set('v', 'cc', 'c', opts)
 
 -- Move around when insertmode using ctrl j + k
-opts = { desc = "Move down on wildmenu" }
-keymap.set("i", "<C-j>", "<C-n>", opts)
-opts = { desc = "Move down on wildmenu" }
-keymap.set("i", "<C-k>", "<C-p>", opts)
+-- opts = { desc = "Move down on wildmenu" }
+-- keymap.set("i", "<C-n>", opts)
+-- opts = { desc = "Move down on wildmenu" }
+-- keymap.set("i",  "<C-p>", opts)
 
 -- set shift insert to paste on insert mode
 opts = { desc = "Paste with shift+insert" }
@@ -188,14 +188,17 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		opts_lsp.desc = "Show LSP implementations"
 		keymap.set("n", "gi", "<cmd>Telescope lsp_implementations<CR>", opts_lsp) -- show lsp implementations
 
-		-- opts_lsp.desc = "Show LSP type definitions"
-		-- keymap.set("n", "gt", "<cmd>Telescope lsp_type_definitions<CR>", opts_lsp) -- show lsp type definitions
+		opts_lsp.desc = "Show LSP type definitions"
+		keymap.set("n", "gt", "<cmd>Telescope lsp_type_definitions<CR>", opts_lsp) -- show lsp type definitions
 
 		opts_lsp.desc = "See available code actions"
 		keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts_lsp) -- see available code actions, in visual mode will apply to selection
 
 		opts_lsp.desc = "Smart rename"
 		keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts_lsp) -- smart rename
+
+		opts_lsp.desc = "Show signature or HINT"
+    keymap.set("i", "<C-k>", function() vim.lsp.buf.signature_help() end, opts_lsp)
 
 		-- opts_lsp.desc = "Show buffer diagnostics"
 		-- keymap.set("n", "gf", "<cmd>Telescope diagnostics bufnr=0<CR>", opts_lsp) -- show  diagnostics for file
