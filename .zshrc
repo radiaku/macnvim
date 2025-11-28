@@ -91,5 +91,5 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 
 
 # brew install openjdk@17
-export JAVA_HOME="/usr/local/opt/openjdk@17/libexec/openjdk.jdk/Contents/Home"
+export JAVA_HOME="/usr/local/opt/openjdk@21/libexec/openjdk.jdk/Contents/Home"
 export PATH="$JAVA_HOME/bin:$PATH"
