@@ -93,3 +93,8 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 # brew install openjdk@17
 export JAVA_HOME="/usr/local/opt/openjdk@21/libexec/openjdk.jdk/Contents/Home"
 export PATH="$JAVA_HOME/bin:$PATH"
+
+# Added by Antigravity
+export PATH="/Users/mac/.antigravity/antigravity/bin:$PATH"
+
+[[ "$TERM_PROGRAM" == "kiro" ]] && . "$(kiro --locate-shell-integration-path zsh)"
