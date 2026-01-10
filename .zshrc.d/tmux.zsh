@@ -2,9 +2,16 @@
 unalias manage_tmux_session 2>/dev/null
 unalias sanitize_session_name 2>/dev/null
 
+# Function to sanitize session names
 sanitize_session_name() {
-  local trimmed="$(echo -n "$1" | xargs)"
-  local cleaned="$(echo -n "$trimmed" | tr -c '[:alnum:]_.-' '_')"
+  local input="$1"
+  # Trim leading/trailing whitespace using parameter expansion
+  input="${input#"${input%%[![:space:]]*}"}"
+  input="${input%"${input##*[![:space:]]}"}"
+  # Replace non-alphanumeric with _
+  local cleaned
+  cleaned="$(echo -n "$input" | tr -c '[:alnum:]' '_')"
+  # Remove trailing underscore if present
   echo "${cleaned%"_"}"
 }
 
