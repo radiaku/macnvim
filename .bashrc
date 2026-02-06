@@ -177,3 +177,5 @@ eval "$(pyenv init - bash)"
 
 
 [[ "$TERM_PROGRAM" == "kiro" ]] && . "$(kiro --locate-shell-integration-path bash)"
+
+. "$HOME/.local/bin/env"

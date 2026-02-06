@@ -98,3 +98,6 @@ export PATH="$JAVA_HOME/bin:$PATH"
 export PATH="/Users/mac/.antigravity/antigravity/bin:$PATH"
 
 [[ "$TERM_PROGRAM" == "kiro" ]] && . "$(kiro --locate-shell-integration-path zsh)"
+
+. "$HOME/.local/bin/env"
+export PATH=/opt/nvim-0.10.4/bin:$PATH

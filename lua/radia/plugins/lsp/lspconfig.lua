@@ -45,11 +45,21 @@ return {
 			client.server_capabilities.documentFormattingProvider = false
 			client.server_capabilities.documentRangeFormattingProvider = false
 
-			-- Format on save
+			-- Format on save (skip if file is too large and LSP is disabled)
 			vim.api.nvim_create_autocmd("BufWritePre", {
 				buffer = bufnr,
 				callback = function()
-					vim.lsp.buf.format({ async = false })
+					local has_formatting_client = false
+					for _, attached_client in ipairs(vim.lsp.get_active_clients({ bufnr = bufnr })) do
+						if attached_client.server_capabilities.documentFormattingProvider then
+							has_formatting_client = true
+							break
+						end
+					end
+					
+					if has_formatting_client then
+						vim.lsp.buf.format({ async = false })
+					end
 				end,
 			})
 		end
