@@ -42,7 +42,7 @@ vim.g.VM_show_warnings = 0
 -- vim.g.OmniSharp_server_use_net6 = true
 
 -- local pipepath = vim.fn.stdpath("cache") .. "/server.pipe"
--- if not vim.loop.fs_stat(pipepath) then
+-- if not (vim.uv or vim.loop).fs_stat(pipepath) then
 --   vim.fn.serverstart(pipepath)
 -- end
 
@@ -62,14 +62,11 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 })
 
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-	update_in_insert = false,
-})
-
 vim.diagnostic.config({
 	-- underline = {
 	-- 	severity = { max = vim.diagnostic.severity.INFO },
 	-- },
+	update_in_insert = false,
 	-- Use tiny-inline-diagnostic for inline messages; disable built-in virtual_text
 	virtual_text = false,
 	virtual_lines = false,
@@ -119,5 +116,4 @@ vim.api.nvim_create_autocmd("LspAttach", {
   once = true,
   callback = setup_tiny_float_wrapper,
 })
-
 

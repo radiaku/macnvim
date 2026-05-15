@@ -27,12 +27,13 @@ return {
 	config = function()
 		local telescope = require("telescope")
 		local actions = require("telescope.actions")
+		local uv = require("radia.core.compat").uv
 
 		local previewers = require("telescope.previewers")
 		local utils = require("telescope.previewers.utils")
 
 		local function is_minified(filepath)
-			local stat = vim.loop.fs_stat(filepath)
+			local stat = uv.fs_stat(filepath)
 			if not stat then
 				return false
 			end
@@ -129,7 +130,7 @@ return {
         return
       end
 
-      local ok, stat = pcall(vim.loop.fs_stat, filepath)
+      local ok, stat = pcall(uv.fs_stat, filepath)
       if ok and stat and stat.size then
         local size = stat.size
 

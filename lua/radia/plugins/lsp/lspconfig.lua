@@ -33,11 +33,16 @@ return {
 			end
 		end
 
-		local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
-		for type, icon in pairs(signs) do
-			local hl = "DiagnosticSign" .. type
-			vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
-		end
+		vim.diagnostic.config({
+			signs = {
+				text = {
+					[vim.diagnostic.severity.ERROR] = " ",
+					[vim.diagnostic.severity.WARN] = " ",
+					[vim.diagnostic.severity.HINT] = "󰠠 ",
+					[vim.diagnostic.severity.INFO] = " ",
+				},
+			},
+		})
 
 		-- Common on_attach function for all LSPs
 		local on_attach = function(client, bufnr)
@@ -50,8 +55,8 @@ return {
 				buffer = bufnr,
 				callback = function()
 					local has_formatting_client = false
-					for _, attached_client in ipairs(vim.lsp.get_active_clients({ bufnr = bufnr })) do
-						if attached_client.server_capabilities.documentFormattingProvider then
+					for _, attached_client in ipairs(vim.lsp.get_clients({ bufnr = bufnr })) do
+						if attached_client:supports_method("textDocument/formatting") then
 							has_formatting_client = true
 							break
 						end

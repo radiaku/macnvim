@@ -1,9 +1,9 @@
 # Radia Osx ( Mac ) Neovim Config
 
-Opinionated Neovim setup focused on speed, clean UI, and practical LSP/diagnostics. Tested on Neovim `0.10.x`.
+Opinionated Neovim setup focused on speed, clean UI, and practical LSP/diagnostics. Updated for Neovim `0.12` compatibility.
 
 ## Requirements
-- Neovim `>= 0.10.1`
+- Neovim `>= 0.10.1` (`0.12` recommended)
 - Git and a working compiler toolchain (for Treesitter and some plugins)
 - macOS or Linux recommended (Windows supported, some commands differ)
 
@@ -120,4 +120,3 @@ Disabled plugin configs live under `plugins/disabled/`. Enable them by moving th
 
 ---
 This README summarizes the project layout and common plugin usage. For deeper customization, explore files under `lua/radia/`.
-

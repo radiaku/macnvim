@@ -2,6 +2,8 @@ return {
 	"LunarVim/bigfile.nvim",
 	event = "BufReadPre",
 	config = function()
+		local uv = require("radia.core.compat").uv
+
 		local function count_lines(filepath)
 			local file = io.open(filepath, "r")
 			if not file then
@@ -22,7 +24,7 @@ return {
 			local max_char_count = 10000
 			local min_line_count = 50
 			local filepath = vim.api.nvim_buf_get_name(bufnr)
-			local ok, stats = pcall(vim.loop.fs_stat, filepath)
+			local ok, stats = pcall(uv.fs_stat, filepath)
 			local linecount = count_lines(filepath)
 
 			-- print("size:", ok and stats and stats.size, "line count:", linecount, "filepath", filepath)
