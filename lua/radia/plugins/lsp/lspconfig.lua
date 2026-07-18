@@ -18,7 +18,13 @@ return {
 		-- Skip LSP attach for buffers whose file was deleted outside nvim, and
 		-- defer attach for non-focused buffers during bulk open / session
 		-- restore so large codebases don't start N servers at once.
-		require("radia.plugins.lsp.lib.guard").setup()
+		-- pcall so a guard failure can never abort the rest of LSP setup.
+		local guard_ok, guard_err = pcall(function()
+			require("radia.plugins.lsp.lib.guard").setup()
+		end)
+		if not guard_ok then
+			vim.notify("LSP guard failed to load: " .. tostring(guard_err), vim.log.levels.WARN)
+		end
 
 		local mason_lspconfig = require("mason-lspconfig")
 
