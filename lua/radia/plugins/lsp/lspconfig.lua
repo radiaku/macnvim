@@ -15,6 +15,11 @@ return {
 		local lspconfig = require("lspconfig")
 		local util = require("lspconfig/util")
 
+		-- Skip LSP attach for buffers whose file was deleted outside nvim, and
+		-- defer attach for non-focused buffers during bulk open / session
+		-- restore so large codebases don't start N servers at once.
+		require("radia.plugins.lsp.lib.guard").setup()
+
 		local mason_lspconfig = require("mason-lspconfig")
 
 		local capabilities

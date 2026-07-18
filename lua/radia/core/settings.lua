@@ -51,4 +51,8 @@ opt.splitbelow = true -- split horizontal window to the bottom
 -- turn off swapfile
 opt.swapfile = false
 
+-- auto-reload files changed outside nvim; the LSP guard's FileChangedShell
+-- handler owns the real reload/notify path (see plugins/lsp/lib/guard.lua)
+opt.autoread = true
+
 -- opt.foldenable = false
