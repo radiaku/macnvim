@@ -101,3 +101,6 @@ export PATH="/Users/mac/.antigravity/antigravity/bin:$PATH"
 
 . "$HOME/.local/bin/env"
 export PATH=/opt/nvim-0.10.4/bin:$PATH
+
+# opencode
+export PATH=/Users/mac/.opencode/bin:$PATH
