@@ -104,3 +104,17 @@ export PATH=/opt/nvim-0.10.4/bin:$PATH
 
 # opencode
 export PATH=/Users/mac/.opencode/bin:$PATH
+
+
+
+claude-account1() {
+    CLAUDE_CONFIG_DIR="$HOME/.claude-account1" claude "$@"
+}
+
+claude-account2() {
+    CLAUDE_CONFIG_DIR="$HOME/.claude-account2" claude "$@"
+}
+
+claude-account3() {
+    CLAUDE_CONFIG_DIR="$HOME/.claude-account3" claude "$@"
+}
